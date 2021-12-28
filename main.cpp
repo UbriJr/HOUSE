@@ -32,27 +32,6 @@ private:
     std::string Tokens;
     
     // prints a welcome banner and adds space to clear terminal window
-    void PrintWelcomeUnused(){
-        
-        // variables
-        int wantedSpace = 50;
-        
-        // clear console
-        system("clear");
-        
-        // welcome banner
-        std::cout<<"\n";
-        std::cout<<"                          ****************************** \n";
-        std::cout<<"                               WELCOME TO THE CASINO       \n";
-        std::cout<<"                          ******************************";
-        
-        // add space between banner and login section
-        for(int spacer = 0; spacer < (wantedSpace / 10); spacer++){
-            std::cout<<"\n";
-        }
-    }
-    
-    // prints a welcome banner and adds space to clear terminal window
     void Welcome(){
         
         int time = 400;
