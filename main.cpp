@@ -208,9 +208,9 @@ private:
     // welcomes player to the game floor
     void Welcome(){
         system("clear");
-        int TextTime = 125; // was 125
-        int ClearWaitTime = 3000; // was 3000
-        std::string welcomeText = "\n           WELCOME TO THE GAME FLOOR \nTHIS IS WHERE ALL THE GAMES ARE HELD \nHAVE FUN AND RELAX, BUT REMEMBER, THE HOUSE ALWAYS WINS.\n";
+        int TextTime = 35; // was 125
+        int ClearWaitTime = 5000; // was 3000
+        std::string welcomeText = "\n\n\n\n\n\n\n                           WELCOME TO THE GAME FLOOR \n                      THIS IS WHERE ALL THE GAMES ARE HELD \n             HAVE FUN AND RELAX, BUT REMEMBER, THE HOUSE ALWAYS WINS.\n";
         unsigned long length = welcomeText.length();
         
         for(int i = 0; i < length; i++){
@@ -225,12 +225,12 @@ private:
         system("clear");
         bool isValid;
         int userInput;
-        std::cout<<"                \nGAME ROOM\n";
+        std::cout<<"\n\n\n\n\n\n\n                                 GAME FLOOR\n\n";
         do {
-            std::cout << "1: CASINO WAR \n";
-            std::cout << "2: GAME 2 \n";
-            std::cout << "3: GAME 3 \n";
-            std::cout << "SELECT AN OPTION: ";
+            std::cout << "                               1: CASINO WAR \n";
+            std::cout << "                               2: GAME 2 \n";
+            std::cout << "                               3: GAME 3 \n";
+            std::cout << "                              SELECT AN OPTION: ";
             std::cin >> userInput;
             isValid = InputValidation(userInput);
         } while (!isValid);
@@ -284,10 +284,10 @@ private:
         int userInput; 
 
         system("clear");
-        std::cout<<"\n                  CASINO WAR\n"<<std::endl;
-        std::cout<<"1: HOW TO PLAY CASINO WAR"<<std::endl;
-        std::cout<<"2: PLAY CASINO WAR"<<std::endl; 
-        std::cout<<"PLEASE SELECT AN OPTION: ";
+        std::cout<<"\n\n\n\n\n\n\n                                 CASINO WAR\n"<<std::endl;
+        std::cout<<"                          1: HOW TO PLAY CASINO WAR"<<std::endl;
+        std::cout<<"                          2: PLAY CASINO WAR"<<std::endl; 
+        std::cout<<"                          PLEASE SELECT AN OPTION: ";
         std::cin>>userInput;
 
         if(userInput == (instructions)){
@@ -330,11 +330,17 @@ private:
     // instructions for casino war
     void CasinoWarInstructions(){
         system("clear");
-        std::string instructMessage = "\n                                 CASINO WAR\n\n-THE PLAYER AND THE DEALER ARE EACH DEALT ONE CARD.\n-IF THE PLAYER'S CARD IS HIGHER THEN THE DEALER, HE WINS THE WAGER THEY BET.\n-OTHERWISE THE PLAYER LOSES.\n-A TIE OCCURS WHEN THE PLAYER AND THE DEALER EACH HAVE CARDS OF THE SAME RANK.\n-THE PLAYER AND DEALER ARE DEALT ANOTHER CARD TO DETERMINE THE WINNER.\n";
-        std::string cardRanks = "\n             CARD RANKS (IN ORDER FROM THE HIGHEST TO LOWEST):\n           ACE, KING, QUEEN, JACK, 10, 9, 8, 7, 6, 5, 4, 3, 2 \n";
+        int userInput;
+        std::string instructMessage = "\n\n\n                                  CASINO WAR\n\n -THE PLAYER AND THE DEALER ARE EACH DEALT ONE CARD.\n -IF THE PLAYER'S CARD IS HIGHER THEN THE DEALER, HE WINS THE WAGER THEY BET.\n -OTHERWISE THE PLAYER LOSES.\n -A TIE OCCURS WHEN THE PLAYER AND THE DEALER EACH HAVE CARDS OF THE SAME RANK.\n -THE PLAYER AND DEALER ARE DEALT ANOTHER CARD TO DETERMINE THE WINNER.\n";
+        std::string cardRanks = "\n             CARD RANKS (IN ORDER FROM THE HIGHEST TO LOWEST):\n             ACE, KING, QUEEN, JACK, 10, 9, 8, 7, 6, 5, 4, 3, 2 \n";
 
         std::cout<<instructMessage;
         std::cout<<cardRanks<<std::endl;
+
+        std::cout<<"\n\n                          1: PLAY CASINO WAR";
+        std::cout<<"\n                          2: RETURN TO THE GAME FLOOR";
+        std::cout<<"\n                          PLEASE SELECT AN OPTION: ";
+        std::cin>>userInput;
     }
 
     int randomCard(){
