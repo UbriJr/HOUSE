@@ -75,8 +75,8 @@ void CasinoWar::CasinoWarPlay(){
     std::cin>>Show;
 
     dealersCard = randomCard();
-    std::cout<<"\nDealers Card: "<<dealersCard<<std::endl;
-    replay();
+    std::cout<<"\n                              DEALERS CARD: "<<dealersCard<<std::endl;
+    WinOrLoseChecker(playersCard,dealersCard);
 }
 
 // instructions for casino war
@@ -122,10 +122,22 @@ std::string CasinoWar::cardDealt(int number){
 
 void CasinoWar::replay(){
     int userInput; 
-    std::cout<<"\n          WOULD YOU LIKE TO PLAY AGAIN?"<<std::endl<<"\n";
-    std::cout<<"                1: PLAY AGAIN"<<std::endl;
-    std::cout<<"                2: RETURN TO GAMEROOM"<<std::endl;
+    std::cout<<"\n                          WOULD YOU LIKE TO PLAY AGAIN?"<<std::endl<<"\n";
+    std::cout<<"                                1: PLAY AGAIN"<<std::endl;
+    std::cout<<"                                2: RETURN TO GAMEROOM"<<std::endl;
     std::cin>>userInput;
 
     InputValidation(userInput);
+}
+
+// checked if the player won or lost the wager. Takes in the players card and the dealers card, checking which is greater. 
+void CasinoWar::WinOrLoseChecker(int pCard, int dCard){
+    if(pCard > dCard){
+        std::cout<<"The player won";
+    }else if (pCard == dCard){
+        std::cout<<"There was a tie";
+    }else if(dCard > pCard){
+        std::cout<<"The dealer won";
+    }
+    replay();
 }

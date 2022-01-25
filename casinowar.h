@@ -11,6 +11,7 @@ class CasinoWar{
         void CasinoWarPlay();
         void CasinoWarInstructions();
         void replay();
+        void WinOrLoseChecker(int pCard, int dCard);
         int randomCard();
         std::string cardDealt(int number);
 };
