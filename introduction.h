@@ -17,6 +17,7 @@ class Introduction{
         void reg();
         void InputControlFlow(int userInput);
         void RegisterOrLogin();
+        void spacingBuffer(int spaces);
 };
 
 #endif

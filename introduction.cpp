@@ -58,6 +58,10 @@ void Introduction::Welcome(){
     std::cout<<"\n";
     std::cout<<"\n";
     std::cout<<"\n";
+
+    std::cout<<"\n";
+    std::cout<<"\n";
+    std::cout<<"\n";
 }
 
 // Validates user's input
@@ -85,7 +89,7 @@ bool Introduction::InputValidation(int userInput){
 
 // called if the user wants to login
 void Introduction::login(){
-    
+    int neededSpace = 10;
     // spacer
     system("clear");
     
@@ -95,15 +99,17 @@ void Introduction::login(){
     std::string NextLine;
     //std::string Tokens;
     
-    std::string pleaseWait = "PLEASE WAIT WHILE WE BRING YOU TO THE GAME FLOOR\n";
+    std::string pleaseWait = "                PLEASE WAIT WHILE WE BRING YOU TO THE GAME FLOOR\n";
     
     int WaitTime = 5000;
     
     bool InfoFound = false;
-    
-    std::cout<<"\nENTER YOUR USERNAME: ";
+
+    spacingBuffer(neededSpace);
+
+    std::cout<<"                           ENTER YOUR USERNAME: ";
     std::cin>>username;
-    std::cout<<"ENTER YOUR PASSWORD: ";
+    std::cout<<"                           ENTER YOUR PASSWORD: ";
     std::cin>>password;
     
     std::ifstream readFile("data.txt");
@@ -115,8 +121,9 @@ void Introduction::login(){
         
         if((username == CurrentLine) && (password == NextLine)){
             system("clear");
-            std::cout<<"\nLOGIN SUCCESSFUL\n";
-            std::cout<<"YOU HAVE "<<Tokens<<" TOKENS\n";
+            spacingBuffer(neededSpace/2);
+            std::cout<<"\n                                LOGIN SUCCESSFUL\n";
+            std::cout<<"                              YOU HAVE "<<Tokens<<" TOKENS\n";
             std::cout<<pleaseWait;
             std::this_thread::sleep_for(std::chrono::milliseconds(WaitTime));
             
@@ -128,7 +135,9 @@ void Introduction::login(){
     
     if(!InfoFound){
         system("clear");
-        std::cout<<"COULD NOT FIND AN ACCOUNT WITH THE GIVEN USERNAME AND PASSWORD. PLEASE REGISTER OR TRY TO LOGIN AGAIN"<< std::endl;
+        spacingBuffer(neededSpace/2);
+        std::cout<<"         COULD NOT FIND AN ACCOUNT WITH THE GIVEN USERNAME AND PASSWORD"<< std::endl;
+        std::cout<<"                    PLEASE REGISTER OR TRY TO LOGIN AGAIN\n"<<std::endl;
         RegisterOrLogin();
     }
 }
@@ -178,12 +187,19 @@ void Introduction::RegisterOrLogin(){
     int userInput;
     
     do {
-    std::cout << "1: LOGIN \n";
-    std::cout << "2: REGISTER \n";
-    std::cout << "SELECT AN OPTION: ";
+    std::cout << "                                 1: LOGIN \n";
+    std::cout << "                                 2: REGISTER \n";
+    std::cout << "                               SELECT AN OPTION: ";
     std::cin >> userInput;
     isValid = InputValidation(userInput);
     } while (!isValid);
     
     InputControlFlow(userInput);
+}
+
+// added white space to make program more visually appealing
+void Introduction::spacingBuffer(int spaces){
+    for(int i = 0; i < spaces; i++){
+        std::cout<<"\n";
+    };
 }

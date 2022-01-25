@@ -71,11 +71,12 @@ void CasinoWar::CasinoWarPlay(){
     pCard = cardDealt(playersCard);
 
     std::cout<<"\n                                  YOUR CARD: "<<pCard<<"\n";
-    std::cout<<"\nTYPE SHOW OR 1 WHEN READY TO SHOW DEALERS CARD: ";
+    std::cout<<"\n\n\n\n\n                TYPE SHOW OR 1 WHEN READY TO SHOW DEALERS CARD: ";
     std::cin>>Show;
 
     dealersCard = randomCard();
-    std::cout<<"\n Dealers Card: "<<dealersCard<<std::endl;
+    std::cout<<"\nDealers Card: "<<dealersCard<<std::endl;
+    replay();
 }
 
 // instructions for casino war
@@ -117,4 +118,14 @@ std::string CasinoWar::cardDealt(int number){
         result = std::to_string(number);
     }
     return result; 
+}
+
+void CasinoWar::replay(){
+    int userInput; 
+    std::cout<<"\n          WOULD YOU LIKE TO PLAY AGAIN?"<<std::endl<<"\n";
+    std::cout<<"                1: PLAY AGAIN"<<std::endl;
+    std::cout<<"                2: RETURN TO GAMEROOM"<<std::endl;
+    std::cin>>userInput;
+
+    InputValidation(userInput);
 }

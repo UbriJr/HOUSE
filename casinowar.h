@@ -10,6 +10,7 @@ class CasinoWar{
         void CasinoWarSelection();
         void CasinoWarPlay();
         void CasinoWarInstructions();
+        void replay();
         int randomCard();
         std::string cardDealt(int number);
 };

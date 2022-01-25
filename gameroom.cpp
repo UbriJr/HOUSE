@@ -44,7 +44,7 @@ void GameRoom::GameOptions(){
         std::cout << "                               1: CASINO WAR \n";
         std::cout << "                               2: GAME 2 \n";
         std::cout << "                               3: GAME 3 \n";
-        std::cout << "                              SELECT AN OPTION: ";
+        std::cout << "\n                              SELECT AN OPTION: ";
         std::cin >> userInput;
         isValid = InputValidation(userInput);
     } while (!isValid);
