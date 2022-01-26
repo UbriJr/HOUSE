@@ -15,8 +15,8 @@
 int main(int argc, const char * argv[]) {
     
     // Introduction section (register, login, transfer)
-    Introduction IntroObj;
-    IntroObj.RunIntroduction();
+    //Introduction IntroObj;
+    //IntroObj.RunIntroduction();
     
     // Game section (games)
     GameRoom roomObj;

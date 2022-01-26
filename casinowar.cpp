@@ -70,7 +70,12 @@ void CasinoWar::CasinoWarPlay(){
     playersCard = randomCard();
     pCard = cardDealt(playersCard);
 
+    displayA();
+
     std::cout<<"\n                                  YOUR CARD: "<<pCard<<"\n";
+
+    //displayA();
+
     std::cout<<"\n\n\n\n\n                TYPE SHOW OR 1 WHEN READY TO SHOW DEALERS CARD: ";
     std::cin>>Show;
 
@@ -133,11 +138,32 @@ void CasinoWar::replay(){
 // checked if the player won or lost the wager. Takes in the players card and the dealers card, checking which is greater. 
 void CasinoWar::WinOrLoseChecker(int pCard, int dCard){
     if(pCard > dCard){
-        std::cout<<"The player won";
+        std::cout<<"            THE PLAYER WON";
     }else if (pCard == dCard){
-        std::cout<<"There was a tie";
+        std::cout<<"            THERE WAS A TIE";
     }else if(dCard > pCard){
-        std::cout<<"The dealer won";
+        std::cout<<"            THE DEALER WON";
     }
     replay();
+}
+ // thanks john wiech for the contribution
+void CasinoWar::displayA(){
+     // welcome banner
+
+    int time = 500; 
+
+    std::cout<<"\n";
+    std::cout<<"                                     _____"<<std::endl;
+    std::this_thread::sleep_for(std::chrono::milliseconds(time));
+    std::cout<<"                                    |A _  |"<<std::endl;
+    std::this_thread::sleep_for(std::chrono::milliseconds(time));
+    std::cout<<"                                    | ( ) |"<<std::endl;
+    std::this_thread::sleep_for(std::chrono::milliseconds(time));
+    std::cout<<"                                    |(_'_)|"<<std::endl;
+    std::this_thread::sleep_for(std::chrono::milliseconds(time));
+    std::cout<<"                                    |  |  |"<<std::endl;
+    std::this_thread::sleep_for(std::chrono::milliseconds(time));
+    std::cout<<"                                    |____V|"<<std::endl;
+    std::cout<<"\n";
+
 }
