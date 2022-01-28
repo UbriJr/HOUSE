@@ -12,14 +12,11 @@
 #include "gameroom.h"
 #include "introduction.h"
 
-int main(int argc, const char * argv[]) {
-    
-    // Introduction section (register, login, transfer)
+int main(int argc, const char *argv[])
+{
     //Introduction IntroObj;
     //IntroObj.RunIntroduction();
-    
-    // Game section (games)
+
     GameRoom roomObj;
     roomObj.RunGameRoom();
-    
 }
