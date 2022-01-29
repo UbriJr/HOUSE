@@ -76,20 +76,22 @@ void CasinoWar::CasinoWarPlay()
     std::cout << "\n                                  CASINO WAR\n";
     std::cout << "\n          PLEASE ENTER THE NUMBER OF TOKENS YOU WOULD LIKE TO WAGER: ";
     std::cin >> wager;
-    std::cout << "\n                              YOU WAGERED " << wager << " TOKENS \n";
+    std::cout << "\n\n\n                              YOU WAGERED " << wager << " TOKENS \n";
 
     playersCard = randomCard();
     pCard = cardDealt(playersCard);
 
+    // sadhfljksdahflsdjkahflksjahdflsdakjhfaklsdhalskdjfhsdaljkfhlasdkjhfalsdkj
     cardBuilder(playersCard);
 
-    std::cout << "\n                                  YOUR CARD: " << pCard << "\n";
+    std::cout << "\n                                 YOUR CARD: " << pCard;
 
-    std::cout << "\n\n\n\n\n                TYPE SHOW OR 1 WHEN READY TO SHOW DEALERS CARD: ";
+    std::cout << "\n\n\n\n                TYPE SHOW OR 1 WHEN READY TO SHOW DEALERS CARD: ";
     std::cin >> Show;
 
     dealersCard = randomCard();
     std::cout << "\n                              DEALERS CARD: " << dealersCard << std::endl;
+
     WinOrLoseChecker(playersCard, dealersCard);
 }
 
@@ -111,6 +113,7 @@ void CasinoWar::CasinoWarInstructions()
 
     InputValidation(userInput);
 }
+
 // random number generated, number corresponds to a card
 int CasinoWar::randomCard()
 {
@@ -255,13 +258,13 @@ void CasinoWar::cardTwo()
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
     std::cout << "                                    |2      |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    |   *   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
     std::cout << "                                    |       |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
     std::cout << "                                    |       |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    |   *   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
     std::cout << "                                    |______2|" << std::endl;
     std::cout << "\n";
@@ -276,11 +279,11 @@ void CasinoWar::cardThree()
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
     std::cout << "                                    |3      |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    |   *   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    |   *   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    |   *   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
     std::cout << "                                    |       |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
@@ -297,13 +300,13 @@ void CasinoWar::cardFour()
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
     std::cout << "                                    |4      |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    | *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
     std::cout << "                                    |       |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
     std::cout << "                                    |       |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    | *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
     std::cout << "                                    |______4|" << std::endl;
     std::cout << "\n";
@@ -318,11 +321,11 @@ void CasinoWar::cardFive()
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
     std::cout << "                                    |5      |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    | *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    |   *   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    | *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
     std::cout << "                                    |       |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
@@ -339,11 +342,11 @@ void CasinoWar::cardSix()
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
     std::cout << "                                    |6      |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    | *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    | *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    | *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
     std::cout << "                                    |       |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
@@ -360,13 +363,13 @@ void CasinoWar::cardSeven()
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
     std::cout << "                                    |7      |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    | *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    |   *   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    | *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    | *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
     std::cout << "                                    |______7|" << std::endl;
     std::cout << "\n";
@@ -381,13 +384,13 @@ void CasinoWar::cardEight()
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
     std::cout << "                                    |8      |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    | *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    | *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    | *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    | *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
     std::cout << "                                    |______8|" << std::endl;
     std::cout << "\n";
@@ -402,13 +405,13 @@ void CasinoWar::cardNine()
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
     std::cout << "                                    |9      |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    | *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    | * * * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    | *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    | *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
     std::cout << "                                    |______9|" << std::endl;
     std::cout << "\n";
@@ -444,13 +447,13 @@ void CasinoWar::cardJack()
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
     std::cout << "                                    |J      |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    |   J   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    |   A   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    |   C   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    |   K   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
     std::cout << "                                    |______J|" << std::endl;
     std::cout << "\n";
@@ -463,15 +466,15 @@ void CasinoWar::cardQueen()
     std::cout << "\n";
     std::cout << "                                     _______" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |Q      |" << std::endl;
+    std::cout << "                                    |Q  Q   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    |   U   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    |   E   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    |   E   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    |   N   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
     std::cout << "                                    |______Q|" << std::endl;
     std::cout << "\n";
@@ -486,15 +489,14 @@ void CasinoWar::cardKing()
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
     std::cout << "                                    |K      |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    |   K   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    |   I   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    |   N   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << "                                    |   G   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
     std::cout << "                                    |______K|" << std::endl;
-
     std::cout << "\n";
 }
