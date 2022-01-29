@@ -13,9 +13,22 @@ private:
     void CasinoWarPlay();
     void CasinoWarInstructions();
     void replay();
-    void displayA(); // remove later
     void WinOrLoseChecker(int pCard, int dCard);
     int randomCard();
+    void cardBuilder(int card);
+    void cardA();
+    void cardTwo();
+    void cardThree();
+    void cardFour();
+    void cardFive();
+    void cardSix();
+    void cardSeven();
+    void cardEight();
+    void cardNine();
+    void cardTen();
+    void cardJack();
+    void cardQueen();
+    void cardKing();
     std::string cardDealt(int number);
 };
 
