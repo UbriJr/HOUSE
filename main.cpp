@@ -13,11 +13,26 @@
 #include "gameroom.h"
 #include "introduction.h"
 
+// remove after testing
+#include "casinowar.h"
+
 int main(int argc, const char *argv[])
 {
     //Introduction IntroObj;
     //IntroObj.RunIntroduction();
 
-    GameRoom roomObj;
-    roomObj.RunGameRoom();
+    //GameRoom roomObj;
+    //roomObj.RunGameRoom();
+
+    CasinoWar TestObj;
+    TestObj.runCasinoWar();
+
+    /*
+    while (true)
+    {
+        srand((unsigned int)time(NULL));
+        int card = rand() % 13 + 1;
+        std::cout << card << std::endl;
+    }
+    */
 }

@@ -64,35 +64,36 @@ void CasinoWar::CasinoWarPlay()
 {
 
     system("clear");
-    Introduction tokenObj;
-    int availableTokens = tokenObj.getTokens();
     int wager;
     int playersCard;
     std::string pCard;
     int dealersCard;
     std::string dCard;
     std::string Show;
+    std::string playerSpacing = "                                               ";
+    std::string dealerSpacing = "                         ";
 
-    std::cout << "\n                                  CASINO WAR\n";
-    std::cout << "\n          PLEASE ENTER THE NUMBER OF TOKENS YOU WOULD LIKE TO WAGER: ";
+    std::cout << "\n\n\n\n\n\n\n\n                                  CASINO WAR";
+    std::cout << "\n\n                                WAGER AMOUNT: ";
     std::cin >> wager;
-    std::cout << "\n\n\n                              YOU WAGERED " << wager << " TOKENS \n";
+    std::cout << "\n                              YOU WAGERED " << wager << " TOKENS \n";
+
+    dealersCard = randomCard();
+    dCard = cardDealt(dealersCard);
+
+    std::cout << "\n\n\n                           TYPE TO SHOW DEALERS CARD: ";
+    std::cin >> Show;
+    system("clear");
+
+    std::cout << "\n                       DEALERS CARD " << std::endl;
+    cardBuilder(dealersCard, dealerSpacing);
 
     playersCard = randomCard();
     pCard = cardDealt(playersCard);
+    std::cout << "\n                                               YOUR CARD " << std::endl;
+    cardBuilder(playersCard, playerSpacing);
 
-    // sadhfljksdahflsdjkahflksjahdflsdakjhfaklsdhalskdjfhsdaljkfhlasdkjhfalsdkj
-    cardBuilder(playersCard);
-
-    std::cout << "\n                                 YOUR CARD: " << pCard;
-
-    std::cout << "\n\n\n\n                TYPE SHOW OR 1 WHEN READY TO SHOW DEALERS CARD: ";
-    std::cin >> Show;
-
-    dealersCard = randomCard();
-    std::cout << "\n                              DEALERS CARD: " << dealersCard << std::endl;
-
-    WinOrLoseChecker(playersCard, dealersCard);
+    //WinOrLoseChecker(playersCard, dealersCard);
 }
 
 // instructions for casino war
@@ -179,324 +180,300 @@ void CasinoWar::WinOrLoseChecker(int pCard, int dCard)
     replay();
 }
 // thanks john wiech for the contribution
-void CasinoWar::cardBuilder(int card)
+void CasinoWar::cardBuilder(int card, std::string spacing)
 {
     switch (card)
     {
+    case 1:
+        cardA(spacing);
+        break;
     case 2:
-        cardTwo();
+        cardTwo(spacing);
         break;
     case 3:
-        cardThree();
+        cardThree(spacing);
         break;
     case 4:
-        cardFour();
+        cardFour(spacing);
         break;
     case 5:
-        cardFive();
+        cardFive(spacing);
         break;
     case 6:
-        cardSix();
+        cardSix(spacing);
         break;
     case 7:
-        cardSeven();
+        cardSeven(spacing);
         break;
     case 8:
-        cardEight();
+        cardEight(spacing);
         break;
     case 9:
-        cardNine();
+        cardNine(spacing);
         break;
     case 10:
-        cardTen();
+        cardTen(spacing);
         break;
     case 11:
-        cardJack();
+        cardJack(spacing);
         break;
     case 12:
-        cardQueen();
+        cardQueen(spacing);
         break;
     case 13:
-        cardKing();
+        cardKing(spacing);
         break;
-    case 14:
-        cardA();
-        break;
-
     default:
         std::cout << "Something went wrong" << std::endl;
+        std::cout << card;
     }
 }
 
-void CasinoWar::cardA()
+void CasinoWar::cardA(std::string spacing)
 {
     int time = 500;
+    std::string playerSpacing = "                                     ";
+    std::string dealerSpacing = "           ";
 
-    std::cout << "\n";
-    std::cout << "                                     _______" << std::endl;
+    std::cout << spacing << " _______" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |A      |" << std::endl;
+    std::cout << spacing << "|A      |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << spacing << "|       |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |   *   |" << std::endl;
+    std::cout << spacing << "|   A   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << spacing << "|       |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << spacing << "|       |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |______A|" << std::endl;
-    std::cout << "\n";
+    std::cout << spacing << "|______A|" << std::endl;
 }
 
-void CasinoWar::cardTwo()
+void CasinoWar::cardTwo(std::string spacing)
 {
     int time = 500;
 
-    std::cout << "\n";
-    std::cout << "                                     _______" << std::endl;
+    std::cout << spacing << " _______" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |2      |" << std::endl;
+    std::cout << spacing << "|2      |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |   *   |" << std::endl;
+    std::cout << spacing << "|   *   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << spacing << "|       |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << spacing << "|       |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |   *   |" << std::endl;
+    std::cout << spacing << "|   *   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |______2|" << std::endl;
-    std::cout << "\n";
+    std::cout << spacing << "|______2|" << std::endl;
 }
 
-void CasinoWar::cardThree()
+void CasinoWar::cardThree(std::string spacing)
 {
     int time = 500;
 
-    std::cout << "\n";
-    std::cout << "                                     _______" << std::endl;
+    std::cout << spacing << " _______" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |3      |" << std::endl;
+    std::cout << spacing << "|3      |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |   *   |" << std::endl;
+    std::cout << spacing << "|   *   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |   *   |" << std::endl;
+    std::cout << spacing << "|   *   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |   *   |" << std::endl;
+    std::cout << spacing << "|   *   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << spacing << "|       |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |______3|" << std::endl;
-    std::cout << "\n";
+    std::cout << spacing << "|______3|" << std::endl;
 }
 
-void CasinoWar::cardFour()
+void CasinoWar::cardFour(std::string spacing)
 {
     int time = 500;
 
-    std::cout << "\n";
-    std::cout << "                                     _______" << std::endl;
+    std::cout << spacing << " _______" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |4      |" << std::endl;
+    std::cout << spacing << "|4      |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    | *   * |" << std::endl;
+    std::cout << spacing << "| *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << spacing << "|       |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << spacing << "|       |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    | *   * |" << std::endl;
+    std::cout << spacing << "| *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |______4|" << std::endl;
-    std::cout << "\n";
+    std::cout << spacing << "|______4|" << std::endl;
 }
 
-void CasinoWar::cardFive()
+void CasinoWar::cardFive(std::string spacing)
 {
     int time = 500;
 
-    std::cout << "\n";
-    std::cout << "                                     _______" << std::endl;
+    std::cout << spacing << " _______" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |5      |" << std::endl;
+    std::cout << spacing << "|5      |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    | *   * |" << std::endl;
+    std::cout << spacing << "| *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |   *   |" << std::endl;
+    std::cout << spacing << "|   *   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    | *   * |" << std::endl;
+    std::cout << spacing << "| *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << spacing << "|       |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |______5|" << std::endl;
-    std::cout << "\n";
+    std::cout << spacing << "|______5|" << std::endl;
 }
 
-void CasinoWar::cardSix()
+void CasinoWar::cardSix(std::string spacing)
 {
     int time = 500;
 
-    std::cout << "\n";
-    std::cout << "                                     _______" << std::endl;
+    std::cout << spacing << " _______" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |6      |" << std::endl;
+    std::cout << spacing << "|6      |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    | *   * |" << std::endl;
+    std::cout << spacing << "| *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    | *   * |" << std::endl;
+    std::cout << spacing << "| *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    | *   * |" << std::endl;
+    std::cout << spacing << "| *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |       |" << std::endl;
+    std::cout << spacing << "|       |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |______6|" << std::endl;
-    std::cout << "\n";
+    std::cout << spacing << "|______6|" << std::endl;
 }
 
-void CasinoWar::cardSeven()
+void CasinoWar::cardSeven(std::string spacing)
 {
     int time = 500;
 
-    std::cout << "\n";
-    std::cout << "                                     _______" << std::endl;
+    std::cout << spacing << " _______" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |7      |" << std::endl;
+    std::cout << spacing << "|7      |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    | *   * |" << std::endl;
+    std::cout << spacing << "| *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |   *   |" << std::endl;
+    std::cout << spacing << "|   *   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    | *   * |" << std::endl;
+    std::cout << spacing << "| *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    | *   * |" << std::endl;
+    std::cout << spacing << "| *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |______7|" << std::endl;
-    std::cout << "\n";
+    std::cout << spacing << "|______7|" << std::endl;
 }
 
-void CasinoWar::cardEight()
+void CasinoWar::cardEight(std::string spacing)
 {
     int time = 500;
 
-    std::cout << "\n";
-    std::cout << "                                     _______" << std::endl;
+    std::cout << spacing << " _______" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |8      |" << std::endl;
+    std::cout << spacing << "|8      |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    | *   * |" << std::endl;
+    std::cout << spacing << "| *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    | *   * |" << std::endl;
+    std::cout << spacing << "| *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    | *   * |" << std::endl;
+    std::cout << spacing << "| *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    | *   * |" << std::endl;
+    std::cout << spacing << "| *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |______8|" << std::endl;
-    std::cout << "\n";
+    std::cout << spacing << "|______8|" << std::endl;
 }
 
-void CasinoWar::cardNine()
+void CasinoWar::cardNine(std::string spacing)
 {
     int time = 500;
 
-    std::cout << "\n";
-    std::cout << "                                     _______" << std::endl;
+    std::cout << spacing << " _______" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |9      |" << std::endl;
+    std::cout << spacing << "|9      |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    | *   * |" << std::endl;
+    std::cout << spacing << "| *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    | * * * |" << std::endl;
+    std::cout << spacing << "| * * * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    | *   * |" << std::endl;
+    std::cout << spacing << "| *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    | *   * |" << std::endl;
+    std::cout << spacing << "| *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |______9|" << std::endl;
-    std::cout << "\n";
+    std::cout << spacing << "|______9|" << std::endl;
 }
 
-void CasinoWar::cardTen()
+void CasinoWar::cardTen(std::string spacing)
 {
     int time = 500;
 
-    std::cout << "\n";
-    std::cout << "                                     _______" << std::endl;
+    std::cout << spacing << " _______" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |10     |" << std::endl;
+    std::cout << spacing << "|10     |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    | * * * |" << std::endl;
+    std::cout << spacing << "| * * * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    | *   * |" << std::endl;
+    std::cout << spacing << "| *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    | *   * |" << std::endl;
+    std::cout << spacing << "| *   * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    | * * * |" << std::endl;
+    std::cout << spacing << "| * * * |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |_____10|" << std::endl;
-    std::cout << "\n";
+    std::cout << spacing << "|_____10|" << std::endl;
 }
 
-void CasinoWar::cardJack()
+void CasinoWar::cardJack(std::string spacing)
 {
     int time = 500;
 
-    std::cout << "\n";
-    std::cout << "                                     _______" << std::endl;
+    std::cout << spacing << " _______" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |J      |" << std::endl;
+    std::cout << spacing << "|J      |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |   J   |" << std::endl;
+    std::cout << spacing << "|   J   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |   A   |" << std::endl;
+    std::cout << spacing << "|   A   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |   C   |" << std::endl;
+    std::cout << spacing << "|   C   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |   K   |" << std::endl;
+    std::cout << spacing << "|   K   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |______J|" << std::endl;
-    std::cout << "\n";
+    std::cout << spacing << "|______J|" << std::endl;
 }
 
-void CasinoWar::cardQueen()
+void CasinoWar::cardQueen(std::string spacing)
 {
     int time = 500;
 
-    std::cout << "\n";
-    std::cout << "                                     _______" << std::endl;
+    std::cout << spacing << " _______" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |Q  Q   |" << std::endl;
+    std::cout << spacing << "|Q  Q   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |   U   |" << std::endl;
+    std::cout << spacing << "|   U   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |   E   |" << std::endl;
+    std::cout << spacing << "|   E   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |   E   |" << std::endl;
+    std::cout << spacing << "|   E   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |   N   |" << std::endl;
+    std::cout << spacing << "|   N   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |______Q|" << std::endl;
-    std::cout << "\n";
+    std::cout << spacing << "|______Q|" << std::endl;
 }
 
-void CasinoWar::cardKing()
+void CasinoWar::cardKing(std::string spacing)
 {
     int time = 500;
 
-    std::cout << "\n";
-    std::cout << "                                     _______" << std::endl;
+    std::cout << spacing << " _______" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |K      |" << std::endl;
+    std::cout << spacing << "|K      |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |   K   |" << std::endl;
+    std::cout << spacing << "|   K   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |   I   |" << std::endl;
+    std::cout << spacing << "|   I   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |   N   |" << std::endl;
+    std::cout << spacing << "|   N   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |   G   |" << std::endl;
+    std::cout << spacing << "|   G   |" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "                                    |______K|" << std::endl;
-    std::cout << "\n";
+    std::cout << spacing << "|______K|" << std::endl;
 }
