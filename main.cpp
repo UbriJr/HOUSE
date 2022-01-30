@@ -15,6 +15,7 @@
 
 // remove after testing
 #include "casinowar.h"
+#include <random>
 
 int main(int argc, const char *argv[])
 {
@@ -26,13 +27,4 @@ int main(int argc, const char *argv[])
 
     CasinoWar TestObj;
     TestObj.runCasinoWar();
-
-    /*
-    while (true)
-    {
-        srand((unsigned int)time(NULL));
-        int card = rand() % 13 + 1;
-        std::cout << card << std::endl;
-    }
-    */
 }

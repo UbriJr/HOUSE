@@ -4,6 +4,7 @@
 #include <fstream>
 #include <chrono>
 #include <thread>
+#include <random>
 #include "gameroom.h"
 #include "introduction.h"
 #include "casinowar.h"
@@ -81,7 +82,7 @@ void CasinoWar::CasinoWarPlay()
     dealersCard = randomCard();
     dCard = cardDealt(dealersCard);
 
-    std::cout << "\n\n\n                           PRESS ANY KEY TO CONTINUE: ";
+    std::cout << "\n\n\n                           ENTER ANY KEY TO CONTINUE: ";
     std::cin >> Show;
     system("clear");
 
@@ -118,8 +119,10 @@ void CasinoWar::CasinoWarInstructions()
 // random number generated, number corresponds to a card
 int CasinoWar::randomCard()
 {
-    srand((unsigned int)time(NULL));
-    int card = rand() % 13 + 1;
+    std::random_device dev;
+    std::mt19937 rng(dev());
+    std::uniform_int_distribution<std::mt19937::result_type> dist6(2, 15);
+    int card = dist6(rng);
     return card;
 }
 
@@ -187,9 +190,6 @@ void CasinoWar::cardBuilder(int card, std::string spacing)
 {
     switch (card)
     {
-    case 1:
-        cardA(spacing);
-        break;
     case 2:
         cardTwo(spacing);
         break;
@@ -226,9 +226,11 @@ void CasinoWar::cardBuilder(int card, std::string spacing)
     case 13:
         cardKing(spacing);
         break;
+    case 14:
+        cardA(spacing);
+        break;
     default:
         std::cout << "Something went wrong" << std::endl;
-        std::cout << card;
     }
 }
 
