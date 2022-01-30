@@ -70,30 +70,30 @@ void CasinoWar::CasinoWarPlay()
     int dealersCard;
     std::string dCard;
     std::string Show;
-    std::string playerSpacing = "                                               ";
-    std::string dealerSpacing = "                         ";
+    std::string playerSpacing = "                                              ";
+    std::string dealerSpacing = "                          ";
 
-    std::cout << "\n\n\n\n\n\n\n\n                                  CASINO WAR";
-    std::cout << "\n\n                                WAGER AMOUNT: ";
+    std::cout << "\n\n\n\n\n\n                                  CASINO WAR";
+    std::cout << "\n\n                                 WAGER AMOUNT: ";
     std::cin >> wager;
     std::cout << "\n                              YOU WAGERED " << wager << " TOKENS \n";
 
     dealersCard = randomCard();
     dCard = cardDealt(dealersCard);
 
-    std::cout << "\n\n\n                           TYPE TO SHOW DEALERS CARD: ";
+    std::cout << "\n\n\n                           PRESS ANY KEY TO CONTINUE: ";
     std::cin >> Show;
     system("clear");
 
-    std::cout << "\n                       DEALERS CARD " << std::endl;
+    std::cout << "\n\n                         DEALERS CARD " << std::endl;
     cardBuilder(dealersCard, dealerSpacing);
 
     playersCard = randomCard();
     pCard = cardDealt(playersCard);
-    std::cout << "\n                                               YOUR CARD " << std::endl;
+    std::cout << "\n                                              YOUR CARD " << std::endl;
     cardBuilder(playersCard, playerSpacing);
 
-    //WinOrLoseChecker(playersCard, dealersCard);
+    WinOrLoseChecker(playersCard, dealersCard);
 }
 
 // instructions for casino war
@@ -167,17 +167,20 @@ void CasinoWar::WinOrLoseChecker(int pCard, int dCard)
 {
     if (pCard > dCard)
     {
-        std::cout << "            THE PLAYER WON";
+        std::cout << "\n                                    YOU WON" << std::endl;
     }
     else if (pCard == dCard)
     {
-        std::cout << "            THERE WAS A TIE";
+        std::cout << "\n                                THERE WAS A TIE" << std::endl;
     }
     else if (dCard > pCard)
     {
-        std::cout << "            THE DEALER WON";
+        std::cout << "\n                                THE DEALER WON" << std::endl;
     }
-    replay();
+    std::cout << "\n"
+              << std::endl; // remove later
+    // prompts the user to play again
+    //replay();
 }
 // thanks john wiech for the contribution
 void CasinoWar::cardBuilder(int card, std::string spacing)
