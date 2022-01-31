@@ -63,38 +63,19 @@ void CasinoWar::CasinoWarSelection()
 // the method that plays the casino war game
 void CasinoWar::CasinoWarPlay()
 {
-
     system("clear");
     int wager;
-    int playersCard;
-    std::string pCard;
-    int dealersCard;
-    std::string dCard;
-    std::string Show;
-    std::string playerSpacing = "                                              ";
-    std::string dealerSpacing = "                          ";
+    std::string key;
 
     std::cout << "\n\n\n\n\n\n                                  CASINO WAR";
-    std::cout << "\n\n                                 WAGER AMOUNT: ";
+    std::cout << "\n\n                                WAGER AMOUNT: ";
     std::cin >> wager;
     std::cout << "\n                              YOU WAGERED " << wager << " TOKENS \n";
 
-    dealersCard = randomCard();
-    dCard = cardDealt(dealersCard);
-
     std::cout << "\n\n\n                           ENTER ANY KEY TO CONTINUE: ";
-    std::cin >> Show;
-    system("clear");
+    std::cin >> key;
 
-    std::cout << "\n\n                         DEALERS CARD " << std::endl;
-    cardBuilder(dealersCard, dealerSpacing);
-
-    playersCard = randomCard();
-    pCard = cardDealt(playersCard);
-    std::cout << "\n                                              YOUR CARD " << std::endl;
-    cardBuilder(playersCard, playerSpacing);
-
-    WinOrLoseChecker(playersCard, dealersCard);
+    ShowDealtCards();
 }
 
 // instructions for casino war
@@ -165,9 +146,36 @@ void CasinoWar::replay()
     InputValidation(userInput);
 }
 
+void CasinoWar::ShowDealtCards()
+{
+    int playersCard;
+    std::string pCard;
+    std::string dCard;
+    int dealersCard;
+    std::string playerSpacing = "                                               ";
+    std::string dealerSpacing = "                          ";
+
+    system("clear");
+
+    dealersCard = randomCard();
+    dCard = cardDealt(dealersCard);
+
+    std::cout << "\n\n                         DEALERS CARD " << std::endl;
+    cardBuilder(dealersCard, dealerSpacing);
+
+    playersCard = randomCard();
+    pCard = cardDealt(playersCard);
+
+    std::cout << "\n                                               YOUR CARD " << std::endl;
+    cardBuilder(playersCard, playerSpacing);
+
+    WinOrLoseChecker(playersCard, dealersCard);
+}
+
 // checked if the player won or lost the wager. Takes in the players card and the dealers card, checking which is greater.
 void CasinoWar::WinOrLoseChecker(int pCard, int dCard)
 {
+    int timeDelay = 7000;
     if (pCard > dCard)
     {
         std::cout << "\n                                    YOU WON" << std::endl;
@@ -175,6 +183,9 @@ void CasinoWar::WinOrLoseChecker(int pCard, int dCard)
     else if (pCard == dCard)
     {
         std::cout << "\n                                THERE WAS A TIE" << std::endl;
+        std::cout << "          EACH PLAYER WILL BE DEALT ANOTHER CARD TO DETERMINE THE WINNER" << std::endl;
+        std::this_thread::sleep_for(std::chrono::milliseconds(timeDelay));
+        ShowDealtCards();
     }
     else if (dCard > pCard)
     {

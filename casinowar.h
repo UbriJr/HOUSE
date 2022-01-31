@@ -13,6 +13,7 @@ private:
     void CasinoWarPlay();
     void CasinoWarInstructions();
     void replay();
+    void ShowDealtCards();
     void WinOrLoseChecker(int pCard, int dCard);
     int randomCard();
     void cardBuilder(int card, std::string spacing);

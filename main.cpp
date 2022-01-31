@@ -21,9 +21,6 @@ int main(int argc, const char *argv[])
     //Introduction IntroObj;
     //IntroObj.RunIntroduction();
 
-    //GameRoom roomObj;
-    //roomObj.RunGameRoom();
-
     CasinoWar TestObj;
     TestObj.runCasinoWar();
 }
