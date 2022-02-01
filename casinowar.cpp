@@ -194,6 +194,7 @@ void CasinoWar::WinOrLoseChecker(int pCard, int dCard)
     }
     std::cout << "\n"
               << std::endl; // remove later
+
     // prompts the user to play again
     //replay();
 }
