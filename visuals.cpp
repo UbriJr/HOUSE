@@ -5,7 +5,7 @@
 #include <chrono>
 #include <thread>
 #include "visuals.h"
-#define time 500
+#define time 450
 
 Visuals::Visuals()
 {

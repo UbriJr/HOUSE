@@ -138,10 +138,13 @@ std::string CasinoWar::cardDealt(int number)
 void CasinoWar::replay()
 {
     int userInput;
-    std::cout << "\n                          WOULD YOU LIKE TO PLAY AGAIN?" << std::endl
+
+    system("clear");
+    std::cout << "\n\n\n\n\n\n\n\n                          WOULD YOU LIKE TO PLAY AGAIN?" << std::endl
               << "\n";
-    std::cout << "                                1: PLAY AGAIN" << std::endl;
-    std::cout << "                                2: RETURN TO GAMEROOM" << std::endl;
+    std::cout << "                               1: PLAY AGAIN" << std::endl;
+    std::cout << "                               2: RETURN TO GAMEROOM" << std::endl;
+    std::cout << "\n                             PLEASE SELECT AN OPTION: ";
     std::cin >> userInput;
 
     InputValidation(userInput);
@@ -177,9 +180,14 @@ void CasinoWar::ShowDealtCards()
 void CasinoWar::WinOrLoseChecker(int pCard, int dCard)
 {
     int timeDelay = 7000;
+    int outcomeTimer = 4000;
+    //int wonAmount = (2*wager);
+    //int lostAmount = wager;
+
     if (pCard > dCard)
     {
         std::cout << "\n                                    YOU WON" << std::endl;
+        std::this_thread::sleep_for(std::chrono::milliseconds(outcomeTimer));
     }
     else if (pCard == dCard)
     {
@@ -191,12 +199,12 @@ void CasinoWar::WinOrLoseChecker(int pCard, int dCard)
     else if (dCard > pCard)
     {
         std::cout << "\n                                THE DEALER WON" << std::endl;
+        std::this_thread::sleep_for(std::chrono::milliseconds(outcomeTimer));
     }
     std::cout << "\n"
               << std::endl; // remove later
 
-    // prompts the user to play again
-    //replay();
+    replay();
 }
 // thanks john wiech for the contribution
 void CasinoWar::cardBuilder(int card, std::string spacing)

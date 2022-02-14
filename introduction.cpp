@@ -5,6 +5,7 @@
 #include <chrono>
 #include <thread>
 #include "introduction.h"
+#include "gameroom.h"
 
 Introduction::Introduction(){
 
@@ -60,8 +61,6 @@ void Introduction::Welcome()
     std::cout << "\n";
     std::cout << "\n";
     std::cout << "\n";
-
-    std::cout << "\n";
     std::cout << "\n";
     std::cout << "\n";
 }
@@ -105,7 +104,7 @@ void Introduction::login()
     std::string password;
     std::string CurrentLine;
     std::string NextLine;
-    //std::string Tokens;
+    // std::string Tokens;
 
     std::string pleaseWait = "                PLEASE WAIT WHILE WE BRING YOU TO THE GAME FLOOR\n";
 
@@ -113,8 +112,8 @@ void Introduction::login()
 
     bool InfoFound = false;
 
-    spacingBuffer(neededSpace);
-
+    // spacingBuffer(neededSpace);
+    std::cout << "\n\n\n\n                                LOGIN MENU \n\n\n\n\n\n\n";
     std::cout << "                           ENTER YOUR USERNAME: ";
     std::cin >> username;
     std::cout << "                           ENTER YOUR PASSWORD: ";
@@ -131,8 +130,7 @@ void Introduction::login()
         if ((username == CurrentLine) && (password == NextLine))
         {
             system("clear");
-            spacingBuffer(neededSpace / 2);
-            std::cout << "\n                                LOGIN SUCCESSFUL\n";
+            std::cout << "\n\n\n\n\n\n\n\n                               LOGIN SUCCESSFUL\n";
             std::cout << "                              YOU HAVE " << Tokens << " TOKENS\n";
             std::cout << pleaseWait;
             std::this_thread::sleep_for(std::chrono::milliseconds(WaitTime));
@@ -152,11 +150,15 @@ void Introduction::login()
                   << std::endl;
         RegisterOrLogin();
     }
+
+    GameRoom gameFloor;
+    gameFloor.RunGameRoom();
 }
 
 // called if the user does not have a login and wants to register
 void Introduction::reg()
 {
+    int time = 4000;
     system("clear");
     std::string username;
     std::string password;
@@ -165,12 +167,13 @@ void Introduction::reg()
     std::fstream dataFile;
     dataFile.open("data.txt", std::ios::out);
 
-    std::cout << "\nCREATE A USERNAME: ";
+    std::cout << "\n\n\n\n                             REGISTRATION MENU \n\n\n\n\n\n\n";
+    std::cout << "                             CREATE A USERNAME: ";
     std::cin >> username;
-    std::cout << "CREATE A PASSWORD: ";
+    std::cout << "                             CREATE A PASSWORD: ";
     std::cin >> password;
     system("clear");
-    std::cout << "\nREGISTRATION COMPLETE. LOGIN TO CONTINUE \n";
+    std::cout << "\n\n\n\n\n\n\n\n\n\n                     REGISTRATION COMPLETE, LOGIN TO CONTINUE. \n";
     std::cout << "\n";
 
     dataFile << username << std::endl;
@@ -178,8 +181,9 @@ void Introduction::reg()
     dataFile << InitTokens << std::endl;
 
     dataFile.close();
-
-    RegisterOrLogin();
+    std::this_thread::sleep_for(std::chrono::milliseconds(time));
+    login();
+    // RegisterOrLogin();
 }
 
 // direct input to either register or login method
@@ -207,7 +211,7 @@ void Introduction::RegisterOrLogin()
     do
     {
         std::cout << "                                 1: LOGIN \n";
-        std::cout << "                                 2: REGISTER \n";
+        std::cout << "                                 2: REGISTER \n\n";
         std::cout << "                               SELECT AN OPTION: ";
         std::cin >> userInput;
         isValid = InputValidation(userInput);
