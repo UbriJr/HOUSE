@@ -118,7 +118,7 @@ void Introduction::login()
     std::cin >> username;
     std::cout << "                           ENTER YOUR PASSWORD: ";
     std::cin >> password;
-
+    std::cout << "                           ENTRANCE SUCCESSFUL: ";
     std::ifstream readFile("data.txt");
 
     while (getline(readFile, CurrentLine))
