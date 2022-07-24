@@ -8,7 +8,8 @@ Please check back later.
 </p>
 
 ### Running the Code
-...
+
+```
 compile command:
 g++ -o HOUSE main.cpp introduction.cpp gameroom.cpp visuals.cpp casinowar.cpp && ./HOUSE
-...
+```
