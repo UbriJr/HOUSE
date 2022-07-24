@@ -19,10 +19,10 @@
 int main(int argc, const char *argv[])
 {
     // This will kick off the first panel, thus starting the entire program.
-    Introduction IntroObj;
-    IntroObj.RunIntroduction();
+    // Introduction IntroObj;
+    // IntroObj.RunIntroduction();
 
     // For Testing one panel at a time
-    // CasinoWar TestObj;
-    // TestObj.runCasinoWar();
+    CasinoWar TestObj;
+    TestObj.runCasinoWar();
 }

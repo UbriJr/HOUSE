@@ -21,16 +21,31 @@ void Introduction::RunIntroduction()
 // returns the number of tokens the player has
 int Introduction::getTokens()
 {
+    std::ifstream readFile("data.txt");
+    std::string CurrentLine;
+    std::string t;
+    int Tokens;
+
+    while (getline(readFile, CurrentLine))
+    {
+        bool has_only_digits = (CurrentLine.find_first_not_of("0123456789") == std::string::npos);
+        if (has_only_digits)
+        {
+            t = CurrentLine;
+            break;
+        }
+    }
+
     std::stringstream ss;
-    ss << Tokens;
-    ss >> covertedTokens;
-    return covertedTokens;
+    ss << t;
+    ss >> Tokens;
+    return Tokens;
 }
 
-// the number of tokens the player has
-// this number comes from txt file.
-std::string Tokens;
-int covertedTokens;
+// Be able top adjust and set new token amount in the file
+void Introduction::setTokens(int tokens)
+{
+}
 
 // prints a welcome banner and adds space to clear terminal window
 void Introduction::Welcome()
@@ -104,7 +119,6 @@ void Introduction::login()
     std::string password;
     std::string CurrentLine;
     std::string NextLine;
-    // std::string Tokens;
 
     std::string pleaseWait = "                PLEASE WAIT WHILE WE BRING YOU TO THE GAME FLOOR\n";
 
@@ -125,13 +139,12 @@ void Introduction::login()
     {
 
         getline(readFile, NextLine);
-        getline(readFile, Tokens);
 
         if ((username == CurrentLine) && (password == NextLine))
         {
             system("clear");
             std::cout << "\n\n\n\n\n\n\n\n                               LOGIN SUCCESSFUL\n";
-            std::cout << "                              YOU HAVE " << Tokens << " TOKENS\n";
+            std::cout << "                              YOU HAVE " << getTokens() << " TOKENS\n";
             std::cout << pleaseWait;
             std::this_thread::sleep_for(std::chrono::milliseconds(WaitTime));
 

@@ -16,6 +16,7 @@ private:
     void ShowDealtCards();
     void WinOrLoseChecker(int pCard, int dCard);
     int randomCard();
+    void WagerChecker(int wager);
     void cardBuilder(int card, std::string spacing);
     std::string cardDealt(int number);
 };

@@ -61,16 +61,39 @@ void CasinoWar::CasinoWarSelection()
     }
 }
 
+// Checks if the player has the wagered amount in their balance.
+void CasinoWar::WagerChecker(int wager)
+{
+    Introduction tks;
+    int maxBet = tks.getTokens();
+    int time = 7200;
+
+    if (wager > maxBet)
+    {
+        system("clear");
+        std::cout << "\n\n\n\n\n\n                  YOU WAGERED " << wager << " TOKENS BUT ONLY HAVE"
+                  << " " << maxBet << " TOKENS"
+                  << "\n";
+        std::cout << "\n                       PLEASE ENTER A VALID WAGER AMOUNT \n";
+        std::this_thread::sleep_for(std::chrono::milliseconds(time));
+        CasinoWarPlay();
+    }
+}
+
 // the method that plays the casino war game
 void CasinoWar::CasinoWarPlay()
 {
     system("clear");
+
     int wager;
     std::string key;
 
     std::cout << "\n\n\n\n\n\n                                  CASINO WAR";
     std::cout << "\n\n                                WAGER AMOUNT: ";
+
     std::cin >> wager;
+    WagerChecker(wager);
+
     std::cout << "\n                              YOU WAGERED " << wager << " TOKENS \n";
 
     std::cout << "\n\n\n                           ENTER ANY KEY TO CONTINUE: ";
@@ -83,6 +106,7 @@ void CasinoWar::CasinoWarPlay()
 void CasinoWar::CasinoWarInstructions()
 {
     system("clear");
+
     int userInput;
     std::string instructMessage = "\n\n\n                                  CASINO WAR\n\n -THE PLAYER AND THE DEALER ARE EACH DEALT ONE CARD.\n -IF THE PLAYER'S CARD IS HIGHER THEN THE DEALER'S,\n -THE PLAYER WINS TWICE THE WAGERED AMOUNT.\n -OTHERWISE THE PLAYER LOSES THE WAGERED AMOUNT.\n -A TIE OCCURS WHEN THE PLAYER AND THE DEALER EACH HAVE CARDS OF THE SAME RANK.\n -THE PLAYER AND DEALER ARE DEALT ANOTHER CARD TO DETERMINE THE WINNER.\n";
     std::string cardRanks = "\n             CARD RANKS (IN ORDER FROM THE HIGHEST TO LOWEST):\n             ACE, KING, QUEEN, JACK, 10, 9, 8, 7, 6, 5, 4, 3, 2 \n";
@@ -181,8 +205,8 @@ void CasinoWar::WinOrLoseChecker(int pCard, int dCard)
 {
     int timeDelay = 7000;
     int outcomeTimer = 4000;
-    //int wonAmount = (2*wager);
-    //int lostAmount = wager;
+    // int wonAmount = (2*wager);
+    // int lostAmount = wager;
 
     if (pCard > dCard)
     {

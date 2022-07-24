@@ -8,11 +8,9 @@ public:
     Introduction();
     void RunIntroduction();
     int getTokens();
+    void setTokens(int tokens);
 
 private:
-    std::string Tokens;
-    int covertedTokens;
-
     void Welcome();
     bool InputValidation(int userInput);
     void login();
