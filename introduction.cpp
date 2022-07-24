@@ -45,6 +45,43 @@ int Introduction::getTokens()
 // Be able top adjust and set new token amount in the file
 void Introduction::setTokens(int tokens)
 {
+    std::ifstream dataFile;
+    dataFile.open("data.txt");
+
+    std::fstream tmp("test.txt", std::ios::out);
+
+    std::string CurrentLine;
+    std::string line;
+
+    while (getline(dataFile, CurrentLine))
+    {
+        tmp << CurrentLine << std::endl;
+    }
+
+    tmp.close();
+    dataFile.close();
+
+    std::ifstream t("test.txt");
+    std::fstream data;
+    data.open("data.txt", std::ios::out);
+
+    while (getline(t, line))
+    {
+        bool has_only_digits = (line.find_first_not_of("0123456789") == std::string::npos);
+
+        if (!has_only_digits)
+        {
+            data << line << std::endl;
+        }
+        else if (has_only_digits)
+        {
+            data << std::to_string(tokens) << std::endl;
+        }
+    }
+
+    t.close();
+    remove("test.txt");
+    data.close();
 }
 
 // prints a welcome banner and adds space to clear terminal window

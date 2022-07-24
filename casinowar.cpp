@@ -19,6 +19,9 @@ void CasinoWar::runCasinoWar()
     CasinoWarSelection();
 }
 
+int wager;
+Introduction tks;
+
 void CasinoWar::InputValidation(int userInput)
 {
 
@@ -62,16 +65,15 @@ void CasinoWar::CasinoWarSelection()
 }
 
 // Checks if the player has the wagered amount in their balance.
-void CasinoWar::WagerChecker(int wager)
+void CasinoWar::WagerChecker()
 {
-    Introduction tks;
-    int maxBet = tks.getTokens();
     int time = 7200;
+    int maxBet = tks.getTokens();
 
     if (wager > maxBet)
     {
         system("clear");
-        std::cout << "\n\n\n\n\n\n                  YOU WAGERED " << wager << " TOKENS BUT ONLY HAVE"
+        std::cout << "\n\n\n\n\n\n\n\n\n                  YOU WAGERED " << wager << " TOKENS BUT ONLY HAVE"
                   << " " << maxBet << " TOKENS"
                   << "\n";
         std::cout << "\n                       PLEASE ENTER A VALID WAGER AMOUNT \n";
@@ -85,14 +87,14 @@ void CasinoWar::CasinoWarPlay()
 {
     system("clear");
 
-    int wager;
+    // int wager;
     std::string key;
 
-    std::cout << "\n\n\n\n\n\n                                  CASINO WAR";
-    std::cout << "\n\n                                WAGER AMOUNT: ";
+    std::cout << "\n\n\n\n\n\n\n\n\n                                  CASINO WAR";
+    std::cout << "\n\n                                 WAGER AMOUNT: ";
 
     std::cin >> wager;
-    WagerChecker(wager);
+    WagerChecker();
 
     std::cout << "\n                              YOU WAGERED " << wager << " TOKENS \n";
 
@@ -205,12 +207,13 @@ void CasinoWar::WinOrLoseChecker(int pCard, int dCard)
 {
     int timeDelay = 7000;
     int outcomeTimer = 4000;
-    // int wonAmount = (2*wager);
-    // int lostAmount = wager;
+    Introduction coinAccess;
 
     if (pCard > dCard)
     {
         std::cout << "\n                                    YOU WON" << std::endl;
+        std::cout << "\n                               YOU WON " << wager << " TOKENS" << std::endl;
+        coinAccess.setTokens(tks.getTokens() + (wager));
         std::this_thread::sleep_for(std::chrono::milliseconds(outcomeTimer));
     }
     else if (pCard == dCard)
@@ -223,6 +226,8 @@ void CasinoWar::WinOrLoseChecker(int pCard, int dCard)
     else if (dCard > pCard)
     {
         std::cout << "\n                                THE DEALER WON" << std::endl;
+        std::cout << "\n                              YOU LOST " << wager << " TOKENS" << std::endl;
+        coinAccess.setTokens(tks.getTokens() - wager);
         std::this_thread::sleep_for(std::chrono::milliseconds(outcomeTimer));
     }
     std::cout << "\n"
