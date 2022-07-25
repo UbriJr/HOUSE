@@ -8,6 +8,6 @@ Please check back later.
 </p>
 
 ### Command for Compiling and Running:
-'''
+```
 make && ./HOUSE
-'''
+```
