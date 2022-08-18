@@ -6,6 +6,7 @@
 #include <thread>
 #include "gameroom.h"
 #include "casinowar.h"
+#include "horserace.h"
 
 GameRoom::GameRoom(){
 
@@ -47,7 +48,7 @@ void GameRoom::GameOptions()
     do
     {
         std::cout << "                               1: CASINO WAR \n";
-        std::cout << "                               2: GAME 2 \n";
+        std::cout << "                               2: HORSE RACE \n";
         std::cout << "                               3: GAME 3 \n";
         std::cout << "\n                              SELECT AN OPTION: ";
         std::cin >> userInput;
@@ -96,12 +97,12 @@ void GameRoom::InputControlFlow(int userInput)
     }
     else if (userInput == (GameTwoOption))
     {
-        std::cout << "GameTwo\n";
-        //GameTwo();
+        HorseRace HorseRaceObject;
+        HorseRaceObject.RunHorseRace();
     }
     else if (userInput == GameThreeOption)
     {
         std::cout << "GameThree\n";
-        //GameThree();
+        // GameThree();
     }
 }

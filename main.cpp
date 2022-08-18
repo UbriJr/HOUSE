@@ -14,15 +14,19 @@
 
 // remove after testing
 #include "casinowar.h"
+#include "horserace.h"
 #include <random>
 
 int main(int argc, const char *argv[])
 {
     // This will kick off the first panel, thus starting the entire program.
-    Introduction IntroObj;
-    IntroObj.RunIntroduction();
+    // Introduction IntroObj;
+    // IntroObj.RunIntroduction();
 
     // For Testing one panel at a time
     // CasinoWar TestObj;
     // TestObj.runCasinoWar();
+
+    HorseRace testrace;
+    testrace.RunHorseRace();
 }

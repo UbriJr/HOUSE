@@ -1,5 +1,5 @@
-HOUSE: main.o introduction.o gameroom.o visuals.o casinowar.o
-	g++ main.o introduction.o gameroom.o visuals.o casinowar.o -o HOUSE
+HOUSE: main.o introduction.o gameroom.o visuals.o casinowar.o horserace.o
+	g++ main.o introduction.o gameroom.o visuals.o casinowar.o horserace.o -o HOUSE
 	clear
 
 main.o: main.cpp
@@ -16,6 +16,9 @@ visuals.o: visuals.cpp
 
 casinowar.o: casinowar.cpp
 	g++ -c casinowar.cpp
+
+horserace.o: horserace.cpp
+	g++ -c horserace.cpp
 
 clean:
 	rm *.o HOUSE
