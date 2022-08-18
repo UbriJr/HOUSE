@@ -8,6 +8,8 @@ public:
 
 private:
     friend class CasinoWar;
+    friend class HorseRace;
+    void standardHorse();
     void cardA(std::string spacing);
     void cardTwo(std::string spacing);
     void cardThree(std::string spacing);

@@ -5,6 +5,7 @@
 #include <chrono>
 #include <thread>
 #include "horserace.h"
+#include "visuals.h"
 
 HorseRace::HorseRace(){
 
@@ -69,16 +70,20 @@ void HorseRace::wager()
     system("clear");
 
     int wager;
+    int horse;
     std::string key;
 
-    std::cout << "\n\n\n\n\n\n\n\n\n                                  HORSE RACE";
-    std::cout << "\n\n                                 WAGER AMOUNT: ";
+    std::cout << "\n\n\n\n\n\n                                  HORSE RACE";
+    std::cout << "\n\n                             SELECT A HORSE (1-8): ";
+    std::cin >> horse;
+    std::cout << "\n                                 WAGER AMOUNT: ";
 
     std::cin >> wager;
+
     // make sure to validate the wager and make sure its an int
     // WagerChecker();
 
-    std::cout << "\n                              YOU WAGERED " << wager << " TOKENS \n";
+    std::cout << "\n                         YOU WAGERED " << wager << " TOKENS ON HORSE #" << horse << "\n";
 
     std::cout << "\n\n\n                           ENTER ANY KEY TO CONTINUE: ";
     std::cin >> key;
@@ -117,7 +122,7 @@ void HorseRace::race()
     // clear console so only the horse race is displayed
     system("clear");
 
-    std::cout << "\n"
+    std::cout << ""
               << std::endl;
     std::string horseNumber = "            1       2       3       4       5       6       7       8";
     std::string line = "            |       |       |       |       |       |       |       |";
@@ -129,4 +134,7 @@ void HorseRace::race()
         std::this_thread::sleep_for(std::chrono::milliseconds(raceTime));
         std::cout << line << std::endl;
     }
+
+    Visuals visObject;
+    visObject.standardHorse();
 }

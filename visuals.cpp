@@ -11,6 +11,16 @@ Visuals::Visuals()
 {
 }
 
+void Visuals::standardHorse()
+{
+    std::cout << "              ,--," << std::endl;
+    std::cout << "        _ ___/ /\\|" << std::endl;
+    std::cout << "       ;( )__, )" << std::endl;
+    std::cout << "      ; //   '--;" << std::endl;
+    std::cout << "        \\      |" << std::endl;
+    std::cout << "        ^     ^" << std::endl;
+}
+
 void Visuals::cardA(std::string spacing)
 {
     std::cout << spacing << " _______" << std::endl;
