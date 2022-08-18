@@ -43,6 +43,23 @@ void HorseRace::HorseRaceSelection()
 // Gives user instructions and information on how to play
 void HorseRace::instructions()
 {
+    // clear the console
+    system("clear");
+
+    // store users input
+    int userInput;
+
+    std::string message = "\n\n\n                                  HORSE RACE\n\n -EACH HORSE IS REPRESENTED BY A NUMBER (1-8).\n -THE PLAYER SELECTS ONE HORSE, OUT OF EIGHT, AND PLACES A WAGER ON THAT HORSE.\n -IF THE PLAYERS HORSE COMES IN FIRST, THE PLAYER WINS FIVE TIMES THEIR WAGER.\n -IF THE PLAYERS HORSE DOES NOT COME IN FIRST, THEY LOSE THE WAGERED AMOUNT.";
+
+    std::cout << message;
+
+    std::cout << "\n\n                          1: PLAY HORSE RACE";
+    std::cout << "\n                          2: RETURN TO THE GAME FLOOR\n";
+    std::cout << "\n                          PLEASE SELECT AN OPTION: ";
+    std::cin >> userInput;
+
+    // Make sure to validate users input !!!
+    // InputValidation(userInput);
 }
 
 // Prompts user to enter wager / bet amount.
@@ -50,6 +67,23 @@ void HorseRace::wager()
 {
     // clear console
     system("clear");
+
+    int wager;
+    std::string key;
+
+    std::cout << "\n\n\n\n\n\n\n\n\n                                  HORSE RACE";
+    std::cout << "\n\n                                 WAGER AMOUNT: ";
+
+    std::cin >> wager;
+    // make sure to validate the wager and make sure its an int
+    // WagerChecker();
+
+    std::cout << "\n                              YOU WAGERED " << wager << " TOKENS \n";
+
+    std::cout << "\n\n\n                           ENTER ANY KEY TO CONTINUE: ";
+    std::cin >> key;
+
+    // ShowDealtCards();
 
     // Call race once user selects a horse to bet on and the amount.
     race();
@@ -63,7 +97,7 @@ void HorseRace::race()
 
     // Time delays
     int titleTime = 1000;
-    int raceTime = 600;
+    int raceTime = 400;
 
     std::string ready = "                               READY";
     std::string set = "                                     SET";
