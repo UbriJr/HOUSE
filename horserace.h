@@ -8,6 +8,7 @@ public:
     void RunHorseRace();
 
 private:
+    void leaveInstructions(int userInput);
     void race();
     void instructions();
     void wager();

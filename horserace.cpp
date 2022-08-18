@@ -6,6 +6,7 @@
 #include <thread>
 #include "horserace.h"
 #include "visuals.h"
+#include "gameroom.h"
 
 HorseRace::HorseRace(){
 
@@ -59,8 +60,28 @@ void HorseRace::instructions()
     std::cout << "\n                          PLEASE SELECT AN OPTION: ";
     std::cin >> userInput;
 
+    leaveInstructions(userInput);
     // Make sure to validate users input !!!
     // InputValidation(userInput);
+}
+
+// Validates input and prompts the user to exit the instruction panel
+void HorseRace::leaveInstructions(int userInput)
+{
+
+    if ((userInput) == (1))
+    {
+        wager();
+    }
+    else if ((userInput) == (2))
+    {
+        GameRoom GameRoomObj;
+        GameRoomObj.ReturnToGameOptions();
+    }
+    else
+    {
+        std::cout << "\nTHIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+    }
 }
 
 // Prompts user to enter wager / bet amount.
