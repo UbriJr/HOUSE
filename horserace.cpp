@@ -4,6 +4,7 @@
 #include <fstream>
 #include <chrono>
 #include <thread>
+#include <regex>
 #include "horserace.h"
 #include "visuals.h"
 #include "gameroom.h"
@@ -45,42 +46,61 @@ void HorseRace::HorseRaceSelection()
 // Gives user instructions and information on how to play
 void HorseRace::instructions()
 {
-    // clear the console
-    system("clear");
+    bool continueInput = false;
+    std::string userInput;
+    int time = 3000;
 
-    // store users input
-    int userInput;
+    /*
+    Prompt the user for input (play or return to game floor)
+    If the user enters an invalid response, it will loop and keep prompting a new input until a valid one is given
+    */
+    do
+    {
+        // clear the console
+        system("clear");
 
-    std::string message = "\n\n\n                                  HORSE RACE\n\n -EACH HORSE IS REPRESENTED BY A NUMBER (1-8).\n -THE PLAYER SELECTS ONE HORSE, OUT OF EIGHT, AND PLACES A WAGER ON THAT HORSE.\n -IF THE PLAYERS HORSE COMES IN FIRST, THE PLAYER WINS FIVE TIMES THEIR WAGER.\n -IF THE PLAYERS HORSE DOES NOT COME IN FIRST, THEY LOSE THE WAGERED AMOUNT.";
+        std::string message = "\n\n\n                                  HORSE RACE\n\n -EACH HORSE IS REPRESENTED BY A NUMBER (1-8).\n -THE PLAYER SELECTS ONE HORSE, OUT OF EIGHT, AND PLACES A WAGER ON THAT HORSE.\n -IF THE PLAYERS HORSE COMES IN FIRST, THE PLAYER WINS FIVE TIMES THEIR WAGER.\n -IF THE PLAYERS HORSE DOES NOT COME IN FIRST, THEY LOSE THE WAGERED AMOUNT.";
+        std::cout << message;
 
-    std::cout << message;
+        std::cout << "\n\n                          1: PLAY HORSE RACE";
+        std::cout << "\n                          2: RETURN TO THE GAME FLOOR\n";
+        std::cout << "\n                          PLEASE SELECT AN OPTION: ";
+        std::cin >> userInput;
 
-    std::cout << "\n\n                          1: PLAY HORSE RACE";
-    std::cout << "\n                          2: RETURN TO THE GAME FLOOR\n";
-    std::cout << "\n                          PLEASE SELECT AN OPTION: ";
-    std::cin >> userInput;
+        /*
+            // Check if the input contains letters
+            bool contains_non_alpha = !std::regex_match(userInput, std::regex("^[A-Za-z]+$"));
 
-    leaveInstructions(userInput);
-    // Make sure to validate users input !!!
-    // InputValidation(userInput);
-}
+            if (!contains_non_alpha)
+            {
+                std::cout << "\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+                std::this_thread::sleep_for(std::chrono::milliseconds(time));
+                continueInput = true;
+                continue;
+            }
+        */
 
-// Validates input and prompts the user to exit the instruction panel
-void HorseRace::leaveInstructions(int userInput)
-{
+        if ((userInput == "1") || (userInput == "2"))
+        {
+            continueInput = false;
+        }
+        else
+        {
+            std::cout << "\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+            std::this_thread::sleep_for(std::chrono::milliseconds(time));
+            continueInput = true;
+        }
 
-    if ((userInput) == (1))
+    } while (continueInput);
+
+    if ((userInput) == ("1"))
     {
         wager();
     }
-    else if ((userInput) == (2))
+    else if ((userInput) == ("2"))
     {
         GameRoom GameRoomObj;
         GameRoomObj.ReturnToGameOptions();
-    }
-    else
-    {
-        std::cout << "\nTHIS TIME, PLEASE ENTER A VALID RESPONSE\n";
     }
 }
 
