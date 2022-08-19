@@ -47,7 +47,7 @@ void HorseRace::HorseRaceSelection()
 void HorseRace::instructions()
 {
     bool continueInput = false;
-    std::string userInput;
+    int userInput;
     int time = 3000;
 
     /*
@@ -67,20 +67,15 @@ void HorseRace::instructions()
         std::cout << "\n                          PLEASE SELECT AN OPTION: ";
         std::cin >> userInput;
 
-        /*
-            // Check if the input contains letters
-            bool contains_non_alpha = !std::regex_match(userInput, std::regex("^[A-Za-z]+$"));
-
-            if (!contains_non_alpha)
-            {
-                std::cout << "\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
-                std::this_thread::sleep_for(std::chrono::milliseconds(time));
-                continueInput = true;
-                continue;
-            }
-        */
-
-        if ((userInput == "1") || (userInput == "2"))
+        if (std::cin.fail())
+        {
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
+            std::cout << "\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+            std::this_thread::sleep_for(std::chrono::milliseconds(time));
+            continueInput = true;
+        }
+        else if ((userInput == 1) || (userInput == 2))
         {
             continueInput = false;
         }
@@ -93,11 +88,11 @@ void HorseRace::instructions()
 
     } while (continueInput);
 
-    if ((userInput) == ("1"))
+    if ((userInput) == (1))
     {
         wager();
     }
-    else if ((userInput) == ("2"))
+    else if ((userInput) == (2))
     {
         GameRoom GameRoomObj;
         GameRoomObj.ReturnToGameOptions();

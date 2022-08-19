@@ -5,6 +5,7 @@
 #include <chrono>
 #include <thread>
 #include "gameroom.h"
+#include "introduction.h"
 #include "casinowar.h"
 #include "horserace.h"
 
@@ -44,6 +45,11 @@ void GameRoom::GameOptions()
     system("clear");
     bool isValid;
     int userInput;
+
+    Introduction IntroObj;
+    int tokens = IntroObj.getTokens();
+
+    std::cout << "                                                                      TOKENS: " << tokens << std::endl;
     std::cout << "\n\n\n\n\n\n\n                                 GAME FLOOR\n\n";
     do
     {
