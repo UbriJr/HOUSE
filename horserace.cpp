@@ -5,6 +5,7 @@
 #include <chrono>
 #include <thread>
 #include <regex>
+#include <random>
 #include "horserace.h"
 #include "visuals.h"
 #include "gameroom.h"
@@ -130,6 +131,17 @@ void HorseRace::wager()
     race();
 }
 
+// Returns a random horse to win the race between 1-8
+int HorseRace::RandomHorseWinner()
+{
+
+    std::random_device dev;
+    std::mt19937 rng(dev());
+    std::uniform_int_distribution<std::mt19937::result_type> dist6(1, 8);
+    int WinningHorse = dist6(rng);
+    return WinningHorse;
+}
+
 // This is where we animate the horse race
 void HorseRace::race()
 {
@@ -139,6 +151,10 @@ void HorseRace::race()
     // Time delays
     int titleTime = 1000;
     int raceTime = 400;
+
+    int winningHorse = RandomHorseWinner();
+
+    std::cout << winningHorse << std::endl;
 
     std::string ready = "                               READY";
     std::string set = "                                     SET";

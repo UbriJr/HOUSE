@@ -124,12 +124,15 @@ bool Introduction::InputValidation(int userInput)
     // clear console
     system("clear");
 
+    int time = 3000;
+
     // Check if user even entered a digit
     if (std::cin.fail())
     {
         std::cin.clear();
         std::cin.ignore(10000, '\n');
-        std::cout << "\nTHIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+        std::cout << "\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+        std::this_thread::sleep_for(std::chrono::milliseconds(time));
         return false;
     }
 
@@ -140,7 +143,8 @@ bool Introduction::InputValidation(int userInput)
     }
     else
     {
-        std::cout << "\nTHIS TIME, PLEASE ENTER A VALID RESPONSE!\n";
+        std::cout << "\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+        std::this_thread::sleep_for(std::chrono::milliseconds(time));
         return false;
     }
 }
