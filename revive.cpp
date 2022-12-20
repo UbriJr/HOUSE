@@ -101,7 +101,7 @@ bool Revive::answerChecker(int x, int y, int z, char firstSign, char secondSign,
     // extra tokens earned for solving the equation
     int extraTokens = 3;
 
-    // answer to the original equation
+    // answer to the original equation  **** TO DO ******
     int trueAnswer;
 
     std::cout << trueAnswer;
