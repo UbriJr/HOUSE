@@ -9,9 +9,10 @@ public:
     void Explanation();
 
 private:
-    int RandomNumber();
-    char generateSign();
-    bool answerChecker(int x, int y, int z, char firstSign, char secondSign, int userAnswer);
+    std::string RandomNumber();
+    std::string generateSign();
+    bool answerChecker(int userAnswer, int correctAnswer);
+    void trig_function();
 };
 
 #endif

@@ -6,8 +6,6 @@
 #include <thread>
 #include <regex>
 #include <random>
-#include <stdio.h>
-#include "tinyexpr.h"
 #include "introduction.h"
 #include "revive.h"
 
@@ -18,18 +16,26 @@ Revive::Revive(){
 // Dialgue and explanation
 void Revive::Explanation()
 {
+
     // time delay for the dialog
     int timeDelay = 1000;
 
     // random numbers that make up the equation
-    int x = RandomNumber();
-    int y = RandomNumber();
-    int z = RandomNumber();
-    int userAnswer;
+    std::string stringRandomNumber = RandomNumber();
 
-    // random sign (+ or -)
-    char firstSign = generateSign();
-    char secondSign = generateSign();
+    stringRandomNumber.append(" ");
+    stringRandomNumber.append(generateSign());
+    stringRandomNumber.append(" ");
+    stringRandomNumber.append(RandomNumber());
+
+    stringRandomNumber.append(" ");
+    stringRandomNumber.append(generateSign());
+    stringRandomNumber.append(" ");
+    stringRandomNumber.append(RandomNumber());
+
+    // users answer and the correct answer to the equation
+    int userAnswer;
+    int correctAnswer;
 
     // clear the console
     system("clear");
@@ -49,7 +55,7 @@ void Revive::Explanation()
     std::cout << "                     SOLVE THIS PROBLEM TO GET 3 TOKENS" << std::endl;
     std::cout << "\n";
     std::this_thread::sleep_for(std::chrono::milliseconds(timeDelay));
-    std::cout << "                              " << x << " " << firstSign << " " << y << " " << secondSign << " " << z << " = ?";
+    std::cout << "                              " << stringRandomNumber << " = ?";
     std::cout << "\n";
     std::cout << "\n";
     std::cout << "\n";
@@ -57,53 +63,47 @@ void Revive::Explanation()
     std::cin >> userAnswer;
 
     // pass in the vars that make up the equation and the users answer
-    answerChecker(x, y, x, firstSign, secondSign, userAnswer);
+    // answerChecker();
 }
 
 // This function generates a random number, this is later used for the equations
-int Revive::RandomNumber()
+std::string Revive::RandomNumber()
 {
     std::random_device dev;
     std::mt19937 rng(dev());
     std::uniform_int_distribution<std::mt19937::result_type> dist6(1, 100);
-    int number = dist6(rng);
+    std::string number = std::to_string(dist6(rng));
     return number;
 }
 
 // radnomly generates plus or minus signs for the equation
-char Revive::generateSign()
+std::string Revive::generateSign()
 {
 
     std::random_device dev;
     std::mt19937 rng(dev());
     std::uniform_int_distribution<std::mt19937::result_type> dist6(0, 1);
     int number = dist6(rng);
-    char sign;
+    std::string sign;
 
     if (number == 0)
     {
-        sign = '-';
+        sign = "-";
         return (sign);
     }
 
-    sign = '+';
+    sign = "+";
     return (sign);
 }
 
 // validates user's answer, returns true if valide and correct, false otherwise
-bool Revive::answerChecker(int x, int y, int z, char firstSign, char secondSign, int userAnswer)
+bool Revive::answerChecker(int userAnswer, int correctAnswer)
 {
-
     // clear console
     system("clear");
 
     // time delay
     int time = 3000;
-
-    // temp var used for conversion
-    std::string tmp = std::to_string(x) + std::to_string(firstSign);
-
-    std::cout << tmp << std::endl;
 
     // extra tokens earned for solving the equation
     int extraTokens = 3;
