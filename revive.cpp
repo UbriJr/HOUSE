@@ -20,22 +20,12 @@ void Revive::Explanation()
     // time delay for the dialog
     int timeDelay = 1000;
 
-    // random numbers that make up the equation
-    std::string stringRandomNumber = RandomNumber();
-
-    stringRandomNumber.append(" ");
-    stringRandomNumber.append(generateSign());
-    stringRandomNumber.append(" ");
-    stringRandomNumber.append(RandomNumber());
-
-    stringRandomNumber.append(" ");
-    stringRandomNumber.append(generateSign());
-    stringRandomNumber.append(" ");
-    stringRandomNumber.append(RandomNumber());
-
     // users answer and the correct answer to the equation
     int userAnswer;
     int correctAnswer;
+
+    // varaible to check if user answerwed correctly
+    bool answeredCorrectly;
 
     // clear the console
     system("clear");
@@ -51,19 +41,46 @@ void Revive::Explanation()
     std::this_thread::sleep_for(std::chrono::milliseconds(timeDelay));
     std::cout << "                  IT LOOKS LIKE YOU HAVE RUN OUT OF TOKENS" << std::endl;
     std::cout << "\n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(timeDelay));
-    std::cout << "                     SOLVE THIS PROBLEM TO GET 3 TOKENS" << std::endl;
-    std::cout << "\n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(timeDelay));
-    std::cout << "                              " << stringRandomNumber << " = ?";
-    std::cout << "\n";
-    std::cout << "\n";
-    std::cout << "\n";
-    std::cout << "                               YOUR ANSWER: ";
-    std::cin >> userAnswer;
 
-    // pass in the vars that make up the equation and the users answer
-    // answerChecker();
+    do
+    {
+        // random numbers that make up the equation
+        std::string equationString = generateEquation();
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(timeDelay));
+        std::cout << "                     SOLVE THIS PROBLEM TO GET 3 TOKENS" << std::endl;
+        std::cout << "\n";
+        std::this_thread::sleep_for(std::chrono::milliseconds(timeDelay));
+        std::cout << "                              " << equationString << " = ?";
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "                               YOUR ANSWER: ";
+        std::cin >> userAnswer;
+
+        // pass in the vars that make up the equation and the users answer
+        answeredCorrectly = answerChecker(0, 9);
+
+    } while (!answeredCorrectly);
+}
+
+// this function generates the equation using the other helper functions
+std::string Revive::generateEquation()
+{
+
+    std::string stringRandomNumber = RandomNumber();
+
+    stringRandomNumber.append(" ");
+    stringRandomNumber.append(generateSign());
+    stringRandomNumber.append(" ");
+    stringRandomNumber.append(RandomNumber());
+
+    stringRandomNumber.append(" ");
+    stringRandomNumber.append(generateSign());
+    stringRandomNumber.append(" ");
+    stringRandomNumber.append(RandomNumber());
+
+    return stringRandomNumber;
 }
 
 // This function generates a random number, this is later used for the equations
@@ -108,12 +125,6 @@ bool Revive::answerChecker(int userAnswer, int correctAnswer)
     // extra tokens earned for solving the equation
     int extraTokens = 3;
 
-    // answer to the original equation  **** TO DO ******
-    int trueAnswer;
-
-    std::cout << trueAnswer;
-    std::this_thread::sleep_for(std::chrono::milliseconds(time * 2));
-
     // Check if user even entered a digit
     if (std::cin.fail())
     {
@@ -129,11 +140,23 @@ bool Revive::answerChecker(int userAnswer, int correctAnswer)
         std::cout << "\n";
         std::cout << "\n";
         std::cout << "\n";
-        std::cout << "                   THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+        std::cout << "                   THIS TIME, PLEASE ENTER A VALID RESPONSE\n\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
         return false;
     }
 
-    // Introduction revivalTokensObj;
-    // revivalTokensObj.setTokens(extraTokens);
+    // if user answers currently add token to account and break out of loop
+    if (userAnswer == correctAnswer)
+    {
+        std::cout << "\n\n\n\n\n\n\n            YOUR ANSWER WAS CORRECT, ADDING TOKENS TO YOUR ACCOUNT \n";
+        std::this_thread::sleep_for(std::chrono::milliseconds(time - 1000));
+        Introduction revivalTokensObj;
+        revivalTokensObj.setTokens(revivalTokensObj.getTokens() + extraTokens);
+        return true;
+    }
+
+    // if the user answers incorrectly, return false to restart the loop
+    std::cout << "\n\n\n\n\n\n\n                    YOUR ANSWER WAS INCORRECT, PLEASE TRY AGAIN\n";
+    std::this_thread::sleep_for(std::chrono::milliseconds(time));
+    return false;
 }
