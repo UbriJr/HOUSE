@@ -6,6 +6,8 @@
 #include <thread>
 #include <regex>
 #include <random>
+#include <stdio.h>
+#include "tinyexpr.h"
 #include "introduction.h"
 #include "revive.h"
 
@@ -97,6 +99,11 @@ bool Revive::answerChecker(int x, int y, int z, char firstSign, char secondSign,
 
     // time delay
     int time = 3000;
+
+    // temp var used for conversion
+    std::string tmp = std::to_string(x) + std::to_string(firstSign);
+
+    std::cout << tmp << std::endl;
 
     // extra tokens earned for solving the equation
     int extraTokens = 3;
