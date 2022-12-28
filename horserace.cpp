@@ -7,6 +7,7 @@
 #include <regex>
 #include <random>
 #include "horserace.h"
+#include "introduction.h"
 #include "visuals.h"
 #include "gameroom.h"
 
@@ -14,6 +15,7 @@ HorseRace::HorseRace(){
 
 };
 
+// kicks off the horse race game
 void HorseRace::RunHorseRace()
 {
     HorseRaceSelection();
@@ -22,18 +24,55 @@ void HorseRace::RunHorseRace()
 // Prompts user to either read the instruction or start playing horse race.
 void HorseRace::HorseRaceSelection()
 {
+    // available options
     int instruction = 1;
     int play = 2;
+
+    // pause / delay time
+    int time = 3000;
+
+    // users input is stored and checked if valid in these variables
     int userInput;
+    bool validInput;
 
-    system("clear");
-    std::cout << "\n\n\n\n\n\n\n                                 HORSE RACE\n"
-              << std::endl;
-    std::cout << "                          1: HOW TO PLAY HORSE RACE" << std::endl;
-    std::cout << "                          2: PLAY HORSE RACE" << std::endl;
-    std::cout << "\n                          PLEASE SELECT AN OPTION: ";
-    std::cin >> userInput;
+    // prompts user for a response, will loop until a valid response is given
+    do
+    {
+        // clear the console
+        system("clear");
 
+        std::cout << "\n\n\n\n\n\n\n                                 HORSE RACE\n"
+                  << std::endl;
+        std::cout << "                          1: HOW TO PLAY HORSE RACE" << std::endl;
+        std::cout << "                          2: PLAY HORSE RACE" << std::endl;
+        std::cout << "\n                          PLEASE SELECT AN OPTION: ";
+        std::cin >> userInput;
+
+        // if user inputs anything other then int type, cin will fail
+        if (std::cin.fail())
+        {
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
+            system("clear");
+            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+            std::this_thread::sleep_for(std::chrono::milliseconds(time));
+            validInput = false;
+        }
+        else if ((userInput == 1) || (userInput == 2))
+        {
+            validInput = true;
+        }
+        else
+        {
+            system("clear");
+            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+            std::this_thread::sleep_for(std::chrono::milliseconds(time));
+            validInput = false;
+        }
+
+    } while (!validInput);
+
+    // once valid response is given, breaks out of do while loop and directs player to instructions or to play
     if (userInput == (instruction))
     {
         instructions();
@@ -72,7 +111,8 @@ void HorseRace::instructions()
         {
             std::cin.clear();
             std::cin.ignore(10000, '\n');
-            std::cout << "\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+            system("clear");
+            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
             std::this_thread::sleep_for(std::chrono::milliseconds(time));
             continueInput = true;
         }
@@ -82,7 +122,8 @@ void HorseRace::instructions()
         }
         else
         {
-            std::cout << "\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+            system("clear");
+            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
             std::this_thread::sleep_for(std::chrono::milliseconds(time));
             continueInput = true;
         }
@@ -93,6 +134,7 @@ void HorseRace::instructions()
     {
         wager();
     }
+    // returns user to game room (other games)
     else if ((userInput) == (2))
     {
         GameRoom GameRoomObj;
@@ -109,32 +151,79 @@ void HorseRace::wager()
     int wager;
     int horse;
     std::string key;
+    int time = 3000;
+    bool allValidResponses;
 
-    std::cout << "\n\n\n\n\n\n                                  HORSE RACE";
-    std::cout << "\n\n                             SELECT A HORSE (1-8): ";
-    std::cin >> horse;
-    std::cout << "\n                                 WAGER AMOUNT: ";
+    // this object is used to check the # of tokens the user has in their account
+    Introduction tokenCheckerObj;
 
-    std::cin >> wager;
+    // prompts user to enter a horse to bet on and the wager amount
+    do
+    {
+        system("clear");
+        std::cout << "\n\n\n\n\n\n                                  HORSE RACE";
+        std::cout << "\n\n                             SELECT A HORSE (1-8): ";
+        std::cin >> horse;
 
-    // make sure to validate the wager and make sure its an int
-    // WagerChecker();
+        // checks if input is INT type and if user selected a valid horse
+        if (std::cin.fail())
+        {
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
+            system("clear");
+            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+            std::this_thread::sleep_for(std::chrono::milliseconds(time));
+            allValidResponses = false;
+            continue;
+        }
+        else if (horse > 8 || horse < 1)
+        {
+            system("clear");
+            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+            std::this_thread::sleep_for(std::chrono::milliseconds(time));
+            allValidResponses = false;
+            continue;
+        }
 
-    std::cout << "\n                         YOU WAGERED " << wager << " TOKENS ON HORSE #" << horse << "\n";
+        std::cout << "\n                                 WAGER AMOUNT: ";
+        std::cin >> wager;
 
-    std::cout << "\n\n\n                           ENTER ANY KEY TO CONTINUE: ";
-    std::cin >> key;
+        // check if wager was INT type and if the user wagered a valid amount
+        if (std::cin.fail())
+        {
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
+            system("clear");
+            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+            std::this_thread::sleep_for(std::chrono::milliseconds(time));
+            allValidResponses = false;
+            continue;
+        }
+        else if (wager > tokenCheckerObj.getTokens())
+        {
+            system("clear");
+            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+            std::this_thread::sleep_for(std::chrono::milliseconds(time));
+            allValidResponses = false;
+            continue;
+        }
 
-    // ShowDealtCards();
+        std::cout << "\n                         YOU WAGERED " << wager << " TOKENS ON HORSE #" << horse << "\n";
+        std::cout << "\n\n\n                           ENTER ANY KEY TO CONTINUE: ";
+        std::cin >> key;
 
-    // Call race once user selects a horse to bet on and the amount.
+        // if all conditions are met user entered valid information and breaks out of loop
+        allValidResponses = true;
+
+    } while (!allValidResponses);
+
+    // call race once user selects a horse to bet on and the amount once inputs are validated.
     race();
 }
 
 // Returns a random horse to win the race between 1-8
 int HorseRace::RandomHorseWinner()
 {
-
     std::random_device dev;
     std::mt19937 rng(dev());
     std::uniform_int_distribution<std::mt19937::result_type> dist6(1, 8);

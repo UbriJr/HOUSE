@@ -25,13 +25,13 @@ int main(int argc, const char *argv[])
     // Introduction IntroObj;
     // IntroObj.RunIntroduction();
 
-    Revive rObj;
-    rObj.Explanation();
+    // Revive rObj;
+    // rObj.Explanation();
 
     // For Testing one panel at a time
     // CasinoWar TestObj;
     // TestObj.runCasinoWar();
 
-    // HorseRace testrace;
-    // testrace.RunHorseRace();
+    HorseRace testrace;
+    testrace.RunHorseRace();
 }
