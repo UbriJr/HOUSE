@@ -22,21 +22,34 @@ void CasinoWar::runCasinoWar()
 int wager;
 Introduction tks;
 
-void CasinoWar::InputValidation(int userInput)
+// Validates user's input
+bool CasinoWar::InputValidation(int userInput)
 {
+    system("clear");
+    int time = 3000;
 
-    if (userInput == (1))
+    // Check if user even entered a digit
+    if (std::cin.fail())
     {
-        CasinoWarPlay();
+        std::cin.clear();
+        std::cin.ignore(10000, '\n');
+        std::cout << "\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+        std::this_thread::sleep_for(std::chrono::milliseconds(time));
+        system("clear");
+        return false;
     }
-    else if (userInput == (2))
+
+    // Check if digit is one of the available options
+    if (userInput == (1) || userInput == (2))
     {
-        GameRoom GameRoomObj;
-        GameRoomObj.ReturnToGameOptions();
+        return true;
     }
     else
     {
-        std::cout << "\nTHIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+        std::cout << "\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+        std::this_thread::sleep_for(std::chrono::milliseconds(time));
+        system("clear");
+        return false;
     }
 }
 
@@ -45,14 +58,20 @@ void CasinoWar::CasinoWarSelection()
     int instructions = 1;
     int play = 2;
     int userInput;
+    bool isValid;
 
-    system("clear");
-    std::cout << "\n\n\n\n\n\n\n                                 CASINO WAR\n"
-              << std::endl;
-    std::cout << "                          1: HOW TO PLAY CASINO WAR" << std::endl;
-    std::cout << "                          2: PLAY CASINO WAR" << std::endl;
-    std::cout << "\n                          PLEASE SELECT AN OPTION: ";
-    std::cin >> userInput;
+    do
+    {
+        system("clear");
+        std::cout << "\n\n\n\n\n\n\n                                 CASINO WAR\n"
+                  << std::endl;
+        std::cout << "                          1: HOW TO PLAY CASINO WAR" << std::endl;
+        std::cout << "                          2: PLAY CASINO WAR" << std::endl;
+        std::cout << "\n                          PLEASE SELECT AN OPTION: ";
+        std::cin >> userInput;
+        isValid = InputValidation(userInput);
+
+    } while (!isValid);
 
     if (userInput == (instructions))
     {
@@ -65,12 +84,24 @@ void CasinoWar::CasinoWarSelection()
 }
 
 // Checks if the player has the wagered amount in their balance.
-void CasinoWar::WagerChecker()
+bool CasinoWar::WagerChecker(int wager)
 {
-    int time = 7200;
     int maxBet = tks.getTokens();
 
-    if (wager > maxBet)
+    int time = 3000;
+
+    // Check if user even entered a digit
+    if (std::cin.fail())
+    {
+        std::cin.clear();
+        std::cin.ignore(10000, '\n');
+        system("clear");
+        std::cout << "\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+        std::this_thread::sleep_for(std::chrono::milliseconds(time));
+        system("clear");
+        return false;
+    }
+    else if (wager > maxBet)
     {
         system("clear");
         std::cout << "\n\n\n\n\n\n\n\n\n                  YOU WAGERED " << wager << " TOKENS BUT ONLY HAVE"
@@ -78,28 +109,35 @@ void CasinoWar::WagerChecker()
                   << "\n";
         std::cout << "\n                       PLEASE ENTER A VALID WAGER AMOUNT \n";
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
-        CasinoWarPlay();
+        system("clear");
+        return false;
     }
+    return true;
 }
 
 // the method that plays the casino war game
 void CasinoWar::CasinoWarPlay()
 {
     system("clear");
+    bool isValid;
 
-    // int wager;
-    std::string key;
+    do
+    {
+        std::cout << "\n\n\n\n\n\n\n\n\n                                  CASINO WAR";
+        std::cout << "\n\n                                 WAGER AMOUNT: ";
 
-    std::cout << "\n\n\n\n\n\n\n\n\n                                  CASINO WAR";
-    std::cout << "\n\n                                 WAGER AMOUNT: ";
+        std::cin >> wager;
+        isValid = WagerChecker(wager);
 
-    std::cin >> wager;
-    WagerChecker();
+    } while (!isValid);
+
+    std::cin.clear();
+    std::cin.ignore(10000, '\n');
 
     std::cout << "\n                              YOU WAGERED " << wager << " TOKENS \n";
 
     std::cout << "\n\n\n                           ENTER ANY KEY TO CONTINUE: ";
-    std::cin >> key;
+    std::cin.ignore();
 
     ShowDealtCards();
 }
@@ -108,20 +146,35 @@ void CasinoWar::CasinoWarPlay()
 void CasinoWar::CasinoWarInstructions()
 {
     system("clear");
-
+    bool isValid;
     int userInput;
-    std::string instructMessage = "\n\n\n                                  CASINO WAR\n\n -THE PLAYER AND THE DEALER ARE EACH DEALT ONE CARD.\n -IF THE PLAYER'S CARD IS HIGHER THEN THE DEALER'S,\n -THE PLAYER WINS TWICE THE WAGERED AMOUNT.\n -OTHERWISE THE PLAYER LOSES THE WAGERED AMOUNT.\n -A TIE OCCURS WHEN THE PLAYER AND THE DEALER EACH HAVE CARDS OF THE SAME RANK.\n -THE PLAYER AND DEALER ARE DEALT ANOTHER CARD TO DETERMINE THE WINNER.\n";
-    std::string cardRanks = "\n             CARD RANKS (IN ORDER FROM THE HIGHEST TO LOWEST):\n             ACE, KING, QUEEN, JACK, 10, 9, 8, 7, 6, 5, 4, 3, 2 \n";
 
-    std::cout << instructMessage;
-    std::cout << cardRanks << std::endl;
+    do
+    {
+        system("clear");
+        std::string instructMessage = "\n\n\n                                  CASINO WAR\n\n -THE PLAYER AND THE DEALER ARE EACH DEALT ONE CARD.\n -IF THE PLAYER'S CARD IS HIGHER THEN THE DEALER'S,\n -THE PLAYER WINS TWICE THE WAGERED AMOUNT.\n -OTHERWISE THE PLAYER LOSES THE WAGERED AMOUNT.\n -A TIE OCCURS WHEN THE PLAYER AND THE DEALER EACH HAVE CARDS OF THE SAME RANK.\n -THE PLAYER AND DEALER ARE DEALT ANOTHER CARD TO DETERMINE THE WINNER.\n";
+        std::string cardRanks = "\n             CARD RANKS (IN ORDER FROM THE HIGHEST TO LOWEST):\n             ACE, KING, QUEEN, JACK, 10, 9, 8, 7, 6, 5, 4, 3, 2 \n";
 
-    std::cout << "\n\n                          1: PLAY CASINO WAR";
-    std::cout << "\n                          2: RETURN TO THE GAME FLOOR\n";
-    std::cout << "\n                          PLEASE SELECT AN OPTION: ";
-    std::cin >> userInput;
+        std::cout << instructMessage;
+        std::cout << cardRanks << std::endl;
 
-    InputValidation(userInput);
+        std::cout << "\n\n                          1: PLAY CASINO WAR";
+        std::cout << "\n                          2: RETURN TO THE GAME FLOOR\n";
+        std::cout << "\n                          PLEASE SELECT AN OPTION: ";
+        std::cin >> userInput;
+        isValid = InputValidation(userInput);
+
+    } while (!isValid);
+
+    if (userInput == (1))
+    {
+        CasinoWarPlay();
+    }
+    else if (userInput == (2))
+    {
+        GameRoom GameRoomObj;
+        GameRoomObj.ReturnToGameOptions();
+    }
 }
 
 // random number generated, number corresponds to a card
@@ -164,16 +217,30 @@ std::string CasinoWar::cardDealt(int number)
 void CasinoWar::replay()
 {
     int userInput;
+    bool isValid;
 
-    system("clear");
-    std::cout << "\n\n\n\n\n\n\n\n                          WOULD YOU LIKE TO PLAY AGAIN?" << std::endl
-              << "\n";
-    std::cout << "                               1: PLAY AGAIN" << std::endl;
-    std::cout << "                               2: RETURN TO GAMEROOM" << std::endl;
-    std::cout << "\n                             PLEASE SELECT AN OPTION: ";
-    std::cin >> userInput;
+    do
+    {
+        system("clear");
+        std::cout << "\n\n\n\n\n\n\n\n                          WOULD YOU LIKE TO PLAY AGAIN?" << std::endl
+                  << "\n";
+        std::cout << "                               1: PLAY AGAIN" << std::endl;
+        std::cout << "                               2: RETURN TO GAMEROOM" << std::endl;
+        std::cout << "\n                             PLEASE SELECT AN OPTION: ";
+        std::cin >> userInput;
+        isValid = InputValidation(userInput);
 
-    InputValidation(userInput);
+    } while (!isValid);
+
+    if (userInput == (1))
+    {
+        CasinoWarPlay();
+    }
+    else if (userInput == (2))
+    {
+        GameRoom GameRoomObj;
+        GameRoomObj.ReturnToGameOptions();
+    }
 }
 
 void CasinoWar::ShowDealtCards()

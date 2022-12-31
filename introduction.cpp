@@ -110,11 +110,6 @@ void Introduction::Welcome()
     std::cout << "   ***       ***  ***       ***  ****       **** ***        ***  ****" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
     std::cout << "   ***       ***     *******       ***********     **********    ************" << std::endl;
-    std::cout << "\n";
-    std::cout << "\n";
-    std::cout << "\n";
-    std::cout << "\n";
-    std::cout << "\n";
 }
 
 // Validates user's input
@@ -131,7 +126,7 @@ bool Introduction::InputValidation(int userInput)
     {
         std::cin.clear();
         std::cin.ignore(10000, '\n');
-        std::cout << "\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+        std::cout << "\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
         return false;
     }
@@ -143,7 +138,7 @@ bool Introduction::InputValidation(int userInput)
     }
     else
     {
-        std::cout << "\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+        std::cout << "\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
         return false;
     }
@@ -168,7 +163,7 @@ void Introduction::login()
     bool InfoFound = false;
 
     // spacingBuffer(neededSpace);
-    std::cout << "\n\n\n\n                                LOGIN MENU \n\n\n\n\n\n\n";
+    std::cout << "\n\n\n\n                                 LOGIN MENU \n\n\n\n\n\n\n";
     std::cout << "                           ENTER YOUR USERNAME: ";
     std::cin >> username;
     std::cout << "                           ENTER YOUR PASSWORD: ";
@@ -200,7 +195,7 @@ void Introduction::login()
         system("clear");
         spacingBuffer(neededSpace / 2);
         std::cout << "         COULD NOT FIND AN ACCOUNT WITH THE GIVEN USERNAME AND PASSWORD" << std::endl;
-        std::cout << "                    PLEASE REGISTER OR TRY TO LOGIN AGAIN\n"
+        std::cout << "                    PLEASE REGISTER OR TRY TO LOGIN AGAIN"
                   << std::endl;
         RegisterOrLogin();
     }
@@ -221,7 +216,7 @@ void Introduction::reg()
     std::fstream dataFile;
     dataFile.open("data.txt", std::ios::out);
 
-    std::cout << "\n\n\n\n                             REGISTRATION MENU \n\n\n\n\n\n\n";
+    std::cout << "\n\n\n\n                              REGISTRATION MENU \n\n\n\n\n\n\n";
     std::cout << "                             CREATE A USERNAME: ";
     std::cin >> username;
     std::cout << "                             CREATE A PASSWORD: ";
@@ -264,11 +259,15 @@ void Introduction::RegisterOrLogin()
 
     do
     {
+        std::cout << "\n\n\n\n\n";
         std::cout << "                                 1: LOGIN \n";
         std::cout << "                                 2: REGISTER \n\n";
         std::cout << "                               SELECT AN OPTION: ";
         std::cin >> userInput;
         isValid = InputValidation(userInput);
+        system("clear");
+        std::cout << "\n\n\n\n";
+
     } while (!isValid);
 
     InputControlFlow(userInput);

@@ -49,16 +49,17 @@ void GameRoom::GameOptions()
     Introduction IntroObj;
     int tokens = IntroObj.getTokens();
 
-    std::cout << "                                                                      TOKENS: " << tokens << std::endl;
-    std::cout << "\n\n\n\n\n\n\n                                 GAME FLOOR\n\n";
     do
     {
+        std::cout << "                                                                      TOKENS: " << tokens << std::endl;
+        std::cout << "\n\n\n\n\n\n\n                                 GAME FLOOR\n\n";
         std::cout << "                               1: CASINO WAR \n";
         std::cout << "                               2: HORSE RACE \n";
         std::cout << "                               3: GAME 3 \n";
         std::cout << "\n                              SELECT AN OPTION: ";
         std::cin >> userInput;
         isValid = InputValidation(userInput);
+        system("clear");
     } while (!isValid);
     InputControlFlow(userInput);
 }
@@ -69,12 +70,15 @@ bool GameRoom::InputValidation(int userInput)
     // clear console
     system("clear");
 
+    int time = 3000;
+
     // Check if user even entered a digit
     if (std::cin.fail())
     {
         std::cin.clear();
         std::cin.ignore(10000, '\n');
-        std::cout << "\nTHIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+        std::cout << "\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+        std::this_thread::sleep_for(std::chrono::milliseconds(time));
         return false;
     }
 
@@ -85,7 +89,8 @@ bool GameRoom::InputValidation(int userInput)
     }
     else
     {
-        std::cout << "\nTHIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+        std::cout << "\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+        std::this_thread::sleep_for(std::chrono::milliseconds(time));
         return false;
     }
 }
