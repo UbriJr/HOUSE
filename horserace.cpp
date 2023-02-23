@@ -231,6 +231,38 @@ int HorseRace::RandomHorseWinner()
     return WinningHorse;
 }
 
+// returns how many spaces the horse should run between 0-2
+int HorseRace::HorseRunSpaces()
+{
+    std::random_device dev;
+    std::mt19937 rng(dev());
+    std::uniform_int_distribution<std::mt19937::result_type> dist6(0, 2);
+    int spacesRun = dist6(rng);
+    return spacesRun;
+}
+
+// builds the path length the horse will run
+std::string HorseRace::buildRunner()
+{
+
+    int runLength = 12;
+    int spaces;
+    std::string currentHorse = "";
+    std::string line = "|";
+
+    for (int i = 0; i <= runLength; i++)
+    {
+        spaces = HorseRunSpaces();
+
+        for (int j = 0; j < spaces; j++)
+        {
+            currentHorse = currentHorse + line;
+        }
+    }
+
+    return currentHorse;
+}
+
 // This is where we animate the horse race
 void HorseRace::race()
 {
@@ -241,9 +273,44 @@ void HorseRace::race()
     int titleTime = 1000;
     int raceTime = 400;
 
-    int winningHorse = RandomHorseWinner();
+    // Horses & their paths
+    int winningHorse;
+    int numberOfHorses = 8;
+    int longestPath = 0;
 
-    std::cout << winningHorse << std::endl;
+    std::string h1 = buildRunner();
+    std::string h2 = buildRunner();
+    std::string h3 = buildRunner();
+    std::string h4 = buildRunner();
+    std::string h5 = buildRunner();
+    std::string h6 = buildRunner();
+    std::string h7 = buildRunner();
+    std::string h8 = buildRunner();
+
+    std::string horses[8] = {h1, h2, h3, h4, h5, h6, h7, h8};
+
+    // find longest path
+    for (int i = 0; i < numberOfHorses; i++)
+    {
+        winningHorse = ((horses[i]).length());
+
+        if (longestPath < winningHorse)
+        {
+            longestPath = winningHorse;
+        }
+    }
+
+    // make all horse strings the same length
+    for (int j = 0; j < numberOfHorses; j++)
+    {
+        std::string tmpHorse = horses[j];
+
+        for (int k = 0; tmpHorse.length() < longestPath; k++)
+        {
+            tmpHorse = tmpHorse + " ";
+        }
+        horses[j] = tmpHorse;
+    }
 
     std::string ready = "                               READY";
     std::string set = "                                     SET";
@@ -263,16 +330,20 @@ void HorseRace::race()
     // clear console so only the horse race is displayed
     system("clear");
 
-    std::cout << ""
-              << std::endl;
+    std::cout << "" << std::endl;
     std::string horseNumber = "            1       2       3       4       5       6       7       8";
-    std::string line = "            |       |       |       |       |       |       |       |";
+    std::string line;
+    std::string firstLaneBuffer = "            ";
+    std::string laneSpacer = "       ";
 
     std::cout << horseNumber << std::endl;
 
-    for (int i = 0; i < 15; i++)
+    // display the horses and their paths in the terminal
+    for (int i = 0; i < longestPath; i++)
     {
         std::this_thread::sleep_for(std::chrono::milliseconds(raceTime));
+
+        line = firstLaneBuffer + horses[0].at(i) + laneSpacer + horses[1].at(i) + laneSpacer + horses[2].at(i) + laneSpacer + horses[3].at(i) + laneSpacer + horses[4].at(i) + laneSpacer + horses[5].at(i) + laneSpacer + horses[6].at(i) + laneSpacer + horses[7].at(i);
         std::cout << line << std::endl;
     }
 

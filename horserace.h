@@ -9,6 +9,8 @@ public:
 
 private:
     int RandomHorseWinner();
+    int HorseRunSpaces();
+    std::string buildRunner();
     void race();
     void instructions();
     void wager();
