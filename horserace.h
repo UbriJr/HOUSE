@@ -11,7 +11,7 @@ private:
     int RandomHorseWinner(int totalHorses);
     int HorseRunSpaces();
     std::string buildRunner();
-    void winChecker();
+    void winChecker(int winningHorse);
     void race();
     void instructions();
     void wager();

@@ -21,6 +21,10 @@ void HorseRace::RunHorseRace()
 {
     HorseRaceSelection();
 };
+// need to know how much the user wagered across functions
+int usersWager;
+int usersHorse;
+Introduction tk;
 
 // Prompts user to either read the instruction or start playing horse race.
 void HorseRace::HorseRaceSelection()
@@ -149,8 +153,6 @@ void HorseRace::wager()
     // clear console
     system("clear");
 
-    int wager;
-    int horse;
     std::string key;
     int time = 3000;
     bool allValidResponses;
@@ -164,7 +166,7 @@ void HorseRace::wager()
         system("clear");
         std::cout << "\n\n\n\n\n\n                                  HORSE RACE";
         std::cout << "\n\n                             SELECT A HORSE (1-8): ";
-        std::cin >> horse;
+        std::cin >> usersHorse;
 
         // checks if input is INT type and if user selected a valid horse
         if (std::cin.fail())
@@ -177,7 +179,7 @@ void HorseRace::wager()
             allValidResponses = false;
             continue;
         }
-        else if (horse > 8 || horse < 1)
+        else if (usersHorse > 8 || usersHorse < 1)
         {
             system("clear");
             std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
@@ -187,7 +189,7 @@ void HorseRace::wager()
         }
 
         std::cout << "\n                                 WAGER AMOUNT: ";
-        std::cin >> wager;
+        std::cin >> usersWager;
 
         // check if wager was INT type and if the user wagered a valid amount
         if (std::cin.fail())
@@ -200,7 +202,7 @@ void HorseRace::wager()
             allValidResponses = false;
             continue;
         }
-        else if (wager > tokenCheckerObj.getTokens())
+        else if (usersWager > tokenCheckerObj.getTokens())
         {
             system("clear");
             std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
@@ -209,7 +211,7 @@ void HorseRace::wager()
             continue;
         }
 
-        std::cout << "\n                         YOU WAGERED " << wager << " TOKENS ON HORSE #" << horse << "\n";
+        std::cout << "\n                         YOU WAGERED " << usersWager << " TOKENS ON HORSE #" << usersHorse << "\n";
         std::cout << "\n\n\n                           ENTER ANY KEY TO CONTINUE: ";
         std::cin >> key;
 
@@ -265,9 +267,22 @@ std::string HorseRace::buildRunner()
 }
 
 // checks if the user lost or won his bet and modifies their account
-void HorseRace::winChecker()
+void HorseRace::winChecker(int winningHorse)
 {
-    // TO DO
+    Visuals visObject;
+
+    // user picked the winning horse. they win
+    if (usersHorse == winningHorse)
+    {
+        std::cout << "\n\n                      YOUR HORSE WON. YOU WON " << (usersWager * 5) << " TOKENS" << std::endl;
+        tk.setTokens(tk.getTokens() + (usersWager * 5));
+    }
+    // otherwise they picked the wrong horse and lost.
+    else
+    {
+        std::cout << "\n\n                      YOUR HORSE LOST. YOU LOST " << (usersWager) << " TOKENS" << std::endl;
+        tk.setTokens(tk.getTokens() - (usersWager));
+    }
 }
 
 // This is where we animate the horse race
@@ -391,8 +406,5 @@ void HorseRace::race()
     // std::cout << tiedHorses.size();
     posFromVec = posFromVec + 1;
 
-    std::cout << posFromVec;
-
-    Visuals visObject;
-    visObject.standardHorse();
+    winChecker(posFromVec);
 }
