@@ -8,9 +8,10 @@ public:
     void RunHorseRace();
 
 private:
-    int RandomHorseWinner();
+    int RandomHorseWinner(int totalHorses);
     int HorseRunSpaces();
     std::string buildRunner();
+    void winChecker();
     void race();
     void instructions();
     void wager();

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 #include <sstream>
 #include <fstream>
 #include <chrono>
@@ -221,12 +222,12 @@ void HorseRace::wager()
     race();
 }
 
-// Returns a random horse to win the race between 1-8
-int HorseRace::RandomHorseWinner()
+// Returns a random horse if there is a tie
+int HorseRace::RandomHorseWinner(int totalHorses)
 {
     std::random_device dev;
     std::mt19937 rng(dev());
-    std::uniform_int_distribution<std::mt19937::result_type> dist6(1, 8);
+    std::uniform_int_distribution<std::mt19937::result_type> dist6(1, totalHorses);
     int WinningHorse = dist6(rng);
     return WinningHorse;
 }
@@ -263,6 +264,12 @@ std::string HorseRace::buildRunner()
     return currentHorse;
 }
 
+// checks if the user lost or won his bet and modifies their account
+void HorseRace::winChecker()
+{
+    // TO DO
+}
+
 // This is where we animate the horse race
 void HorseRace::race()
 {
@@ -289,6 +296,13 @@ void HorseRace::race()
 
     std::string horses[8] = {h1, h2, h3, h4, h5, h6, h7, h8};
 
+    std::string winner;
+
+    // horses that are tied
+    std::vector<std::string> tiedHorses;
+    std::vector<int> tiedHorsePositions;
+    int posFromVec;
+
     // find longest path
     for (int i = 0; i < numberOfHorses; i++)
     {
@@ -299,6 +313,33 @@ void HorseRace::race()
             longestPath = winningHorse;
         }
     }
+
+    // check how many horses are tied
+    for (int x = 0; x < numberOfHorses; x++)
+    {
+        if (horses[x].length() == longestPath)
+        {
+            tiedHorses.push_back(horses[x]);
+            tiedHorsePositions.push_back(x);
+        }
+    }
+
+    // if there is a tie, pick a random horse from the pile and add 1 extra line to make it the winner.
+    if (tiedHorses.size() > 1)
+    {
+        int randomWinner = RandomHorseWinner(tiedHorses.size());
+        winner = tiedHorses[randomWinner];
+        posFromVec = tiedHorsePositions[randomWinner];
+        winner = winner + "|";
+    }
+    else
+    {
+        winner = tiedHorses[0];
+        posFromVec = tiedHorsePositions[0];
+    }
+
+    horses[posFromVec] = winner;
+    longestPath = winner.length();
 
     // make all horse strings the same length
     for (int j = 0; j < numberOfHorses; j++)
@@ -346,6 +387,11 @@ void HorseRace::race()
         line = firstLaneBuffer + horses[0].at(i) + laneSpacer + horses[1].at(i) + laneSpacer + horses[2].at(i) + laneSpacer + horses[3].at(i) + laneSpacer + horses[4].at(i) + laneSpacer + horses[5].at(i) + laneSpacer + horses[6].at(i) + laneSpacer + horses[7].at(i);
         std::cout << line << std::endl;
     }
+
+    // std::cout << tiedHorses.size();
+    posFromVec = posFromVec + 1;
+
+    std::cout << posFromVec;
 
     Visuals visObject;
     visObject.standardHorse();
