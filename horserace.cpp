@@ -248,7 +248,7 @@ int HorseRace::HorseRunSpaces()
 std::string HorseRace::buildRunner()
 {
 
-    int runLength = 12;
+    int runLength = 11;
     int spaces;
     std::string currentHorse = "";
     std::string line = "|";
@@ -331,8 +331,8 @@ void HorseRace::replay()
     }
     else if (userInput == (2))
     {
-        GameRoom GameRoomObj;
-        GameRoomObj.ReturnToGameOptions();
+        GameRoom GRobj;
+        GRobj.ReturnToGameOptions();
     }
 }
 
