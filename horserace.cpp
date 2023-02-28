@@ -285,9 +285,61 @@ void HorseRace::winChecker(int winningHorse)
     }
 }
 
+void HorseRace::replay()
+{
+    int userInput;
+    bool isValid;
+    int time = 3000;
+    bool continueInput = false;
+
+    do
+    {
+        system("clear");
+        std::cout << "\n\n\n\n\n\n\n\n                          WOULD YOU LIKE TO PLAY AGAIN?" << std::endl
+                  << "\n";
+        std::cout << "                               1: PLAY AGAIN" << std::endl;
+        std::cout << "                               2: RETURN TO GAMEROOM" << std::endl;
+        std::cout << "\n                             PLEASE SELECT AN OPTION: ";
+        std::cin >> userInput;
+
+        if (std::cin.fail())
+        {
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
+            system("clear");
+            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+            std::this_thread::sleep_for(std::chrono::milliseconds(time));
+            continueInput = true;
+        }
+        else if ((userInput == 1) || (userInput == 2))
+        {
+            continueInput = false;
+        }
+        else
+        {
+            system("clear");
+            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+            std::this_thread::sleep_for(std::chrono::milliseconds(time));
+            continueInput = true;
+        }
+
+    } while (continueInput);
+
+    if (userInput == (1))
+    {
+        wager();
+    }
+    else if (userInput == (2))
+    {
+        GameRoom GameRoomObj;
+        GameRoomObj.ReturnToGameOptions();
+    }
+}
+
 // This is where we animate the horse race
 void HorseRace::race()
 {
+    int outcomeTimer = 5000;
     // clear console
     system("clear");
 
@@ -407,4 +459,8 @@ void HorseRace::race()
     posFromVec = posFromVec + 1;
 
     winChecker(posFromVec);
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(outcomeTimer));
+
+    replay();
 }

@@ -9,6 +9,7 @@ public:
 
 private:
     int RandomHorseWinner(int totalHorses);
+    void replay();
     int HorseRunSpaces();
     std::string buildRunner();
     void winChecker(int winningHorse);
