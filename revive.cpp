@@ -122,9 +122,6 @@ bool Revive::answerChecker(int userAnswer, int correctAnswer)
     // time delay
     int time = 3000;
 
-    // extra tokens earned for solving the equation
-    int extraTokens = 3;
-
     // Check if user even entered a digit
     if (std::cin.fail())
     {
@@ -148,6 +145,9 @@ bool Revive::answerChecker(int userAnswer, int correctAnswer)
     // if user answers currently add token to account and break out of loop
     if (userAnswer == correctAnswer)
     {
+        // extra tokens earned for solving the equation
+        int extraTokens = 3;
+
         std::cout << "\n\n\n\n\n\n\n            YOUR ANSWER WAS CORRECT, ADDING TOKENS TO YOUR ACCOUNT \n";
         std::this_thread::sleep_for(std::chrono::milliseconds(time - 1000));
         Introduction revivalTokensObj;

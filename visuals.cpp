@@ -21,7 +21,7 @@ void Visuals::standardHorse()
     std::cout << "        ^     ^" << std::endl;
 }
 
-void Visuals::cardA(std::string spacing)
+void Visuals::cardA(const std::string &spacing)
 {
     std::cout << spacing << " _______" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
@@ -38,7 +38,7 @@ void Visuals::cardA(std::string spacing)
     std::cout << spacing << "|______A|" << std::endl;
 }
 
-void Visuals::cardTwo(std::string spacing)
+void Visuals::cardTwo(const std::string &spacing)
 {
     std::cout << spacing << " _______" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
@@ -55,7 +55,7 @@ void Visuals::cardTwo(std::string spacing)
     std::cout << spacing << "|______2|" << std::endl;
 }
 
-void Visuals::cardThree(std::string spacing)
+void Visuals::cardThree(const std::string &spacing)
 {
     std::cout << spacing << " _______" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
@@ -72,7 +72,7 @@ void Visuals::cardThree(std::string spacing)
     std::cout << spacing << "|______3|" << std::endl;
 }
 
-void Visuals::cardFour(std::string spacing)
+void Visuals::cardFour(const std::string &spacing)
 {
     std::cout << spacing << " _______" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
@@ -89,7 +89,7 @@ void Visuals::cardFour(std::string spacing)
     std::cout << spacing << "|______4|" << std::endl;
 }
 
-void Visuals::cardFive(std::string spacing)
+void Visuals::cardFive(const std::string &spacing)
 {
     std::cout << spacing << " _______" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
@@ -106,7 +106,7 @@ void Visuals::cardFive(std::string spacing)
     std::cout << spacing << "|______5|" << std::endl;
 }
 
-void Visuals::cardSix(std::string spacing)
+void Visuals::cardSix(const std::string &spacing)
 {
     std::cout << spacing << " _______" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
@@ -123,7 +123,7 @@ void Visuals::cardSix(std::string spacing)
     std::cout << spacing << "|______6|" << std::endl;
 }
 
-void Visuals::cardSeven(std::string spacing)
+void Visuals::cardSeven(const std::string &spacing)
 {
     std::cout << spacing << " _______" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
@@ -140,7 +140,7 @@ void Visuals::cardSeven(std::string spacing)
     std::cout << spacing << "|______7|" << std::endl;
 }
 
-void Visuals::cardEight(std::string spacing)
+void Visuals::cardEight(const std::string &spacing)
 {
     std::cout << spacing << " _______" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
@@ -157,7 +157,7 @@ void Visuals::cardEight(std::string spacing)
     std::cout << spacing << "|______8|" << std::endl;
 }
 
-void Visuals::cardNine(std::string spacing)
+void Visuals::cardNine(const std::string &spacing)
 {
     std::cout << spacing << " _______" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
@@ -174,7 +174,7 @@ void Visuals::cardNine(std::string spacing)
     std::cout << spacing << "|______9|" << std::endl;
 }
 
-void Visuals::cardTen(std::string spacing)
+void Visuals::cardTen(const std::string &spacing)
 {
     std::cout << spacing << " _______" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
@@ -191,7 +191,7 @@ void Visuals::cardTen(std::string spacing)
     std::cout << spacing << "|_____10|" << std::endl;
 }
 
-void Visuals::cardJack(std::string spacing)
+void Visuals::cardJack(const std::string &spacing)
 {
     std::cout << spacing << " _______" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
@@ -208,7 +208,7 @@ void Visuals::cardJack(std::string spacing)
     std::cout << spacing << "|______J|" << std::endl;
 }
 
-void Visuals::cardQueen(std::string spacing)
+void Visuals::cardQueen(const std::string &spacing)
 {
     std::cout << spacing << " _______" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
@@ -225,7 +225,7 @@ void Visuals::cardQueen(std::string spacing)
     std::cout << spacing << "|______Q|" << std::endl;
 }
 
-void Visuals::cardKing(std::string spacing)
+void Visuals::cardKing(const std::string &spacing)
 {
     std::cout << spacing << " _______" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));

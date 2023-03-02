@@ -187,33 +187,6 @@ int CasinoWar::randomCard()
     return card;
 }
 
-std::string CasinoWar::cardDealt(int number)
-{
-    std::string result;
-
-    if (number == (14))
-    {
-        result = "ACE";
-    }
-    else if (number == (13))
-    {
-        result = "KING";
-    }
-    else if (number == (12))
-    {
-        result = "QUEEN";
-    }
-    else if (number == (11))
-    {
-        result = "JACK";
-    }
-    else
-    {
-        result = std::to_string(number);
-    }
-    return result;
-}
-
 void CasinoWar::replay()
 {
     int userInput;
@@ -246,22 +219,17 @@ void CasinoWar::replay()
 void CasinoWar::ShowDealtCards()
 {
     int playersCard;
-    std::string pCard;
-    std::string dCard;
     int dealersCard;
     std::string playerSpacing = "                                               ";
     std::string dealerSpacing = "                          ";
 
     system("clear");
-
     dealersCard = randomCard();
-    dCard = cardDealt(dealersCard);
 
     std::cout << "\n\n                         DEALERS CARD " << std::endl;
     cardBuilder(dealersCard, dealerSpacing);
 
     playersCard = randomCard();
-    pCard = cardDealt(playersCard);
 
     std::cout << "\n                                               YOUR CARD " << std::endl;
     cardBuilder(playersCard, playerSpacing);

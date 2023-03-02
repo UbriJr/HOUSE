@@ -18,7 +18,6 @@ private:
     int randomCard();
     bool WagerChecker(int wager);
     void cardBuilder(int card, std::string spacing);
-    std::string cardDealt(int number);
 };
 
 #endif

@@ -249,13 +249,12 @@ std::string HorseRace::buildRunner()
 {
 
     int runLength = 11;
-    int spaces;
     std::string currentHorse = "";
     std::string line = "|";
 
     for (int i = 0; i <= runLength; i++)
     {
-        spaces = HorseRunSpaces();
+        int spaces = HorseRunSpaces();
 
         for (int j = 0; j < spaces; j++)
         {
@@ -288,7 +287,6 @@ void HorseRace::winChecker(int winningHorse)
 void HorseRace::replay()
 {
     int userInput;
-    bool isValid;
     int time = 3000;
     bool continueInput = false;
 
@@ -348,7 +346,6 @@ void HorseRace::race()
     int raceTime = 400;
 
     // Horses & their paths
-    int winningHorse;
     int numberOfHorses = 8;
     int longestPath = 0;
 
@@ -373,7 +370,7 @@ void HorseRace::race()
     // find longest path
     for (int i = 0; i < numberOfHorses; i++)
     {
-        winningHorse = ((horses[i]).length());
+        int winningHorse = ((horses[i]).length());
 
         if (longestPath < winningHorse)
         {
@@ -395,8 +392,8 @@ void HorseRace::race()
     if (tiedHorses.size() > 1)
     {
         int randomWinner = RandomHorseWinner(tiedHorses.size());
-        winner = tiedHorses[randomWinner];
-        posFromVec = tiedHorsePositions[randomWinner];
+        winner = tiedHorses[randomWinner - 1]; // maybe causes seg fault if the - 1 is not there
+        posFromVec = tiedHorsePositions[randomWinner - 1];
         winner = winner + "|";
     }
     else

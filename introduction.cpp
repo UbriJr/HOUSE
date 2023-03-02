@@ -147,7 +147,6 @@ bool Introduction::InputValidation(int userInput)
 // called if the user wants to login
 void Introduction::login()
 {
-    int neededSpace = 10;
     // spacer
     system("clear");
 
@@ -192,8 +191,9 @@ void Introduction::login()
 
     if (!InfoFound)
     {
+        int neededSpace = 5;
         system("clear");
-        spacingBuffer(neededSpace / 2);
+        spacingBuffer(neededSpace);
         std::cout << "         COULD NOT FIND AN ACCOUNT WITH THE GIVEN USERNAME AND PASSWORD" << std::endl;
         std::cout << "                    PLEASE REGISTER OR TRY TO LOGIN AGAIN"
                   << std::endl;

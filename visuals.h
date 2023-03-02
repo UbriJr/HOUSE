@@ -10,19 +10,19 @@ private:
     friend class CasinoWar;
     friend class HorseRace;
     void standardHorse();
-    void cardA(std::string spacing);
-    void cardTwo(std::string spacing);
-    void cardThree(std::string spacing);
-    void cardFour(std::string spacing);
-    void cardFive(std::string spacing);
-    void cardSix(std::string spacing);
-    void cardSeven(std::string spacing);
-    void cardEight(std::string spacing);
-    void cardNine(std::string spacing);
-    void cardTen(std::string spacing);
-    void cardJack(std::string spacing);
-    void cardQueen(std::string spacing);
-    void cardKing(std::string spacing);
+    void cardA(const std::string &spacing);
+    void cardTwo(const std::string &spacing);
+    void cardThree(const std::string &spacing);
+    void cardFour(const std::string &spacing);
+    void cardFive(const std::string &spacing);
+    void cardSix(const std::string &spacing);
+    void cardSeven(const std::string &spacing);
+    void cardEight(const std::string &spacing);
+    void cardNine(const std::string &spacing);
+    void cardTen(const std::string &spacing);
+    void cardJack(const std::string &spacing);
+    void cardQueen(const std::string &spacing);
+    void cardKing(const std::string &spacing);
 };
 
 #endif
