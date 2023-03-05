@@ -86,7 +86,7 @@ void CasinoWar::CasinoWarSelection()
 // Checks if the player has the wagered amount in their balance.
 bool CasinoWar::WagerChecker(int wager)
 {
-    int maxBet = tks.getTokens();
+    int maxBet = tks.get_tokens();
 
     int time = 3000;
 
@@ -248,7 +248,7 @@ void CasinoWar::WinOrLoseChecker(int pCard, int dCard)
     {
         std::cout << "\n                                    YOU WON" << std::endl;
         std::cout << "\n                               YOU WON " << wager << " TOKENS" << std::endl;
-        coinAccess.setTokens(tks.getTokens() + (wager));
+        coinAccess.set_tokens(tks.get_tokens() + (wager));
         std::this_thread::sleep_for(std::chrono::milliseconds(outcomeTimer));
     }
     else if (pCard == dCard)
@@ -262,7 +262,7 @@ void CasinoWar::WinOrLoseChecker(int pCard, int dCard)
     {
         std::cout << "\n                                THE DEALER WON" << std::endl;
         std::cout << "\n                              YOU LOST " << wager << " TOKENS" << std::endl;
-        coinAccess.setTokens(tks.getTokens() - wager);
+        coinAccess.set_tokens(tks.get_tokens() - wager);
         std::this_thread::sleep_for(std::chrono::milliseconds(outcomeTimer));
     }
     std::cout << "\n"

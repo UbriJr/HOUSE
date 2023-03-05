@@ -21,8 +21,8 @@
 int main(int argc, const char *argv[])
 {
     // This will kick off the first panel, thus starting the entire program.
-    Introduction IntroObj;
-    IntroObj.RunIntroduction();
+    Introduction introduction_obj;
+    introduction_obj.run_introduction();
 
     // Revive rObj;
     // rObj.Explanation();

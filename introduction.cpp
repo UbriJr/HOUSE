@@ -7,65 +7,66 @@
 #include "introduction.h"
 #include "gameroom.h"
 
+// constructor
 Introduction::Introduction(){
 
 };
 
-// run the introduction
-void Introduction::RunIntroduction()
+// runs the introduction
+void Introduction::run_introduction()
 {
-    Welcome();
-    RegisterOrLogin();
+    welcome();
+    register_or_login();
 }
 
-// returns the number of tokens the player has
-int Introduction::getTokens()
+// reads & returns the number of tokens the player has
+int Introduction::get_tokens()
 {
-    std::ifstream readFile("data.txt");
-    std::string CurrentLine;
-    std::string t;
-    int Tokens;
+    std::ifstream read_file("data.txt");
+    std::string current_line;
+    std::string tmp;
+    std::stringstream string_stream;
+    int tokens;
 
-    while (getline(readFile, CurrentLine))
+    while (getline(read_file, current_line))
     {
-        bool has_only_digits = (CurrentLine.find_first_not_of("0123456789") == std::string::npos);
+        bool has_only_digits = (current_line.find_first_not_of("0123456789") == std::string::npos);
         if (has_only_digits)
         {
-            t = CurrentLine;
+            tmp = current_line;
             break;
         }
     }
 
-    std::stringstream ss;
-    ss << t;
-    ss >> Tokens;
-    return Tokens;
+    string_stream << tmp;
+    string_stream >> tokens;
+    return tokens;
 }
 
-// Be able top adjust and set new token amount in the file
-void Introduction::setTokens(int tokens)
+// adjust and set new token amount in the file
+void Introduction::set_tokens(int tokens)
 {
-    std::ifstream dataFile;
-    dataFile.open("data.txt");
+    std::ifstream data_file;
+    data_file.open("data.txt");
 
     std::fstream tmp("test.txt", std::ios::out);
 
-    std::string CurrentLine;
+    std::string current_line;
     std::string line;
 
-    while (getline(dataFile, CurrentLine))
+    while (getline(data_file, current_line))
     {
-        tmp << CurrentLine << std::endl;
+        tmp << current_line << std::endl;
     }
 
     tmp.close();
-    dataFile.close();
+    data_file.close();
 
-    std::ifstream t("test.txt");
+    std::ifstream test_file("test.txt");
     std::fstream data;
     data.open("data.txt", std::ios::out);
 
-    while (getline(t, line))
+    while (getline(test_file, line))
     {
         bool has_only_digits = (line.find_first_not_of("0123456789") == std::string::npos);
 
@@ -79,25 +80,22 @@ void Introduction::setTokens(int tokens)
         }
     }
 
-    t.close();
+    test_file.close();
     remove("test.txt");
     data.close();
 }
 
-// prints a welcome banner and adds space to clear terminal window
-void Introduction::Welcome()
+// displays a welcome banner to the terminal window
+void Introduction::welcome()
 {
-
-    int time = 400;
-    int VisualDelay = 500;
     // clear console
     system("clear");
 
+    const int time = 400;
+
     // welcome banner
-    std::cout << "\n";
-    std::cout << "\n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(VisualDelay));
-    std::cout << "   ***       ***     *******     ***         ***   **********    ************" << std::endl;
+    std::this_thread::sleep_for(std::chrono::milliseconds(time));
+    std::cout << "\n\n   ***       ***     *******     ***         ***   **********    ************" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
     std::cout << "   ***       ***  ***       ***  ***         *** ***        ***  ****" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
@@ -112,169 +110,168 @@ void Introduction::Welcome()
     std::cout << "   ***       ***     *******       ***********     **********    ************" << std::endl;
 }
 
-// Validates user's input
-bool Introduction::InputValidation(int userInput)
+// validates the user's input in this panel
+bool Introduction::input_validation(int user_input)
 {
-
     // clear console
     system("clear");
 
-    int time = 3000;
+    const int time = 3000;
 
     // Check if user even entered a digit
     if (std::cin.fail())
     {
         std::cin.clear();
         std::cin.ignore(10000, '\n');
-        std::cout << "\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+        std::cout << "\n\n\n\n\n\n\n\n\n\n                    PLEASE ENTER A VALID RESPONSE\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
         return false;
     }
 
     // Check if digit is one of the available options
-    if (userInput == (1) || userInput == (2))
+    if (user_input == (1) || user_input == (2))
     {
         return true;
     }
     else
     {
-        std::cout << "\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+        std::cout << "\n\n\n\n\n\n\n\n\n\n                    PLEASE ENTER A VALID RESPONSE\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
         return false;
     }
 }
 
-// called if the user wants to login
+// prompts user to login if this option is selected
 void Introduction::login()
 {
-    // spacer
-    system("clear");
 
+    system("clear");
     std::string username;
     std::string password;
-    std::string CurrentLine;
-    std::string NextLine;
+    std::string current_line;
+    std::string next_line;
+    std::string wait_message = "                PLEASE WAIT WHILE WE BRING YOU TO THE GAME FLOOR\n";
 
-    std::string pleaseWait = "                PLEASE WAIT WHILE WE BRING YOU TO THE GAME FLOOR\n";
+    const int time = 5000;
 
-    int WaitTime = 5000;
+    bool user_info_found = false;
 
-    bool InfoFound = false;
-
-    // spacingBuffer(neededSpace);
     std::cout << "\n\n\n\n                                 LOGIN MENU \n\n\n\n\n\n\n";
     std::cout << "                           ENTER YOUR USERNAME: ";
     std::cin >> username;
     std::cout << "                           ENTER YOUR PASSWORD: ";
     std::cin >> password;
 
-    std::ifstream readFile("data.txt");
+    std::ifstream read_file("data.txt");
 
-    while (getline(readFile, CurrentLine))
+    while (getline(read_file, current_line))
     {
 
-        getline(readFile, NextLine);
+        getline(read_file, next_line);
 
-        if ((username == CurrentLine) && (password == NextLine))
+        if ((username == current_line) && (password == next_line))
         {
             system("clear");
             std::cout << "\n\n\n\n\n\n\n\n                               LOGIN SUCCESSFUL\n";
-            std::cout << "                              YOU HAVE " << getTokens() << " TOKENS\n";
-            std::cout << pleaseWait;
-            std::this_thread::sleep_for(std::chrono::milliseconds(WaitTime));
+            std::cout << "                              YOU HAVE " << get_tokens() << " TOKENS\n";
+            std::cout << wait_message;
+            std::this_thread::sleep_for(std::chrono::milliseconds(time));
 
-            InfoFound = true;
+            user_info_found = true;
         }
         std::cout << "\n";
     }
-    readFile.close();
 
-    if (!InfoFound)
+    read_file.close();
+
+    if (!user_info_found)
     {
-        int neededSpace = 5;
         system("clear");
-        spacingBuffer(neededSpace);
+        int needed_spaces = 5;
+
+        spacing_buffer(needed_spaces);
         std::cout << "         COULD NOT FIND AN ACCOUNT WITH THE GIVEN USERNAME AND PASSWORD" << std::endl;
         std::cout << "                    PLEASE REGISTER OR TRY TO LOGIN AGAIN"
                   << std::endl;
-        RegisterOrLogin();
+        register_or_login();
     }
 
-    GameRoom gameFloor;
-    gameFloor.RunGameRoom();
+    GameRoom game_floor_obj;
+    game_floor_obj.RunGameRoom();
 }
 
-// called if the user does not have a login and wants to register
+// prompts user to register if that option is selected
 void Introduction::reg()
 {
-    int time = 4000;
     system("clear");
+    const int time = 4000;
+    const int initial_tokens = 10;
+
     std::string username;
     std::string password;
-    int InitTokens = 10;
 
-    std::fstream dataFile;
-    dataFile.open("data.txt", std::ios::out);
+    std::fstream data_file;
+    data_file.open("data.txt", std::ios::out);
 
     std::cout << "\n\n\n\n                              REGISTRATION MENU \n\n\n\n\n\n\n";
     std::cout << "                             CREATE A USERNAME: ";
     std::cin >> username;
     std::cout << "                             CREATE A PASSWORD: ";
     std::cin >> password;
+
     system("clear");
-    std::cout << "\n\n\n\n\n\n\n\n\n\n                     REGISTRATION COMPLETE, LOGIN TO CONTINUE. \n";
-    std::cout << "\n";
 
-    dataFile << username << std::endl;
-    dataFile << password << std::endl;
-    dataFile << InitTokens << std::endl;
+    std::cout << "\n\n\n\n\n\n\n\n\n\n                     REGISTRATION COMPLETE, LOGIN TO CONTINUE. \n\n";
 
-    dataFile.close();
+    data_file << username << std::endl;
+    data_file << password << std::endl;
+    data_file << initial_tokens << std::endl;
+
+    data_file.close();
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
     login();
-    // RegisterOrLogin();
 }
 
-// direct input to either register or login method
-void Introduction::InputControlFlow(int userInput)
+// direct programs control to either register or login method
+void Introduction::direct_control_flow(int users_input)
 {
-    int LoginOption = 1;
-    int RegisterOption = 2;
+    int login_option = 1;
+    int register_option = 2;
 
-    if (userInput == (LoginOption))
+    if (users_input == (login_option))
     {
         login();
     }
-    else if (userInput == (RegisterOption))
+    else if (users_input == (register_option))
     {
         reg();
     }
 }
 
-// prompts user to register or login
-void Introduction::RegisterOrLogin()
+// prompts user to register or login during menu screen
+void Introduction::register_or_login()
 {
-    bool isValid;
-    int userInput;
+    bool is_valid;
+    int users_input;
 
     do
     {
-        std::cout << "\n\n\n\n\n";
-        std::cout << "                                 1: LOGIN \n";
+        std::cout << "\n\n\n\n\n                                 1: LOGIN \n";
         std::cout << "                                 2: REGISTER \n\n";
         std::cout << "                               SELECT AN OPTION: ";
-        std::cin >> userInput;
-        isValid = InputValidation(userInput);
+        std::cin >> users_input;
+        is_valid = input_validation(users_input);
+
         system("clear");
         std::cout << "\n\n\n\n";
 
-    } while (!isValid);
+    } while (!is_valid);
 
-    InputControlFlow(userInput);
+    direct_control_flow(users_input);
 }
 
 // added white space to make program more visually appealing
-void Introduction::spacingBuffer(int spaces)
+void Introduction::spacing_buffer(int spaces)
 {
     for (int i = 0; i < spaces; i++)
     {

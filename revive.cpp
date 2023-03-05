@@ -151,7 +151,7 @@ bool Revive::answerChecker(int userAnswer, int correctAnswer)
         std::cout << "\n\n\n\n\n\n\n            YOUR ANSWER WAS CORRECT, ADDING TOKENS TO YOUR ACCOUNT \n";
         std::this_thread::sleep_for(std::chrono::milliseconds(time - 1000));
         Introduction revivalTokensObj;
-        revivalTokensObj.setTokens(revivalTokensObj.getTokens() + extraTokens);
+        revivalTokensObj.set_tokens(revivalTokensObj.get_tokens() + extraTokens);
         return true;
     }
 

@@ -47,7 +47,7 @@ void GameRoom::GameOptions()
     int userInput;
 
     Introduction IntroObj;
-    int tokens = IntroObj.getTokens();
+    int tokens = IntroObj.get_tokens();
 
     do
     {

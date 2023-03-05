@@ -6,18 +6,18 @@ class Introduction
 
 public:
     Introduction();
-    void RunIntroduction();
-    int getTokens();
-    void setTokens(int tokens);
+    void run_introduction();
+    int get_tokens();
+    void set_tokens(int tokens);
 
 private:
-    void Welcome();
-    bool InputValidation(int userInput);
+    void welcome();
+    bool input_validation(int users_input);
     void login();
     void reg();
-    void InputControlFlow(int userInput);
-    void RegisterOrLogin();
-    void spacingBuffer(int spaces);
+    void direct_control_flow(int users_input);
+    void register_or_login();
+    void spacing_buffer(int spaces);
 };
 
 #endif

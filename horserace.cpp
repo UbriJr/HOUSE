@@ -202,7 +202,7 @@ void HorseRace::wager()
             allValidResponses = false;
             continue;
         }
-        else if (usersWager > tokenCheckerObj.getTokens())
+        else if (usersWager > tokenCheckerObj.get_tokens())
         {
             system("clear");
             std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
@@ -274,13 +274,13 @@ void HorseRace::winChecker(int winningHorse)
     if (usersHorse == winningHorse)
     {
         std::cout << "\n\n                      YOUR HORSE WON. YOU WON " << (usersWager * 5) << " TOKENS" << std::endl;
-        tk.setTokens(tk.getTokens() + (usersWager * 5));
+        tk.set_tokens(tk.get_tokens() + (usersWager * 5));
     }
     // otherwise they picked the wrong horse and lost.
     else
     {
         std::cout << "\n\n                      YOUR HORSE LOST. YOU LOST " << (usersWager) << " TOKENS" << std::endl;
-        tk.setTokens(tk.getTokens() - (usersWager));
+        tk.set_tokens(tk.get_tokens() - (usersWager));
     }
 }
 
