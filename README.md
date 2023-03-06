@@ -1,7 +1,7 @@
 # HOUSE
 
 ### Summary
----
+___
 **This project is still under development and will be completed soon. Star it & check back later!**
 
 **HOUSE** is a casino programmed entirely in C++
