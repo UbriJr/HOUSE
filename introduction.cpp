@@ -111,7 +111,7 @@ void Introduction::welcome()
 }
 
 // validates the user's input in this panel
-bool Introduction::input_validation(int users_input)
+bool Introduction::validate_input(int users_input)
 {
     // clear console
     system("clear");
@@ -196,8 +196,8 @@ void Introduction::login()
         register_or_login();
     }
 
-    GameRoom game_floor_obj;
-    game_floor_obj.RunGameRoom();
+    Gameroom game_floor_obj;
+    game_floor_obj.run_gameroom();
 }
 
 // prompts user to register if that option is selected
@@ -260,7 +260,7 @@ void Introduction::register_or_login()
         std::cout << "                                 2: REGISTER \n\n";
         std::cout << "                               SELECT AN OPTION: ";
         std::cin >> users_input;
-        is_valid = input_validation(users_input);
+        is_valid = validate_input(users_input);
 
         system("clear");
         std::cout << "\n\n\n\n";

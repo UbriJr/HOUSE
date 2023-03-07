@@ -142,8 +142,8 @@ void HorseRace::instructions()
     // returns user to game room (other games)
     else if ((userInput) == (2))
     {
-        GameRoom GameRoomObj;
-        GameRoomObj.ReturnToGameOptions();
+        Gameroom GameRoomObj;
+        GameRoomObj.return_to_games_menu();
     }
 }
 
@@ -329,8 +329,8 @@ void HorseRace::replay()
     }
     else if (userInput == (2))
     {
-        GameRoom GRobj;
-        GRobj.ReturnToGameOptions();
+        Gameroom GRobj;
+        GRobj.return_to_games_menu();
     }
 }
 

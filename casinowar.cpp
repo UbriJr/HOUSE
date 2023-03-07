@@ -10,23 +10,25 @@
 #include "casinowar.h"
 #include "visuals.h"
 
+int wager;
+Introduction token_access_obj;
+
+// constructor
 CasinoWar::CasinoWar(){
 
 };
 
+// kicks off the casino war option
 void CasinoWar::run_casino_war()
 {
     casino_war_menu();
 }
 
-int wager;
-Introduction token_access_obj;
-
-// Validates user's input
+// validates user's input
 bool CasinoWar::validate_input(int users_input)
 {
     system("clear");
-    int time = 3000;
+    const int time = 3000;
 
     // Check if user even entered a digit
     if (std::cin.fail())
@@ -53,6 +55,7 @@ bool CasinoWar::validate_input(int users_input)
     }
 }
 
+// brings up the casino war menu
 void CasinoWar::casino_war_menu()
 {
     int instructions = 1;
@@ -86,8 +89,8 @@ void CasinoWar::casino_war_menu()
 // Checks if the player has the wagered amount in their balance.
 bool CasinoWar::check_wager(int wager)
 {
-    int max_bet = token_access_obj.get_tokens();
-    int time = 3000;
+    int max_possible_bet = token_access_obj.get_tokens();
+    const int time = 3000;
 
     // Check if user even entered a digit
     if (std::cin.fail())
@@ -100,11 +103,11 @@ bool CasinoWar::check_wager(int wager)
         system("clear");
         return false;
     }
-    else if (wager > max_bet)
+    else if (wager > max_possible_bet)
     {
         system("clear");
         std::cout << "\n\n\n\n\n\n\n\n\n                  YOU WAGERED " << wager << " TOKENS BUT ONLY HAVE"
-                  << " " << max_bet << " TOKENS"
+                  << " " << max_possible_bet << " TOKENS"
                   << "\n";
         std::cout << "\n                       PLEASE ENTER A VALID WAGER AMOUNT \n";
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
@@ -114,7 +117,7 @@ bool CasinoWar::check_wager(int wager)
     return true;
 }
 
-// the method that plays the casino war game
+// plays the casino war game
 void CasinoWar::play_casino_war()
 {
     system("clear");
@@ -171,12 +174,12 @@ void CasinoWar::casino_war_instructions()
     }
     else if (users_input == (2))
     {
-        GameRoom game_room_obj;
-        game_room_obj.ReturnToGameOptions();
+        Gameroom game_room_obj;
+        game_room_obj.return_to_games_menu();
     }
 }
 
-// random number generated, number corresponds to a card
+// generates random number which corresponds to a card
 int CasinoWar::random_card_generator()
 {
     std::random_device dev;
@@ -186,6 +189,7 @@ int CasinoWar::random_card_generator()
     return card;
 }
 
+// prompts the user to play casino war again or return them to the gameroom
 void CasinoWar::play_again()
 {
     int user_input;
@@ -210,19 +214,20 @@ void CasinoWar::play_again()
     }
     else if (user_input == (2))
     {
-        GameRoom game_room_obj;
-        game_room_obj.ReturnToGameOptions();
+        Gameroom game_room_obj;
+        game_room_obj.return_to_games_menu();
     }
 }
 
+// displays the players and dealers card in the terminal
 void CasinoWar::reveal_cards()
 {
+    system("clear");
     int players_card;
     int dealers_card;
     std::string players_spacing = "                                               ";
     std::string dealers_spacing = "                          ";
 
-    system("clear");
     dealers_card = random_card_generator();
 
     std::cout << "\n\n                         DEALERS CARD " << std::endl;
@@ -231,16 +236,16 @@ void CasinoWar::reveal_cards()
     players_card = random_card_generator();
 
     std::cout << "\n                                               YOUR CARD " << std::endl;
-    draw_cards(players_card, players_spacing);
 
+    draw_cards(players_card, players_spacing);
     check_outcome(players_card, dealers_card);
 }
 
-// checked if the player won or lost the wager. Takes in the players card and the dealers card, checking which is greater.
+// checked if the player won or lost the wager. Takes in the players card and the dealers card.
 void CasinoWar::check_outcome(int players_card, int dealers_card)
 {
-    int tie_timer = 7000;
-    int win_lose_timer = 4000;
+    const int tie_timer = 7000;
+    const int win_lose_timer = 4000;
     Introduction coin_access_obj;
 
     if (players_card > dealers_card)
@@ -264,8 +269,6 @@ void CasinoWar::check_outcome(int players_card, int dealers_card)
         coin_access_obj.set_tokens(token_access_obj.get_tokens() - wager);
         std::this_thread::sleep_for(std::chrono::milliseconds(win_lose_timer));
     }
-    std::cout << "\n"
-              << std::endl; // remove later
 
     play_again();
 }

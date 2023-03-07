@@ -9,45 +9,50 @@
 #include "casinowar.h"
 #include "horserace.h"
 
-GameRoom::GameRoom(){
+// constructor
+Gameroom::Gameroom(){
 
 };
 
-void GameRoom::RunGameRoom()
+// kicks off gameroom
+void Gameroom::run_gameroom()
 {
-    Welcome();
+    welcome();
 }
 
-void GameRoom::ReturnToGameOptions()
+// brings user back to menu with all game options
+void Gameroom::return_to_games_menu()
 {
-    GameOptions();
+    game_options();
 }
 
-void GameRoom::Welcome()
+// generates a slow displaying welcome message
+void Gameroom::welcome()
 {
     system("clear");
-    int TextTime = 35;        // was 125
-    int ClearWaitTime = 5000; // was 3000
-    std::string welcomeText = "\n\n\n\n\n\n\n                           WELCOME TO THE GAME FLOOR \n                      THIS IS WHERE ALL THE GAMES ARE HELD \n             HAVE FUN AND RELAX, BUT REMEMBER, THE HOUSE ALWAYS WINS.\n";
-    unsigned long length = welcomeText.length();
+    int text_display_delay = 35; // was 125
+    int next_func_delay = 5000;  // was 3000
+    std::string welcome_message = "\n\n\n\n\n\n\n                           WELCOME TO THE GAME FLOOR \n                      THIS IS WHERE ALL THE GAMES ARE HELD \n             HAVE FUN AND RELAX, BUT REMEMBER, THE HOUSE ALWAYS WINS.\n";
+    unsigned long length = welcome_message.length();
 
     for (int i = 0; i < length; i++)
     {
-        std::cout << welcomeText[i];
-        std::this_thread::sleep_for(std::chrono::milliseconds(TextTime));
+        std::cout << welcome_message[i];
+        std::this_thread::sleep_for(std::chrono::milliseconds(text_display_delay));
     }
-    std::this_thread::sleep_for(std::chrono::milliseconds(ClearWaitTime));
-    GameOptions();
+    std::this_thread::sleep_for(std::chrono::milliseconds(next_func_delay));
+    game_options();
 }
 
-void GameRoom::GameOptions()
+// displays the current games implemented and prompts user to select one
+void Gameroom::game_options()
 {
     system("clear");
-    bool isValid;
-    int userInput;
+    bool is_valid_input;
+    int users_input;
 
-    Introduction IntroObj;
-    int tokens = IntroObj.get_tokens();
+    Introduction token_access_obj;
+    int tokens = token_access_obj.get_tokens();
 
     do
     {
@@ -57,14 +62,16 @@ void GameRoom::GameOptions()
         std::cout << "                               2: HORSE RACE \n";
         std::cout << "                               3: GAME 3 \n";
         std::cout << "\n                              SELECT AN OPTION: ";
-        std::cin >> userInput;
-        isValid = InputValidation(userInput);
+        std::cin >> users_input;
+        is_valid_input = validate_input(users_input);
         system("clear");
-    } while (!isValid);
-    InputControlFlow(userInput);
+    } while (!is_valid_input);
+
+    direct_game_flow(users_input);
 }
 
-bool GameRoom::InputValidation(int userInput)
+// validates the users input
+bool Gameroom::validate_input(int users_input)
 {
 
     // clear console
@@ -83,7 +90,7 @@ bool GameRoom::InputValidation(int userInput)
     }
 
     // Check if digit is one of the available options
-    if (userInput == (1) || userInput == (2) || userInput == (3))
+    if (users_input == (1) || users_input == (2) || users_input == (3))
     {
         return true;
     }
@@ -95,25 +102,25 @@ bool GameRoom::InputValidation(int userInput)
     }
 }
 
-void GameRoom::InputControlFlow(int userInput)
+// directs user to the game of their choice
+void Gameroom::direct_game_flow(int users_input)
 {
-    int GameOneOption = 1;
-    int GameTwoOption = 2;
-    int GameThreeOption = 3;
+    int game_one = 1;
+    int game_two = 2;
+    int game_three = 3;
 
-    if (userInput == (GameOneOption))
+    if (users_input == (game_one))
     {
-        CasinoWar CasinoWarObject;
-        CasinoWarObject.run_casino_war();
+        CasinoWar casino_war;
+        casino_war.run_casino_war();
     }
-    else if (userInput == (GameTwoOption))
+    else if (users_input == (game_two))
     {
-        HorseRace HorseRaceObject;
-        HorseRaceObject.RunHorseRace();
+        HorseRace horse_race;
+        horse_race.RunHorseRace();
     }
-    else if (userInput == GameThreeOption)
+    else if (users_input == game_three)
     {
         std::cout << "GameThree\n";
-        // GameThree();
     }
 }

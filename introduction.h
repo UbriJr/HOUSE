@@ -12,7 +12,7 @@ public:
 
 private:
     void welcome();
-    bool input_validation(int users_input);
+    bool validate_input(int users_input);
     void login();
     void reg();
     void direct_control_flow(int users_input);
