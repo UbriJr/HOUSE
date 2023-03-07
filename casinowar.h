@@ -5,19 +5,19 @@ class CasinoWar
 {
 public:
     CasinoWar();
-    void runCasinoWar();
+    void run_casino_war();
 
 private:
-    bool InputValidation(int userInput);
-    void CasinoWarSelection();
-    void CasinoWarPlay();
-    void CasinoWarInstructions();
-    void replay();
-    void ShowDealtCards();
-    void WinOrLoseChecker(int pCard, int dCard);
-    int randomCard();
-    bool WagerChecker(int wager);
-    void cardBuilder(int card, std::string spacing);
+    bool validate_input(int users_input);
+    void casino_war_menu();
+    void play_casino_war();
+    void casino_war_instructions();
+    void play_again();
+    void reveal_cards();
+    void check_outcome(int players_card, int dealers_card);
+    int random_card_generator();
+    bool check_wager(int wager);
+    void draw_cards(int card, std::string spacing);
 };
 
 #endif

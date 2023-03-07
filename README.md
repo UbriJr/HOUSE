@@ -4,11 +4,11 @@
 
 **This project is still under development and will be completed soon. Star it & check back later!**
 
-**HOUSE** is a casino programmed entirely in C++
+**HOUSE** is a casino developed entirely in C++
 
 <br />   
 
-## Implemented Casino Games:
+## Features:
 
 * Casino War
     - 1:1 payout

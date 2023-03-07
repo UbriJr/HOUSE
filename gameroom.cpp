@@ -104,7 +104,7 @@ void GameRoom::InputControlFlow(int userInput)
     if (userInput == (GameOneOption))
     {
         CasinoWar CasinoWarObject;
-        CasinoWarObject.runCasinoWar();
+        CasinoWarObject.run_casino_war();
     }
     else if (userInput == (GameTwoOption))
     {

@@ -111,7 +111,7 @@ void Introduction::welcome()
 }
 
 // validates the user's input in this panel
-bool Introduction::input_validation(int user_input)
+bool Introduction::input_validation(int users_input)
 {
     // clear console
     system("clear");
@@ -129,7 +129,7 @@ bool Introduction::input_validation(int user_input)
     }
 
     // Check if digit is one of the available options
-    if (user_input == (1) || user_input == (2))
+    if (users_input == (1) || users_input == (2))
     {
         return true;
     }

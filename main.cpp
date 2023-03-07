@@ -29,7 +29,7 @@ int main(int argc, const char *argv[])
 
     // For Testing one panel at a time
     // CasinoWar TestObj;
-    // TestObj.runCasinoWar();
+    // TestObj.run_casino_war();
 
     // HorseRace testrace;
     // testrace.RunHorseRace();
