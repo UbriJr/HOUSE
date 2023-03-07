@@ -12,22 +12,24 @@
 #include "visuals.h"
 #include "gameroom.h"
 
+// need to know how much the user wagered across functions
+int users_wager;
+int users_horse;
+Introduction token_access_obj;
+
+// constructor
 HorseRace::HorseRace(){
 
 };
 
 // kicks off the horse race game
-void HorseRace::RunHorseRace()
+void HorseRace::run_horse_race()
 {
-    HorseRaceSelection();
+    horse_race_menu();
 };
-// need to know how much the user wagered across functions
-int usersWager;
-int usersHorse;
-Introduction tk;
 
 // Prompts user to either read the instruction or start playing horse race.
-void HorseRace::HorseRaceSelection()
+void HorseRace::horse_race_menu()
 {
     // available options
     int instruction = 1;
@@ -37,8 +39,8 @@ void HorseRace::HorseRaceSelection()
     int time = 3000;
 
     // users input is stored and checked if valid in these variables
-    int userInput;
-    bool validInput;
+    int users_input;
+    bool is_valid_input;
 
     // prompts user for a response, will loop until a valid response is given
     do
@@ -51,7 +53,7 @@ void HorseRace::HorseRaceSelection()
         std::cout << "                          1: HOW TO PLAY HORSE RACE" << std::endl;
         std::cout << "                          2: PLAY HORSE RACE" << std::endl;
         std::cout << "\n                          PLEASE SELECT AN OPTION: ";
-        std::cin >> userInput;
+        std::cin >> users_input;
 
         // if user inputs anything other then int type, cin will fail
         if (std::cin.fail())
@@ -59,40 +61,40 @@ void HorseRace::HorseRaceSelection()
             std::cin.clear();
             std::cin.ignore(10000, '\n');
             system("clear");
-            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    PLEASE ENTER A VALID RESPONSE\n";
             std::this_thread::sleep_for(std::chrono::milliseconds(time));
-            validInput = false;
+            is_valid_input = false;
         }
-        else if ((userInput == 1) || (userInput == 2))
+        else if ((users_input == 1) || (users_input == 2))
         {
-            validInput = true;
+            is_valid_input = true;
         }
         else
         {
             system("clear");
-            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    PLEASE ENTER A VALID RESPONSE\n";
             std::this_thread::sleep_for(std::chrono::milliseconds(time));
-            validInput = false;
+            is_valid_input = false;
         }
 
-    } while (!validInput);
+    } while (!is_valid_input);
 
     // once valid response is given, breaks out of do while loop and directs player to instructions or to play
-    if (userInput == (instruction))
+    if (users_input == (instruction))
     {
         instructions();
     }
-    else if (userInput == (play))
+    else if (users_input == (play))
     {
-        wager();
+        place_wager();
     }
 }
 
 // Gives user instructions and information on how to play
 void HorseRace::instructions()
 {
-    bool continueInput = false;
-    int userInput;
+    bool is_valid_input = false;
+    int users_input;
     int time = 3000;
 
     /*
@@ -110,55 +112,55 @@ void HorseRace::instructions()
         std::cout << "\n\n                          1: PLAY HORSE RACE";
         std::cout << "\n                          2: RETURN TO THE GAME FLOOR\n";
         std::cout << "\n                          PLEASE SELECT AN OPTION: ";
-        std::cin >> userInput;
+        std::cin >> users_input;
 
         if (std::cin.fail())
         {
             std::cin.clear();
             std::cin.ignore(10000, '\n');
             system("clear");
-            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    PLEASE ENTER A VALID RESPONSE\n";
             std::this_thread::sleep_for(std::chrono::milliseconds(time));
-            continueInput = true;
+            is_valid_input = true;
         }
-        else if ((userInput == 1) || (userInput == 2))
+        else if ((users_input == 1) || (users_input == 2))
         {
-            continueInput = false;
+            is_valid_input = false;
         }
         else
         {
             system("clear");
-            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    PLEASE ENTER A VALID RESPONSE\n";
             std::this_thread::sleep_for(std::chrono::milliseconds(time));
-            continueInput = true;
+            is_valid_input = true;
         }
 
-    } while (continueInput);
+    } while (is_valid_input);
 
-    if ((userInput) == (1))
+    if ((users_input) == (1))
     {
-        wager();
+        place_wager();
     }
     // returns user to game room (other games)
-    else if ((userInput) == (2))
+    else if ((users_input) == (2))
     {
-        Gameroom GameRoomObj;
-        GameRoomObj.return_to_games_menu();
+        Gameroom game_room;
+        game_room.return_to_games_menu();
     }
 }
 
 // Prompts user to enter wager / bet amount.
-void HorseRace::wager()
+void HorseRace::place_wager()
 {
     // clear console
     system("clear");
 
     std::string key;
     int time = 3000;
-    bool allValidResponses;
+    bool is_valid_response;
 
     // this object is used to check the # of tokens the user has in their account
-    Introduction tokenCheckerObj;
+    Introduction token_access_obj;
 
     // prompts user to enter a horse to bet on and the wager amount
     do
@@ -166,7 +168,7 @@ void HorseRace::wager()
         system("clear");
         std::cout << "\n\n\n\n\n\n                                  HORSE RACE";
         std::cout << "\n\n                             SELECT A HORSE (1-8): ";
-        std::cin >> usersHorse;
+        std::cin >> users_horse;
 
         // checks if input is INT type and if user selected a valid horse
         if (std::cin.fail())
@@ -174,22 +176,22 @@ void HorseRace::wager()
             std::cin.clear();
             std::cin.ignore(10000, '\n');
             system("clear");
-            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    PLEASE ENTER A VALID RESPONSE\n";
             std::this_thread::sleep_for(std::chrono::milliseconds(time));
-            allValidResponses = false;
+            is_valid_response = false;
             continue;
         }
-        else if (usersHorse > 8 || usersHorse < 1)
+        else if (users_horse > 8 || users_horse < 1)
         {
             system("clear");
-            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    PLEASE ENTER A VALID RESPONSE\n";
             std::this_thread::sleep_for(std::chrono::milliseconds(time));
-            allValidResponses = false;
+            is_valid_response = false;
             continue;
         }
 
         std::cout << "\n                                 WAGER AMOUNT: ";
-        std::cin >> usersWager;
+        std::cin >> users_wager;
 
         // check if wager was INT type and if the user wagered a valid amount
         if (std::cin.fail())
@@ -197,98 +199,99 @@ void HorseRace::wager()
             std::cin.clear();
             std::cin.ignore(10000, '\n');
             system("clear");
-            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    PLEASE ENTER A VALID RESPONSE\n";
             std::this_thread::sleep_for(std::chrono::milliseconds(time));
-            allValidResponses = false;
+            is_valid_response = false;
             continue;
         }
-        else if (usersWager > tokenCheckerObj.get_tokens())
+        else if (users_wager > token_access_obj.get_tokens())
         {
             system("clear");
-            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    PLEASE ENTER A VALID RESPONSE\n";
             std::this_thread::sleep_for(std::chrono::milliseconds(time));
-            allValidResponses = false;
+            is_valid_response = false;
             continue;
         }
 
-        std::cout << "\n                         YOU WAGERED " << usersWager << " TOKENS ON HORSE #" << usersHorse << "\n";
+        std::cout << "\n                         YOU WAGERED " << users_wager << " TOKENS ON HORSE #" << users_horse << "\n";
         std::cout << "\n\n\n                           ENTER ANY KEY TO CONTINUE: ";
         std::cin >> key;
 
         // if all conditions are met user entered valid information and breaks out of loop
-        allValidResponses = true;
+        is_valid_response = true;
 
-    } while (!allValidResponses);
+    } while (!is_valid_response);
 
     // call race once user selects a horse to bet on and the amount once inputs are validated.
-    race();
+    animate_race();
 }
 
-// Returns a random horse if there is a tie
-int HorseRace::RandomHorseWinner(int totalHorses)
+// returns a random horse if there is a tie
+int HorseRace::tie_breaker(int total_horses)
 {
     std::random_device dev;
     std::mt19937 rng(dev());
-    std::uniform_int_distribution<std::mt19937::result_type> dist6(1, totalHorses);
-    int WinningHorse = dist6(rng);
-    return WinningHorse;
+    std::uniform_int_distribution<std::mt19937::result_type> dist6(1, total_horses);
+    int winning_horse = dist6(rng);
+    return winning_horse;
 }
 
 // returns how many spaces the horse should run between 0-2
-int HorseRace::HorseRunSpaces()
+int HorseRace::get_random_spaces()
 {
     std::random_device dev;
     std::mt19937 rng(dev());
     std::uniform_int_distribution<std::mt19937::result_type> dist6(0, 2);
-    int spacesRun = dist6(rng);
-    return spacesRun;
+    int spaces = dist6(rng);
+    return spaces;
 }
 
 // builds the path length the horse will run
-std::string HorseRace::buildRunner()
+std::string HorseRace::build_racers_path()
 {
 
-    int runLength = 11;
-    std::string currentHorse = "";
+    int path_length = 11;
+    std::string current_horse = "";
     std::string line = "|";
 
-    for (int i = 0; i <= runLength; i++)
+    for (int i = 0; i <= path_length; i++)
     {
-        int spaces = HorseRunSpaces();
+        int spaces = get_random_spaces();
 
         for (int j = 0; j < spaces; j++)
         {
-            currentHorse = currentHorse + line;
+            current_horse = current_horse + line;
         }
     }
 
-    return currentHorse;
+    return current_horse;
 }
 
 // checks if the user lost or won his bet and modifies their account
-void HorseRace::winChecker(int winningHorse)
+void HorseRace::check_outcome(int winning_horse)
 {
-    Visuals visObject;
+    Visuals visuals_obj;
 
     // user picked the winning horse. they win
-    if (usersHorse == winningHorse)
+    if (users_horse == winning_horse)
     {
-        std::cout << "\n\n                      YOUR HORSE WON. YOU WON " << (usersWager * 5) << " TOKENS" << std::endl;
-        tk.set_tokens(tk.get_tokens() + (usersWager * 5));
+        std::cout << "\n\n                      YOUR HORSE WON. YOU WON " << (users_wager * 5) << " TOKENS" << std::endl;
+        token_access_obj.set_tokens(token_access_obj.get_tokens() + (users_wager * 5));
     }
     // otherwise they picked the wrong horse and lost.
     else
     {
-        std::cout << "\n\n                      YOUR HORSE LOST. YOU LOST " << (usersWager) << " TOKENS" << std::endl;
-        tk.set_tokens(tk.get_tokens() - (usersWager));
+        std::cout << "\n\n                      YOUR HORSE LOST. YOU LOST " << (users_wager) << " TOKENS" << std::endl;
+        token_access_obj.set_tokens(token_access_obj.get_tokens() - (users_wager));
     }
 }
 
+// promtps user to either play again or return to gameroom
 void HorseRace::replay()
 {
-    int userInput;
+    int users_input;
     int time = 3000;
-    bool continueInput = false;
+    bool is_valid_input = false;
 
     do
     {
@@ -298,7 +301,7 @@ void HorseRace::replay()
         std::cout << "                               1: PLAY AGAIN" << std::endl;
         std::cout << "                               2: RETURN TO GAMEROOM" << std::endl;
         std::cout << "\n                             PLEASE SELECT AN OPTION: ";
-        std::cin >> userInput;
+        std::cin >> users_input;
 
         if (std::cin.fail())
         {
@@ -307,27 +310,27 @@ void HorseRace::replay()
             system("clear");
             std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
             std::this_thread::sleep_for(std::chrono::milliseconds(time));
-            continueInput = true;
+            is_valid_input = true;
         }
-        else if ((userInput == 1) || (userInput == 2))
+        else if ((users_input == 1) || (users_input == 2))
         {
-            continueInput = false;
+            is_valid_input = false;
         }
         else
         {
             system("clear");
             std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
             std::this_thread::sleep_for(std::chrono::milliseconds(time));
-            continueInput = true;
+            is_valid_input = true;
         }
 
-    } while (continueInput);
+    } while (is_valid_input);
 
-    if (userInput == (1))
+    if (users_input == (1))
     {
-        wager();
+        place_wager();
     }
-    else if (userInput == (2))
+    else if (users_input == (2))
     {
         Gameroom GRobj;
         GRobj.return_to_games_menu();
@@ -335,86 +338,86 @@ void HorseRace::replay()
 }
 
 // This is where we animate the horse race
-void HorseRace::race()
+void HorseRace::animate_race()
 {
-    int outcomeTimer = 5000;
+
     // clear console
     system("clear");
 
     // Time delays
-    int titleTime = 1000;
-    int raceTime = 400;
+    int title_timer = 1000;
+    int race_timer = 400;
+    int outcome_timer = 5000;
 
     // Horses & their paths
-    int numberOfHorses = 8;
-    int longestPath = 0;
+    int number_of_horses = 8;
+    int longest_path = 0;
 
-    std::string h1 = buildRunner();
-    std::string h2 = buildRunner();
-    std::string h3 = buildRunner();
-    std::string h4 = buildRunner();
-    std::string h5 = buildRunner();
-    std::string h6 = buildRunner();
-    std::string h7 = buildRunner();
-    std::string h8 = buildRunner();
+    std::string h1 = build_racers_path();
+    std::string h2 = build_racers_path();
+    std::string h3 = build_racers_path();
+    std::string h4 = build_racers_path();
+    std::string h5 = build_racers_path();
+    std::string h6 = build_racers_path();
+    std::string h7 = build_racers_path();
+    std::string h8 = build_racers_path();
 
     std::string horses[8] = {h1, h2, h3, h4, h5, h6, h7, h8};
-
     std::string winner;
 
     // horses that are tied
-    std::vector<std::string> tiedHorses;
-    std::vector<int> tiedHorsePositions;
-    int posFromVec;
+    std::vector<std::string> tied_horses;
+    std::vector<int> tied_horse_positions;
+    int corresponding_position;
 
     // find longest path
-    for (int i = 0; i < numberOfHorses; i++)
+    for (int i = 0; i < number_of_horses; i++)
     {
         int winningHorse = ((horses[i]).length());
 
-        if (longestPath < winningHorse)
+        if (longest_path < winningHorse)
         {
-            longestPath = winningHorse;
+            longest_path = winningHorse;
         }
     }
 
     // check how many horses are tied
-    for (int x = 0; x < numberOfHorses; x++)
+    for (int x = 0; x < number_of_horses; x++)
     {
-        if (horses[x].length() == longestPath)
+        if (horses[x].length() == longest_path)
         {
-            tiedHorses.push_back(horses[x]);
-            tiedHorsePositions.push_back(x);
+            tied_horses.push_back(horses[x]);
+            tied_horse_positions.push_back(x);
         }
     }
 
     // if there is a tie, pick a random horse from the pile and add 1 extra line to make it the winner.
-    if (tiedHorses.size() > 1)
+    if (tied_horses.size() > 1)
     {
-        int randomWinner = RandomHorseWinner(tiedHorses.size());
-        winner = tiedHorses[randomWinner - 1]; // maybe causes seg fault if the - 1 is not there
-        posFromVec = tiedHorsePositions[randomWinner - 1];
+        int random_number = tie_breaker(tied_horses.size());
+        winner = tied_horses[random_number - 1]; // maybe causes seg fault if the - 1 is not there
+        corresponding_position = tied_horse_positions[random_number - 1];
         winner = winner + "|";
     }
     else
     {
-        winner = tiedHorses[0];
-        posFromVec = tiedHorsePositions[0];
+        winner = tied_horses[0];
+        corresponding_position = tied_horse_positions[0];
     }
 
-    horses[posFromVec] = winner;
-    longestPath = winner.length();
+    horses[corresponding_position] = winner;
+    longest_path = winner.length();
 
     // make all horse strings the same length
-    for (int j = 0; j < numberOfHorses; j++)
+    for (int j = 0; j < number_of_horses; j++)
     {
-        std::string tmpHorse = horses[j];
+        std::string horse_in_construction = horses[j];
 
-        for (int k = 0; tmpHorse.length() < longestPath; k++)
+        for (int k = 0; horse_in_construction.length() < longest_path; k++)
         {
-            tmpHorse = tmpHorse + " ";
+            horse_in_construction = horse_in_construction + " ";
         }
-        horses[j] = tmpHorse;
+        horses[j] = horse_in_construction;
     }
 
     std::string ready = "                               READY";
@@ -424,40 +427,39 @@ void HorseRace::race()
     std::cout << "\n\n\n\n\n\n\n\n\n"
               << std::endl;
 
-    std::this_thread::sleep_for(std::chrono::milliseconds(titleTime));
+    std::this_thread::sleep_for(std::chrono::milliseconds(title_timer));
     std::cout << ready << std::endl;
-    std::this_thread::sleep_for(std::chrono::milliseconds(titleTime));
+    std::this_thread::sleep_for(std::chrono::milliseconds(title_timer));
     std::cout << set << std::endl;
-    std::this_thread::sleep_for(std::chrono::milliseconds(titleTime));
+    std::this_thread::sleep_for(std::chrono::milliseconds(title_timer));
     std::cout << go << std::endl;
-    std::this_thread::sleep_for(std::chrono::milliseconds(titleTime));
+    std::this_thread::sleep_for(std::chrono::milliseconds(title_timer));
 
     // clear console so only the horse race is displayed
     system("clear");
 
     std::cout << "" << std::endl;
-    std::string horseNumber = "            1       2       3       4       5       6       7       8";
+    std::string lane_numbers = "            1       2       3       4       5       6       7       8";
     std::string line;
-    std::string firstLaneBuffer = "            ";
-    std::string laneSpacer = "       ";
+    std::string first_lane_spacer = "            ";
+    std::string lane_spacer = "       ";
 
-    std::cout << horseNumber << std::endl;
+    std::cout << lane_numbers << std::endl;
 
     // display the horses and their paths in the terminal
-    for (int i = 0; i < longestPath; i++)
+    for (int i = 0; i < longest_path; i++)
     {
-        std::this_thread::sleep_for(std::chrono::milliseconds(raceTime));
+        std::this_thread::sleep_for(std::chrono::milliseconds(race_timer));
 
-        line = firstLaneBuffer + horses[0].at(i) + laneSpacer + horses[1].at(i) + laneSpacer + horses[2].at(i) + laneSpacer + horses[3].at(i) + laneSpacer + horses[4].at(i) + laneSpacer + horses[5].at(i) + laneSpacer + horses[6].at(i) + laneSpacer + horses[7].at(i);
+        line = first_lane_spacer + horses[0].at(i) + lane_spacer + horses[1].at(i) + lane_spacer + horses[2].at(i) + lane_spacer + horses[3].at(i) + lane_spacer + horses[4].at(i) + lane_spacer + horses[5].at(i) + lane_spacer + horses[6].at(i) + lane_spacer + horses[7].at(i);
         std::cout << line << std::endl;
     }
 
-    // std::cout << tiedHorses.size();
-    posFromVec = posFromVec + 1;
+    corresponding_position = corresponding_position + 1;
 
-    winChecker(posFromVec);
+    check_outcome(corresponding_position);
 
-    std::this_thread::sleep_for(std::chrono::milliseconds(outcomeTimer));
+    std::this_thread::sleep_for(std::chrono::milliseconds(outcome_timer));
 
     replay();
 }

@@ -117,7 +117,7 @@ void Gameroom::direct_game_flow(int users_input)
     else if (users_input == (game_two))
     {
         HorseRace horse_race;
-        horse_race.RunHorseRace();
+        horse_race.run_horse_race();
     }
     else if (users_input == game_three)
     {

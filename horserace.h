@@ -5,18 +5,18 @@ class HorseRace
 {
 public:
     HorseRace();
-    void RunHorseRace();
+    void run_horse_race();
 
 private:
-    int RandomHorseWinner(int totalHorses);
+    int tie_breaker(int total_horses);
     void replay();
-    int HorseRunSpaces();
-    std::string buildRunner();
-    void winChecker(int winningHorse);
-    void race();
+    int get_random_spaces();
+    std::string build_racers_path();
+    void check_outcome(int winning_horse);
+    void animate_race();
     void instructions();
-    void wager();
-    void HorseRaceSelection();
+    void place_wager();
+    void horse_race_menu();
 };
 
 #endif

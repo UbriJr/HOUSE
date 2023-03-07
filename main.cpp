@@ -32,5 +32,5 @@ int main(int argc, const char *argv[])
     // TestObj.run_casino_war();
 
     // HorseRace testrace;
-    // testrace.RunHorseRace();
+    // testrace.run_horse_race();
 }
