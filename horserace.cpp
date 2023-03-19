@@ -15,7 +15,7 @@
 // need to know how much the user wagered across functions
 int users_wager;
 int users_horse;
-Introduction token_access_obj;
+Introduction token_access;
 
 // constructor
 HorseRace::HorseRace(){
@@ -276,13 +276,13 @@ void HorseRace::check_outcome(int winning_horse)
     if (users_horse == winning_horse)
     {
         std::cout << "\n\n                      YOUR HORSE WON. YOU WON " << (users_wager * 5) << " TOKENS" << std::endl;
-        token_access_obj.set_tokens(token_access_obj.get_tokens() + (users_wager * 5));
+        token_access.set_tokens(token_access.get_tokens() + (users_wager * 5));
     }
     // otherwise they picked the wrong horse and lost.
     else
     {
         std::cout << "\n\n                      YOUR HORSE LOST. YOU LOST " << (users_wager) << " TOKENS" << std::endl;
-        token_access_obj.set_tokens(token_access_obj.get_tokens() - (users_wager));
+        token_access.set_tokens(token_access.get_tokens() - (users_wager));
     }
 }
 

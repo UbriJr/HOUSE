@@ -9,20 +9,20 @@ public:
 private:
     friend class CasinoWar;
     friend class HorseRace;
-    void standardHorse();
-    void cardA(const std::string &spacing);
-    void cardTwo(const std::string &spacing);
-    void cardThree(const std::string &spacing);
-    void cardFour(const std::string &spacing);
-    void cardFive(const std::string &spacing);
-    void cardSix(const std::string &spacing);
-    void cardSeven(const std::string &spacing);
-    void cardEight(const std::string &spacing);
-    void cardNine(const std::string &spacing);
-    void cardTen(const std::string &spacing);
-    void cardJack(const std::string &spacing);
-    void cardQueen(const std::string &spacing);
-    void cardKing(const std::string &spacing);
+    void ascii_horse();
+    void a_card(const std::string &spacing);
+    void two_card(const std::string &spacing);
+    void three_card(const std::string &spacing);
+    void four_card(const std::string &spacing);
+    void five_card(const std::string &spacing);
+    void six_card(const std::string &spacing);
+    void seven_card(const std::string &spacing);
+    void eight_card(const std::string &spacing);
+    void nine_card(const std::string &spacing);
+    void ten_card(const std::string &spacing);
+    void jack_card(const std::string &spacing);
+    void queen_card(const std::string &spacing);
+    void king_card(const std::string &spacing);
 };
 
 #endif

@@ -280,43 +280,43 @@ void CasinoWar::draw_cards(int card, std::string spacing)
     switch (card)
     {
     case 2:
-        cards.cardTwo(spacing);
+        cards.two_card(spacing);
         break;
     case 3:
-        cards.cardThree(spacing);
+        cards.three_card(spacing);
         break;
     case 4:
-        cards.cardFour(spacing);
+        cards.four_card(spacing);
         break;
     case 5:
-        cards.cardFive(spacing);
+        cards.five_card(spacing);
         break;
     case 6:
-        cards.cardSix(spacing);
+        cards.six_card(spacing);
         break;
     case 7:
-        cards.cardSeven(spacing);
+        cards.seven_card(spacing);
         break;
     case 8:
-        cards.cardEight(spacing);
+        cards.eight_card(spacing);
         break;
     case 9:
-        cards.cardNine(spacing);
+        cards.nine_card(spacing);
         break;
     case 10:
-        cards.cardTen(spacing);
+        cards.ten_card(spacing);
         break;
     case 11:
-        cards.cardJack(spacing);
+        cards.jack_card(spacing);
         break;
     case 12:
-        cards.cardQueen(spacing);
+        cards.queen_card(spacing);
         break;
     case 13:
-        cards.cardKing(spacing);
+        cards.king_card(spacing);
         break;
     case 14:
-        cards.cardA(spacing);
+        cards.a_card(spacing);
         break;
     default:
         std::cout << "Something went wrong" << std::endl;
