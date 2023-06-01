@@ -16,6 +16,9 @@
 * Horse Race
     - 5:1 payout
 
+* Keno
+    - TBD
+
 <br />   
 
 ## Demo:

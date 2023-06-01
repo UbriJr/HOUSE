@@ -13,6 +13,7 @@
 #include "introduction.h"
 
 // remove after testing
+#include "keno.h"
 #include "casinowar.h"
 #include "horserace.h"
 #include "revive.h"
@@ -24,8 +25,8 @@ int main(int argc, const char *argv[])
     //Introduction introduction_obj;
     //introduction_obj.run_introduction();
 
-    Gameroom game;
-    game.run_gameroom(); 
+    Keno keno;
+    keno.run_keno(); 
 
     // Revive rObj;
     // rObj.Explanation();
