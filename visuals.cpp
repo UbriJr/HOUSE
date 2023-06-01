@@ -2,6 +2,7 @@
 #include <string>
 #include <sstream>
 #include <fstream>
+#include <stdlib.h>
 #include <chrono>
 #include <thread>
 #include "visuals.h"

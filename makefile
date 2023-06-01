@@ -1,5 +1,5 @@
-HOUSE: main.o introduction.o gameroom.o visuals.o casinowar.o horserace.o revive.o
-	g++ main.o introduction.o gameroom.o visuals.o casinowar.o horserace.o revive.o -o HOUSE
+HOUSE: main.o introduction.o gameroom.o visuals.o casinowar.o horserace.o keno.o revive.o
+	g++ main.o introduction.o gameroom.o visuals.o casinowar.o horserace.o keno.o revive.o -o HOUSE
 	clear
 
 main.o: main.cpp
@@ -19,6 +19,9 @@ casinowar.o: casinowar.cpp
 
 horserace.o: horserace.cpp
 	g++ -c horserace.cpp
+
+keno.o: keno.cpp
+	g++ -c keno.cpp
 
 revive.o: revive.cpp
 	g++ -c revive.cpp

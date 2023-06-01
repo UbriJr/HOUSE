@@ -4,10 +4,12 @@
 #include <fstream>
 #include <chrono>
 #include <thread>
+#include <stdlib.h>
 #include "gameroom.h"
 #include "introduction.h"
 #include "casinowar.h"
 #include "horserace.h"
+#include "keno.h"
 
 // constructor
 Gameroom::Gameroom(){
@@ -60,7 +62,7 @@ void Gameroom::game_options()
         std::cout << "\n\n\n\n\n\n\n                                 GAME FLOOR\n\n";
         std::cout << "                               1: CASINO WAR \n";
         std::cout << "                               2: HORSE RACE \n";
-        std::cout << "                               3: GAME 3 \n";
+        std::cout << "                               3: KENO \n";
         std::cout << "\n                              SELECT AN OPTION: ";
         std::cin >> users_input;
         is_valid_input = validate_input(users_input);
@@ -121,6 +123,7 @@ void Gameroom::direct_game_flow(int users_input)
     }
     else if (users_input == game_three)
     {
-        std::cout << "GameThree\n";
+        Keno keno;
+        keno.run_keno(); 
     }
 }
