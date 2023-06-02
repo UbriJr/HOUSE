@@ -90,10 +90,13 @@ void Keno::keno_menu(){
 void Keno::play_keno(){
 
     system("clear");
-    std::cout << "\n\n                                      KENO\n\n" << std::endl; 
+    std::cout << "\n\n                                      KENO\n\n\n" << std::endl; 
 
     int counter = 0; 
+    int wagered_amount; 
     std::string add_space = "                "; 
+    std::string wagered_numbers; 
+    
 
     for(int x = 1; x <= 80; x++){
 
@@ -114,9 +117,23 @@ void Keno::play_keno(){
             counter = 0; 
         }
     }
+
+    std::cout << "\n\n                      SELECT BETWEEN 2-10 NUMBERS TO BET ON:" << std::endl; 
+    std::cout << "                             "; 
+    std::getline(std::cin >> std::ws, wagered_numbers); 
+    //std::cout << wagered_numbers; 
+    std::cout << "\n                                   WAGER AMOUNT: "; 
+    std::cin >> wagered_amount; 
+    //std::cout << wagered_amount; 
+
 }
 
-// validate the users input 
+// validates that the string of wagered numbers is valid
+bool Keno::validate_wagered_numbers(std::string users_input){
+
+}
+
+// validate the users input for main menu
 bool Keno::validate_input(int users_input){
 
     system("clear");
