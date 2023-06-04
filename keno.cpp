@@ -2,7 +2,10 @@
 #include <string>
 #include <sstream>
 #include <fstream>
+#include <vector>
 #include <stdlib.h>
+#include <regex>
+#include <algorithm>
 #include <chrono>
 #include <thread>
 #include "introduction.h"
@@ -121,7 +124,8 @@ void Keno::play_keno(){
     std::cout << "\n\n                      SELECT BETWEEN 2-10 NUMBERS TO BET ON:" << std::endl; 
     std::cout << "                             "; 
     std::getline(std::cin >> std::ws, wagered_numbers); 
-    //std::cout << wagered_numbers; 
+    std::cout << wagered_numbers; 
+    validate_wagered_numbers(wagered_numbers);
     std::cout << "\n                                   WAGER AMOUNT: "; 
     std::cin >> wagered_amount; 
     //std::cout << wagered_amount; 
@@ -131,6 +135,54 @@ void Keno::play_keno(){
 // validates that the string of wagered numbers is valid
 bool Keno::validate_wagered_numbers(std::string users_input){
 
+    std::string working_input; 
+
+    // remove all whitespace
+    working_input.erase(std::remove_if(working_input.begin(), working_input.end(), ::isspace),working_input.end());
+
+    // check if the string contains only numbers
+    bool valid_digits = is_digit(working_input);
+    
+    if(valid_digits == false){
+        return false; 
+    }
+
+    // check to see if all digits are between 1 - 80
+
+    // remove leading spaces
+    users_input = std::regex_replace(users_input, std::regex("^ +"), "");
+
+    // remove trailing spaces
+    users_input = std::regex_replace(users_input, std::regex(" +$"), "");
+
+    // removing extra spaces 
+    users_input = regex_replace(users_input, std::regex(" +"), " ");
+
+    // convert to a vector
+    std::vector<int> wagered_numbers_vector = {};
+
+    for(int i = 0; i < users_input.length(); i++)
+    {
+        if(users_input[i] == ' '){
+            continue; 
+        }
+        
+        int t = users_input[i] - '0'; 
+        wagered_numbers_vector.insert(wagered_numbers_vector.end(), t); 
+    }
+
+    // testing only 
+    for(int i=0; i < wagered_numbers_vector.size(); i++)
+    std::cout << wagered_numbers_vector.at(i) << ' ';
+    //std::cout << "|";
+    //std::cout << users_input; 
+    //std::cout << "|";
+}
+
+// check if input is only digits 
+bool Keno::is_digit(const std::string &str)
+{
+    return str.find_first_not_of("0123456789") == std::string::npos;
 }
 
 // validate the users input for main menu

@@ -11,6 +11,7 @@ private:
     void keno_instructions();
     void keno_menu();
     void play_keno();
+    bool is_digit(const std::string &str); 
     bool validate_input(int users_input);
     bool validate_wagered_numbers(std::string users_input); 
 };
