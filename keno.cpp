@@ -92,40 +92,43 @@ void Keno::keno_menu(){
 // plays keno 
 void Keno::play_keno(){
 
-    system("clear");
-    std::cout << "\n\n                                      KENO\n\n\n" << std::endl; 
+    bool are_valid_numbers; 
+    int wagered_amount;
 
-    int counter = 0; 
-    int wagered_amount; 
-    std::string add_space = "                "; 
-    std::string wagered_numbers; 
-    
+    do{
+        system("clear");
+        std::cout << "\n\n                                      KENO\n\n\n" << std::endl; 
+        int counter = 0;  
+        std::string add_space = "                "; 
+        std::string wagered_numbers; 
+        
+        for(int x = 1; x <= 80; x++){
 
-    for(int x = 1; x <= 80; x++){
+            if(counter == 0){
+                std::cout << add_space; 
+            }
 
-        if(counter == 0){
-            std::cout << add_space; 
+            if(x < 10 && x > 0){
+                std::cout << " ";  
+            }
+
+            std::cout << " [" + std::to_string(x) + "]"; 
+
+            counter++; 
+
+            if(counter >= 10){
+                std::cout << "" << std::endl; 
+                counter = 0; 
+            }
         }
 
-        if(x < 10 && x > 0){
-            std::cout << " ";  
-        }
+        std::cout << "\n\n                      SELECT BETWEEN 2-10 NUMBERS TO BET ON:" << std::endl; 
+        std::cout << "                             "; 
+        std::getline(std::cin >> std::ws, wagered_numbers); 
+        are_valid_numbers = validate_wagered_numbers(wagered_numbers);
 
-        std::cout << " [" + std::to_string(x) + "]"; 
+    } while (!are_valid_numbers); 
 
-        counter++; 
-
-        if(counter >= 10){
-            std::cout << "" << std::endl; 
-            counter = 0; 
-        }
-    }
-
-    std::cout << "\n\n                      SELECT BETWEEN 2-10 NUMBERS TO BET ON:" << std::endl; 
-    std::cout << "                             "; 
-    std::getline(std::cin >> std::ws, wagered_numbers); 
-    std::cout << wagered_numbers; 
-    validate_wagered_numbers(wagered_numbers);
     std::cout << "\n                                   WAGER AMOUNT: "; 
     std::cin >> wagered_amount; 
     //std::cout << wagered_amount; 
@@ -158,25 +161,41 @@ bool Keno::validate_wagered_numbers(std::string users_input){
     // removing extra spaces 
     users_input = regex_replace(users_input, std::regex(" +"), " ");
 
+    users_input = users_input + " "; 
+
     // convert to a vector
     std::vector<int> wagered_numbers_vector = {};
 
+    std::string number_builder; 
+
     for(int i = 0; i < users_input.length(); i++)
     {
-        if(users_input[i] == ' '){
+        if(users_input[i] != ' '){
+            int t = users_input[i] - '0';  
+            number_builder = number_builder + std::to_string(t);
+        }
+
+        if(users_input[i+1] == ' '){
+            wagered_numbers_vector.insert(wagered_numbers_vector.end(), stoi(number_builder));
+            number_builder = ""; 
             continue; 
         }
         
-        int t = users_input[i] - '0'; 
-        wagered_numbers_vector.insert(wagered_numbers_vector.end(), t); 
     }
 
-    // testing only 
-    for(int i=0; i < wagered_numbers_vector.size(); i++)
-    std::cout << wagered_numbers_vector.at(i) << ' ';
-    //std::cout << "|";
-    //std::cout << users_input; 
-    //std::cout << "|";
+    if(wagered_numbers_vector.size() > 10 || wagered_numbers_vector.size() < 2){ 
+        return false; 
+    }
+
+    for(int j = 0; j < wagered_numbers_vector.size(); j++){
+
+        if(wagered_numbers_vector.at(j) < 1 || wagered_numbers_vector.at(j) > 80){
+            return false; 
+        }
+
+    }
+
+    return true; 
 }
 
 // check if input is only digits 
