@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <chrono>
 #include <thread>
+#include <cmath>
 #include "introduction.h"
 #include "gameroom.h"
 #include "keno.h"
@@ -92,7 +93,9 @@ void Keno::keno_menu(){
 // plays keno 
 void Keno::play_keno(){
 
+    int time = 3000; 
     bool are_valid_numbers; 
+    bool is_valid_wager = false; 
     int wagered_amount;
 
     do{
@@ -126,13 +129,42 @@ void Keno::play_keno(){
         std::cout << "                             "; 
         std::getline(std::cin >> std::ws, wagered_numbers); 
         are_valid_numbers = validate_wagered_numbers(wagered_numbers);
+        std::cout << "\n                                   WAGER AMOUNT: "; 
+        std::cin >> wagered_amount; 
 
-    } while (!are_valid_numbers); 
+        if (std::cin.fail()){
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
+            system("clear");
+            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    PLEASE ENTER A VALID RESPONSE\n";
+            std::this_thread::sleep_for(std::chrono::milliseconds(time));
+            continue; 
+        }
 
-    std::cout << "\n                                   WAGER AMOUNT: "; 
-    std::cin >> wagered_amount; 
-    //std::cout << wagered_amount; 
+        is_valid_wager = validate_wager(wagered_amount); 
 
+        if(!are_valid_numbers || !is_valid_wager){
+            system("clear");
+            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    PLEASE ENTER A VALID RESPONSE\n";
+            std::this_thread::sleep_for(std::chrono::milliseconds(time));
+        }
+
+    } while (!are_valid_numbers || !is_valid_wager); 
+
+}
+
+// validates that the user wagered a valid amount (i.e they have the funds)
+bool Keno::validate_wager(int wager){
+    
+    Introduction account_checker; 
+    
+    if(wager < 0){
+        return false;
+    }
+    else if(wager > account_checker.get_tokens()){
+        return false; 
+    }
+    return true;
 }
 
 // validates that the string of wagered numbers is valid
@@ -164,19 +196,22 @@ bool Keno::validate_wagered_numbers(std::string users_input){
     users_input = users_input + " "; 
 
     // convert to a vector
-    std::vector<int> wagered_numbers_vector = {};
+    std::vector<float> wagered_numbers_vector = {};
 
     std::string number_builder; 
 
     for(int i = 0; i < users_input.length(); i++)
     {
-        if(users_input[i] != ' '){
+        if(users_input[i] == '.'){
+            number_builder = number_builder + '.'; 
+        }
+        else if(users_input[i] != ' '){
             int t = users_input[i] - '0';  
             number_builder = number_builder + std::to_string(t);
         }
 
         if(users_input[i+1] == ' '){
-            wagered_numbers_vector.insert(wagered_numbers_vector.end(), stoi(number_builder));
+            wagered_numbers_vector.insert(wagered_numbers_vector.end(), stof(number_builder)); 
             number_builder = ""; 
             continue; 
         }
@@ -187,12 +222,16 @@ bool Keno::validate_wagered_numbers(std::string users_input){
         return false; 
     }
 
+
     for(int j = 0; j < wagered_numbers_vector.size(); j++){
+
+        if(wagered_numbers_vector.at(j) != std::floor(wagered_numbers_vector.at(j))){ 
+            return false; 
+        }
 
         if(wagered_numbers_vector.at(j) < 1 || wagered_numbers_vector.at(j) > 80){
             return false; 
         }
-
     }
 
     return true; 

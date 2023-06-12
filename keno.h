@@ -14,6 +14,7 @@ private:
     bool is_digit(const std::string &str); 
     bool validate_input(int users_input);
     bool validate_wagered_numbers(std::string users_input); 
+    bool validate_wager(int wager);
 };
 
 #endif
