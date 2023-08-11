@@ -3,6 +3,7 @@
 #include <sstream>
 #include <fstream>
 #include <vector>
+#include <random>
 #include <stdlib.h>
 #include <regex>
 #include <algorithm>
@@ -112,10 +113,12 @@ void Keno::play_keno(){
             }
 
             if(x < 10 && x > 0){
-                std::cout << " ";  
+                std::cout << " [0" + std::to_string(x) + "]";  
             }
 
-            std::cout << " [" + std::to_string(x) + "]"; 
+            else{
+                std::cout << " [" + std::to_string(x) + "]";
+            } 
 
             counter++; 
 
@@ -136,7 +139,7 @@ void Keno::play_keno(){
             std::cin.clear();
             std::cin.ignore(10000, '\n');
             system("clear");
-            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    PLEASE ENTER A VALID RESPONSE\n";
+            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                        PLEASE ENTER A VALID RESPONSE\n";
             std::this_thread::sleep_for(std::chrono::milliseconds(time));
             continue; 
         }
@@ -145,9 +148,114 @@ void Keno::play_keno(){
 
         if(!are_valid_numbers || !is_valid_wager){
             system("clear");
-            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                    PLEASE ENTER A VALID RESPONSE\n";
+            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                        PLEASE ENTER A VALID RESPONSE\n";
             std::this_thread::sleep_for(std::chrono::milliseconds(time));
         }
+
+        else {
+
+            std::vector<float> winning_numbers_vector = {};
+
+            // draw 20 winning numbers
+            while(winning_numbers_vector.size() < 20){
+                int random_number = random_number_generator(); 
+
+                // check if random number is already in the vector
+                if(std::count(winning_numbers_vector.begin(), winning_numbers_vector.end(), random_number)){
+                    continue;
+                }
+                else{
+                    winning_numbers_vector.insert(winning_numbers_vector.end(), random_number); 
+                }
+            }
+
+            system("clear");
+            std::this_thread::sleep_for(std::chrono::milliseconds(time / 3));
+            std::cout << "\n\n\n                            THE WINNING NUMBERS ARE: \n\n" << std::endl; 
+            std::this_thread::sleep_for(std::chrono::milliseconds(time / 2));
+
+            for(int x = 1; x <= 80; x++){
+
+                    if(counter == 0){
+                        std::cout << add_space; 
+                    }
+
+                    if(x < 10 && x > 0){
+                        std::cout << "";  
+                    }
+
+                    // the number is in the winning numbers pool
+                    if(std::count(winning_numbers_vector.begin(), winning_numbers_vector.end(), x)){
+                        std::cout << " [XX]";
+                    }
+
+                    else 
+                    {   
+                        if(x < 10 && x > 0){
+                            std::cout << " [0" + std::to_string(x) + "]";   
+                        }
+                        else{
+                            std::cout << " [" + std::to_string(x) + "]"; 
+                        }
+                    }
+
+                    counter++; 
+
+                    if(counter >= 10){
+                        std::cout << "" << std::endl; 
+                        counter = 0; 
+                    }
+                }
+
+            std::cout << "\n\n            "; 
+
+            for(float i = 0; i < winning_numbers_vector.size(); i++){
+                std::cout << winning_numbers_vector.at(i) << " ";
+            }
+
+            std::cout << "\n\n                         YOUR NUMBERS: "; 
+
+            int hits = 0; 
+
+            // convert to a vector
+            std::vector<float> wagered_numbers_vector = {};
+
+            std::string number_builder; 
+
+            wagered_numbers = wagered_numbers + " "; 
+
+            for(int i = 0; i < wagered_numbers.length(); i++)
+            {
+                if(wagered_numbers[i] == '.'){
+                    number_builder = number_builder + '.'; 
+                }
+                else if(wagered_numbers[i] != ' '){
+                    int t = wagered_numbers[i] - '0';  
+                    number_builder = number_builder + std::to_string(t);
+                }
+
+                if(wagered_numbers[i+1] == ' '){
+                    wagered_numbers_vector.insert(wagered_numbers_vector.end(), stof(number_builder)); 
+                    number_builder = ""; 
+                    continue; 
+                }
+                
+            }
+
+            // check how many hits (matched numbers by user input and drawing) and print their wagered numbers
+            for(int i = 0; i < wagered_numbers_vector.size(); i++){
+
+                std::cout << wagered_numbers_vector.at(i) << " ";
+                
+                if(std::count(winning_numbers_vector.begin(), winning_numbers_vector.end(), wagered_numbers_vector.at(i))){
+                    hits++;
+                }
+            }
+
+            std::cout << "\n                         HITS: " << hits << "\n\n"; 
+
+            outcome_checker(hits, wagered_numbers_vector.size(), wagered_amount);
+    }
 
     } while (!are_valid_numbers || !is_valid_wager); 
 
@@ -170,7 +278,7 @@ bool Keno::validate_wager(int wager){
 // validates that the string of wagered numbers is valid
 bool Keno::validate_wagered_numbers(std::string users_input){
 
-    std::string working_input; 
+    std::string working_input = users_input; 
 
     // remove all whitespace
     working_input.erase(std::remove_if(working_input.begin(), working_input.end(), ::isspace),working_input.end());
@@ -254,7 +362,7 @@ bool Keno::validate_input(int users_input){
     {
         std::cin.clear();
         std::cin.ignore(10000, '\n');
-        std::cout << "\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+        std::cout << "\n\n\n\n\n\n\n\n\n\n                      THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
         system("clear");
         return false;
@@ -267,10 +375,195 @@ bool Keno::validate_input(int users_input){
     }
     else
     {
-        std::cout << "\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+        std::cout << "\n\n\n\n\n\n\n\n\n\n                      THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
         system("clear");
         return false;
+    }
+
+}
+
+int Keno::random_number_generator(){
+    std::random_device dev;
+    std::mt19937 rng(dev());
+    std::uniform_int_distribution<std::mt19937::result_type> dist6(1, 80);
+    int number = dist6(rng);
+    return number;
+}
+
+// check how many hits and add tokens to profile
+void Keno::outcome_checker(int hits, int spots, int wager){
+
+    int won_tokens = 0; 
+
+    switch (spots)
+    {
+    case 2:
+
+        switch(hits)
+        {
+            case 2:
+                won_tokens = wager * 15;
+                break; 
+        }
+        break;
+
+    case 3:
+    switch(hits)
+        {
+            case 2:
+                won_tokens = wager;
+                break; 
+            case 3:
+                won_tokens = wager * 16;
+                break; 
+        }
+        break;
+    case 4:
+    switch(hits)
+        {
+            case 2:
+                won_tokens = wager;
+                break; 
+            case 3:
+                won_tokens = wager * 2;
+                break; 
+            case 4:
+                won_tokens = wager * 25;
+                break; 
+        }
+        break;
+    case 5:
+    switch(hits)
+        {
+            case 3:
+                won_tokens = wager;
+                break; 
+            case 4:
+                won_tokens = wager * 3;
+                break; 
+            case 5:
+                won_tokens = wager * 160;
+                break; 
+        }
+        break;
+    case 6:
+    switch(hits)
+        {
+            case 3:
+                won_tokens = wager;
+                break; 
+            case 4:
+                won_tokens = wager;
+                break; 
+            case 5:
+                won_tokens = wager * 15;
+                break; 
+            case 6:
+                won_tokens = wager * 270;
+                break; 
+        }
+        break;
+    case 7:
+    switch(hits)
+        {
+            case 3:
+                won_tokens = wager;
+                break; 
+            case 4:
+                won_tokens = wager * 2;
+                break; 
+            case 5:
+                won_tokens = wager * 4;
+                break; 
+            case 6:
+                won_tokens = wager * 70;
+                break; 
+            case 7:
+                won_tokens = wager * 1000; 
+                break; 
+        }
+        break; 
+    case 8:
+    switch(hits)
+        {
+            case 4:
+                won_tokens = wager * 2;
+                break; 
+            case 5:
+                won_tokens = wager * 3;
+                break; 
+            case 6:
+                won_tokens = wager * 16;
+                break; 
+            case 7:
+                won_tokens = wager * 240;
+                break; 
+            case 8:
+                won_tokens = wager * 1250;
+                break; 
+        }
+        break;
+    case 9:
+    switch(hits)
+        {
+            case 4:
+                won_tokens = wager;
+                break; 
+            case 5:
+                won_tokens = wager * 5;
+                break; 
+            case 6:
+                won_tokens = wager * 7;
+                break; 
+            case 7:
+                won_tokens = wager * 50;
+                break; 
+            case 8:
+                won_tokens = wager * 580;
+                break; 
+            case 9:
+                won_tokens = wager * 1111;
+                break; 
+        }
+        break;
+    case 10:
+        switch(hits)
+        {
+            case 5:
+                won_tokens = wager * 3;
+                break; 
+            case 6:
+                won_tokens = wager * 4;
+                break; 
+            case 7:
+                won_tokens = wager * 20;
+                break; 
+            case 8:
+                won_tokens = wager * 125; 
+                break; 
+            case 9:
+                won_tokens = wager * 600; 
+                break; 
+            case 10:
+                won_tokens = wager * 1500; 
+                break; 
+        }
+        break;
+    default:
+        std::cout << "Something went wrong" << std::endl;
+    }
+
+    // access tokens to add and remove tokens from balance
+    Introduction token_access; 
+
+    if(won_tokens == 0){
+        std::cout << "                                  YOU LOST " << std::to_string(wager) << " TOKENS\n\n";
+        token_access.set_tokens(token_access.get_tokens() - wager);
+    }
+    else{
+        std::cout << "                                YOU WON " << std::to_string(won_tokens) << " TOKENS\n\n";
+        token_access.set_tokens(token_access.get_tokens() + wager);
     }
 
 }
