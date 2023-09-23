@@ -17,8 +17,8 @@
     - 5:1 payout
 
 * Keno
-- 2 spots:  
-2 hits: Payout is 15x wager.  
+    - 2 spots:  
+        - 2 hits: Payout is 15x wager.  
 
     - 3 spots:  
 2 hits: Payout is equal to wager.  
