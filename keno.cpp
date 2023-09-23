@@ -34,7 +34,7 @@ void Keno::keno_instructions(){
     do
     {
         system("clear");
-        std::string instruction_message = "\n\n\n                                  KENO\n\n";
+        std::string instruction_message = "\n\n\n                                  KENO\n\n -THE PLAYER SELECTS BETWEEN 2-10 NUMBERS RANGING FROM 1 TO 80 AND PLACES A \n  WAGER ON THAT POOL OF NUMBERS.\n\n -THEN, 20 NUMBERS ARE DRAWN AT RANDOM.\n\n -THE PLAYER WINS BASED ON MATCHING SELECTED NUMBERS TO THE DRAWN ONES.\n\n -THE PAYOUTS VARY BASED ON THE TOTAL NUMBER OF SELECTED NUMBERS.\n  (SEE GITHUB README FOR DETAILS) \n\n -IF NONE OF THE SELECTED NUMBERS MATCH, THEY LOSE THE WAGERED AMOUNT.\n";
         
 
         std::cout << instruction_message;
@@ -94,7 +94,7 @@ void Keno::keno_menu(){
 // plays keno 
 void Keno::play_keno(){
 
-    int time = 3000; 
+    int time = 6000; 
     bool are_valid_numbers; 
     bool is_valid_wager = false; 
     int wagered_amount;
@@ -255,11 +255,46 @@ void Keno::play_keno(){
             std::cout << "\n                         HITS: " << hits << "\n\n"; 
 
             outcome_checker(hits, wagered_numbers_vector.size(), wagered_amount);
-    }
+            std::this_thread::sleep_for(std::chrono::milliseconds(time));
+        }
 
     } while (!are_valid_numbers || !is_valid_wager); 
 
+    play_again(); 
+
 }
+
+void Keno::play_again(){
+
+    int input;
+    bool outcome = false;  
+    
+    do{
+        system("clear");
+        std::cout << "\n\n\n\n\n\n\n\n                          WOULD YOU LIKE TO PLAY AGAIN?" << std::endl
+                  << "\n";
+        std::cout << "                               1: PLAY AGAIN" << std::endl;
+        std::cout << "                               2: RETURN TO GAMEROOM" << std::endl;
+        std::cout << "\n                             PLEASE SELECT AN OPTION: ";
+        std::cin >> input;
+
+        bool outcome = validate_input(input);
+
+        if ((input) == (1))
+        {
+            play_keno();
+        }
+
+    // returns user to game room (other games)
+        else if ((input) == (2))
+        {
+            Gameroom game_room;
+            game_room.return_to_games_menu();
+        }
+
+    } while(!outcome);
+
+} 
 
 // validates that the user wagered a valid amount (i.e they have the funds)
 bool Keno::validate_wager(int wager){
@@ -563,7 +598,7 @@ void Keno::outcome_checker(int hits, int spots, int wager){
     }
     else{
         std::cout << "                                YOU WON " << std::to_string(won_tokens) << " TOKENS\n\n";
-        token_access.set_tokens(token_access.get_tokens() + wager);
+        token_access.set_tokens(token_access.get_tokens() + won_tokens);
     }
 
 }

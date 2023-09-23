@@ -11,6 +11,7 @@ private:
     void keno_instructions();
     void keno_menu();
     void play_keno();
+    void play_again(); 
     void outcome_checker(int hits, int spots, int wager);
     int random_number_generator(); 
     bool is_digit(const std::string &str); 

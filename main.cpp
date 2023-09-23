@@ -22,11 +22,11 @@
 int main(int argc, const char *argv[])
 {
     // This will kick off the first panel, thus starting the entire program.
-    //Introduction introduction_obj;
-    //introduction_obj.run_introduction();
+    Introduction introduction_obj;
+    introduction_obj.run_introduction();
 
-    Keno keno;
-    keno.run_keno(); 
+    //Keno keno;
+    //keno.run_keno(); 
 
     // Revive rObj;
     // rObj.Explanation();
