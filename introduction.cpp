@@ -86,6 +86,15 @@ void Introduction::set_tokens(int tokens)
     data.close();
 }
 
+std::string Introduction::encrypt(int tokens){
+
+}
+
+std::string Introduction::decrypt(std::string ciphertext){
+    // tamper detection if unable to decrypt or if format is not followed
+}
+
+
 // displays a welcome banner to the terminal window
 void Introduction::welcome()
 {

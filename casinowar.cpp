@@ -155,8 +155,8 @@ void CasinoWar::casino_war_instructions()
     do
     {
         system("clear");
-        std::string instruction_message = "\n\n\n                                  CASINO WAR\n\n -THE PLAYER AND THE DEALER ARE EACH DEALT ONE CARD.\n -IF THE PLAYER'S CARD IS HIGHER THEN THE DEALER'S,\n -THE PLAYER WINS TWICE THE WAGERED AMOUNT.\n -OTHERWISE THE PLAYER LOSES THE WAGERED AMOUNT.\n -A TIE OCCURS WHEN THE PLAYER AND THE DEALER EACH HAVE CARDS OF THE SAME RANK.\n -THE PLAYER AND DEALER ARE DEALT ANOTHER CARD TO DETERMINE THE WINNER.\n";
-        std::string card_ranks = "\n             CARD RANKS (IN ORDER FROM THE HIGHEST TO LOWEST):\n             ACE, KING, QUEEN, JACK, 10, 9, 8, 7, 6, 5, 4, 3, 2 \n";
+        std::string instruction_message = "\n\n\n                                  CASINO WAR\n\n -THE PLAYER AND THE DEALER ARE EACH DEALT ONE CARD.\n\n -IF THE PLAYER'S CARD IS HIGHER THEN THE DEALER'S,\n  THE PLAYER WINS TWICE THE WAGERED AMOUNT.\n\n -OTHERWISE THE PLAYER LOSES THE WAGERED AMOUNT.\n\n -A TIE OCCURS WHEN THE PLAYER AND THE DEALER EACH HAVE CARDS OF THE SAME RANK,\n  THE PLAYER AND DEALER ARE DEALT ANOTHER CARD TO DETERMINE THE WINNER.\n";
+        std::string card_ranks = "\n             CARD RANKS (IN ORDER FROM THE HIGHEST TO LOWEST):\n             ACE, KING, QUEEN, JACK, 10, 9, 8, 7, 6, 5, 4, 3, 2 ";
 
         std::cout << instruction_message;
         std::cout << card_ranks << std::endl;

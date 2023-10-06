@@ -58,7 +58,11 @@ void Gameroom::game_options()
 
     do
     {
-        std::cout << "                                                                      TOKENS: " << tokens << std::endl;
+        for(int spaces = 0; spaces < 71 - std::to_string(tokens).length(); spaces++){
+            std::cout << " "; 
+        }
+
+        std::cout << "TOKENS: " << tokens << std::endl;
         std::cout << "\n\n\n\n\n\n\n                                 GAME FLOOR\n\n";
         std::cout << "                               1: CASINO WAR \n";
         std::cout << "                               2: HORSE RACE \n";

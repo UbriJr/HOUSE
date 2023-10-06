@@ -11,6 +11,8 @@ public:
     void set_tokens(int tokens);
 
 private:
+    std::string encrypt(int tokens);
+    std::string decrypt(std::string ciphertext);
     void welcome();
     bool validate_input(int users_input);
     void login();

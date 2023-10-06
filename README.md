@@ -16,8 +16,7 @@
 * Horse Race
     - 5:1 payout
 
-* Keno
-  
+* Keno  
     - 2 spots:  
 2 hits: Payout is 15x wager.  
 
