@@ -59,8 +59,18 @@ void Revive::Explanation()
         std::cout << "                               YOUR ANSWER: ";
         std::cin >> userAnswer;
 
+        // answer to the equation
+        int correct_answer = equation_solver(equationString);
+
+        // for testing
+        std::cout << userAnswer;
+        std::cout << "    ";
+        std::cout << correct_answer; 
+        std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+
+
         // pass in the vars that make up the equation and the users answer
-        answeredCorrectly = answerChecker(0, 9);
+        answeredCorrectly = answerChecker(userAnswer, correct_answer);
 
     } while (!answeredCorrectly);
 }
@@ -82,6 +92,34 @@ std::string Revive::generateEquation()
     stringRandomNumber.append(RandomNumber());
 
     return stringRandomNumber;
+}
+
+// solve the generated equation
+int Revive::equation_solver(const std::string &equation){
+    std::istringstream iss(equation);
+    int result = 0; 
+    char op = '+';
+
+    while(iss){
+        int num;
+        iss >> num;
+
+        if(op == '+'){
+            result += num; 
+        }
+
+        else if(op == '-'){
+            result -= num; 
+        }
+
+        if(!iss){
+            break; 
+        }
+
+        iss >> op; 
+    }
+
+    return result; 
 }
 
 // This function generates a random number, this is later used for the equations
@@ -138,12 +176,22 @@ bool Revive::answerChecker(int userAnswer, int correctAnswer)
         std::cout << "\n";
         std::cout << "\n";
         std::cout << "\n";
-        std::cout << "                   THIS TIME, PLEASE ENTER A VALID RESPONSE\n\n";
+        std::cout << "                   PLEASE ENTER A VALID RESPONSE\n\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
+        system("clear");
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
         return false;
     }
 
-    // if user answers currently add token to account and break out of loop
+    // if user answers correctly add token to account and break out of loop
     if (userAnswer == correctAnswer)
     {
         // extra tokens earned for solving the equation
