@@ -7,6 +7,10 @@
 #include <thread>
 #include "introduction.h"
 #include "gameroom.h"
+#include <map>
+#include <vector>
+
+std::vector<int> encryptionKey = {862442, 421612, 916945, 148275}; // Longer key for added complexity
 
 // constructor
 Introduction::Introduction(){
@@ -28,19 +32,24 @@ int Introduction::get_tokens()
     std::string tmp;
     std::stringstream string_stream;
     int tokens;
+    int current_position = 0; 
+    int token_position_in_file = 2;
+    std::string ciphertext;  
 
     while (getline(read_file, current_line))
     {
-        bool has_only_digits = (current_line.find_first_not_of("0123456789") == std::string::npos);
-        if (has_only_digits)
+        if (current_position == token_position_in_file)
         {
             tmp = current_line;
-            break;
         }
+        current_position = current_position + 1; 
     }
 
-    string_stream << tmp;
-    string_stream >> tokens;
+    ciphertext = tmp;
+
+    // decrypt ciphertext to get token amount
+    tokens = decrypt(ciphertext);
+
     return tokens;
 }
 
@@ -54,6 +63,8 @@ void Introduction::set_tokens(int tokens)
 
     std::string current_line;
     std::string line;
+    int current_position = 0; 
+    int token_position_in_file = 2;
 
     while (getline(data_file, current_line))
     {
@@ -67,18 +78,21 @@ void Introduction::set_tokens(int tokens)
     std::fstream data;
     data.open("data.txt", std::ios::out);
 
+    // encrypt tokens before writing to file
+    std::string ciphertext = encrypt(tokens); 
+
     while (getline(test_file, line))
     {
-        bool has_only_digits = (line.find_first_not_of("0123456789") == std::string::npos);
-
-        if (!has_only_digits)
+        if (current_position != token_position_in_file)
         {
             data << line << std::endl;
         }
-        else if (has_only_digits)
+        else if (current_position == token_position_in_file)
         {
-            data << std::to_string(tokens) << std::endl;
+            data << ciphertext << std::endl;
         }
+
+        current_position = current_position + 1; 
     }
 
     test_file.close();
@@ -86,12 +100,27 @@ void Introduction::set_tokens(int tokens)
     data.close();
 }
 
-std::string Introduction::encrypt(int tokens){
+std::string Introduction::encrypt(int tokens){\ 
+    int encryptedValue = tokens;
+    for (size_t i = 0; i < encryptionKey.size(); ++i) {
+        encryptedValue ^= encryptionKey[i]; // XOR with each byte of the key
+    }
 
+    std::stringstream stream;
+    stream << std::hex << encryptedValue;
+    
+    return (stream).str(); 
 }
 
-std::string Introduction::decrypt(std::string ciphertext){
-    // tamper detection if unable to decrypt or if format is not followed
+int Introduction::decrypt(std::string cipher){
+
+    int decryptedValue = std::stoi(cipher, 0, 16);
+
+    for (size_t i = 0; i < encryptionKey.size(); ++i) {
+        decryptedValue ^= encryptionKey[i]; // XOR with each byte of the key to reverse encryption
+    }
+
+    return decryptedValue;
 }
 
 
@@ -183,7 +212,7 @@ void Introduction::login()
         {
             system("clear");
             std::cout << "\n\n\n\n\n\n\n\n                               LOGIN SUCCESSFUL\n";
-            std::cout << "                              YOU HAVE " << get_tokens() << " TOKENS\n";
+            std::cout << "                              YOU HAVE " << (get_tokens()) << " TOKENS\n";
             std::cout << wait_message;
             std::this_thread::sleep_for(std::chrono::milliseconds(time));
 
@@ -220,6 +249,16 @@ void Introduction::reg()
     std::string username;
     std::string password;
 
+    // encrypt token amount 
+    std::string ciphertext = encrypt(initial_tokens);
+
+    int temp = decrypt(ciphertext);
+    /*
+    std::cout << std::to_string(initial_tokens) << std::endl;
+    std::cout << (ciphertext) << std::endl; 
+    std::cout << std::to_string(temp) << std::endl;
+    */
+
     std::fstream data_file;
     data_file.open("data.txt", std::ios::out);
 
@@ -235,7 +274,7 @@ void Introduction::reg()
 
     data_file << username << std::endl;
     data_file << password << std::endl;
-    data_file << initial_tokens << std::endl;
+    data_file << ciphertext << std::endl;
 
     data_file.close();
     std::this_thread::sleep_for(std::chrono::milliseconds(time));

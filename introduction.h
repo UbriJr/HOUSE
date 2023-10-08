@@ -12,7 +12,7 @@ public:
 
 private:
     std::string encrypt(int tokens);
-    std::string decrypt(std::string ciphertext);
+    int decrypt(std::string cipher);
     void welcome();
     bool validate_input(int users_input);
     void login();
