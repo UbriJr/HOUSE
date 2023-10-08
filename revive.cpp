@@ -62,13 +62,6 @@ void Revive::Explanation()
         // answer to the equation
         int correct_answer = equation_solver(equationString);
 
-        // for testing
-        std::cout << userAnswer;
-        std::cout << "    ";
-        std::cout << correct_answer; 
-        std::this_thread::sleep_for(std::chrono::milliseconds(5000));
-
-
         // pass in the vars that make up the equation and the users answer
         answeredCorrectly = answerChecker(userAnswer, correct_answer);
 
@@ -191,21 +184,24 @@ bool Revive::answerChecker(int userAnswer, int correctAnswer)
         return false;
     }
 
-    // if user answers correctly add token to account and break out of loop
-    if (userAnswer == correctAnswer)
-    {
-        // extra tokens earned for solving the equation
-        int extraTokens = 3;
+    else{
 
-        std::cout << "\n\n\n\n\n\n\n            YOUR ANSWER WAS CORRECT, ADDING TOKENS TO YOUR ACCOUNT \n";
-        std::this_thread::sleep_for(std::chrono::milliseconds(time - 1000));
-        Introduction revivalTokensObj;
-        revivalTokensObj.set_tokens(revivalTokensObj.get_tokens() + extraTokens);
-        return true;
+        // if user answers correctly add token to account and break out of loop
+        if (userAnswer == correctAnswer)
+        {
+            // extra tokens earned for solving the equation
+            int extraTokens = 3;
+
+            std::cout << "\n\n\n\n\n\n\n            YOUR ANSWER WAS CORRECT, ADDING TOKENS TO YOUR ACCOUNT \n";
+            std::this_thread::sleep_for(std::chrono::milliseconds(time - 1000));
+            Introduction revivalTokensObj;
+            revivalTokensObj.set_tokens(revivalTokensObj.get_tokens() + extraTokens);
+            return true;
+        }
+
+        // if the user answers incorrectly, return false to restart the loop
+        std::cout << "\n\n\n\n\n\n\n                    YOUR ANSWER WAS INCORRECT, PLEASE TRY AGAIN\n";
+        std::this_thread::sleep_for(std::chrono::milliseconds(time));
+        return false;
     }
-
-    // if the user answers incorrectly, return false to restart the loop
-    std::cout << "\n\n\n\n\n\n\n                    YOUR ANSWER WAS INCORRECT, PLEASE TRY AGAIN\n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    return false;
 }

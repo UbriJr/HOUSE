@@ -13,6 +13,7 @@
 #include "introduction.h"
 #include "gameroom.h"
 #include "keno.h"
+#include "revive.h"
 
 // constructor 
 Keno::Keno(){
@@ -260,8 +261,18 @@ void Keno::play_keno(){
 
     } while (!are_valid_numbers || !is_valid_wager); 
 
-    play_again(); 
+    // user is out of tokens
+    Introduction token_access_obj; 
 
+    if(token_access_obj.get_tokens() < 1){
+        Revive revive_obj; 
+        revive_obj.Explanation(); 
+        Gameroom gameroom_obj; 
+        gameroom_obj.return_to_games_menu();
+    }
+    else{
+        play_again();
+    }
 }
 
 void Keno::play_again(){

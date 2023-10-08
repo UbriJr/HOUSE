@@ -10,6 +10,7 @@
 #include "introduction.h"
 #include "casinowar.h"
 #include "visuals.h"
+#include "revive.h"
 
 int wager;
 Introduction token_access_obj;
@@ -271,7 +272,17 @@ void CasinoWar::check_outcome(int players_card, int dealers_card)
         std::this_thread::sleep_for(std::chrono::milliseconds(win_lose_timer));
     }
 
-    play_again();
+    // user is out of tokens
+    if(token_access_obj.get_tokens() < 1){
+        Revive revive_obj; 
+        revive_obj.Explanation(); 
+        Gameroom gameroom_obj; 
+        gameroom_obj.return_to_games_menu();
+    }
+    else{
+        play_again();
+    }
+    
 }
 // thanks john wiech for the contribution
 void CasinoWar::draw_cards(int card, std::string spacing)

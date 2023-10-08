@@ -12,6 +12,7 @@
 #include "introduction.h"
 #include "visuals.h"
 #include "gameroom.h"
+#include "revive.h"
 
 // need to know how much the user wagered across functions
 int users_wager;
@@ -462,5 +463,17 @@ void HorseRace::animate_race()
 
     std::this_thread::sleep_for(std::chrono::milliseconds(outcome_timer));
 
-    replay();
+    // user is out of tokens
+
+    Introduction token_access_obj; 
+
+    if(token_access_obj.get_tokens() < 1){
+        Revive revive_obj; 
+        revive_obj.Explanation(); 
+        Gameroom gameroom_obj; 
+        gameroom_obj.return_to_games_menu();
+    }
+    else{
+        replay();
+    }
 }
