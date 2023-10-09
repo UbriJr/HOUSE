@@ -11,6 +11,8 @@
 #include "horserace.h"
 #include "keno.h"
 
+// gameroom.cpp is centered both x & y
+
 // constructor
 Gameroom::Gameroom(){
 
@@ -32,16 +34,17 @@ void Gameroom::return_to_games_menu()
 void Gameroom::welcome()
 {
     system("clear");
-    int text_display_delay = 35; // was 125
-    int next_func_delay = 5000;  // was 3000
-    std::string welcome_message = "\n\n\n\n\n\n\n                           WELCOME TO THE GAME FLOOR \n                      THIS IS WHERE ALL THE GAMES ARE HELD \n             HAVE FUN AND RELAX, BUT REMEMBER, THE HOUSE ALWAYS WINS.\n";
-    unsigned long length = welcome_message.length();
+    int text_display_delay = 1500;
+    int next_func_delay = 4000;  // was 3000
 
-    for (int i = 0; i < length; i++)
-    {
-        std::cout << welcome_message[i];
-        std::this_thread::sleep_for(std::chrono::milliseconds(text_display_delay));
-    }
+    std::cout << "\n\n\n\n\n\n\n\n\n";
+    std::this_thread::sleep_for(std::chrono::milliseconds(text_display_delay));
+    std::cout << "                           WELCOME TO THE GAME FLOOR" << std::endl;
+    std::this_thread::sleep_for(std::chrono::milliseconds(text_display_delay));
+    std::cout << "                      THIS IS WHERE ALL THE GAMES ARE HELD" << std::endl;
+    std::this_thread::sleep_for(std::chrono::milliseconds(text_display_delay));
+    std::cout << "            HAVE FUN AND RELAX, BUT REMEMBER, THE HOUSE ALWAYS WINS." << std::endl;
+    std::this_thread::sleep_for(std::chrono::milliseconds(text_display_delay));
     std::this_thread::sleep_for(std::chrono::milliseconds(next_func_delay));
     game_options();
 }
@@ -63,14 +66,18 @@ void Gameroom::game_options()
         }
 
         std::cout << "TOKENS: " << tokens << std::endl;
-        std::cout << "\n\n\n\n\n\n\n                                 GAME FLOOR\n\n";
-        std::cout << "                               1: CASINO WAR \n";
-        std::cout << "                               2: HORSE RACE \n";
-        std::cout << "                               3: KENO \n";
-        std::cout << "\n                              SELECT AN OPTION: ";
+        std::cout << "\n\n\n\n\n\n\n";
+        std::cout << "                                   GAME FLOOR"<< std::endl;
+        std::cout << "\n";
+        std::cout << "                                 1: CASINO WAR" << std::endl;
+        std::cout << "                                 2: HORSE RACE"<< std::endl;
+        std::cout << "                                 3: KENO"<< std::endl;
+        std::cout << "\n";
+        std::cout << "                                SELECT AN OPTION: ";
         std::cin >> users_input;
         is_valid_input = validate_input(users_input);
         system("clear");
+
     } while (!is_valid_input);
 
     direct_game_flow(users_input);
@@ -90,7 +97,9 @@ bool Gameroom::validate_input(int users_input)
     {
         std::cin.clear();
         std::cin.ignore(10000, '\n');
-        std::cout << "\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+        std::cout << "\n\n\n\n\n\n\n\n\n\n";
+        std::cout << "                         PLEASE ENTER A VALID RESPONSE";
+        std::cout << "\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
         return false;
     }
@@ -102,7 +111,9 @@ bool Gameroom::validate_input(int users_input)
     }
     else
     {
-        std::cout << "\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+        std::cout << "\n\n\n\n\n\n\n\n\n\n";
+        std::cout << "                         PLEASE ENTER A VALID RESPONSE";
+        std::cout << "\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
         return false;
     }
