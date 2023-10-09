@@ -10,6 +10,8 @@
 #include <map>
 #include <vector>
 
+// introduction.cpp is centered both x & y
+
 std::vector<int> encryptionKey = {862442, 421612, 916945, 148275}; // Longer key for added complexity
 
 // constructor
@@ -236,7 +238,7 @@ void Introduction::login()
     if (!user_info_found)
     {
         system("clear");
-        int needed_spaces = 11;
+        int needed_spaces = 6;
 
         spacing_buffer(needed_spaces);
         std::cout << "        COULD NOT FIND AN ACCOUNT WITH THE GIVEN USERNAME AND PASSWORD" << std::endl;
@@ -318,11 +320,11 @@ void Introduction::register_or_login()
     do
     {
         std::cout << "\n\n\n\n\n";
-        std::cout << "                                    1: LOGIN";
+        std::cout << "                                   1: LOGIN";
         std::cout << "\n";
-        std::cout << "                                   2: REGISTER";
+        std::cout << "                                  2: REGISTER";
         std::cout << "\n\n";
-        std::cout << "                                 SELECT AN OPTION: ";
+        std::cout << "                                SELECT AN OPTION: ";
         std::cin >> users_input;
         is_valid = validate_input(users_input);
 
