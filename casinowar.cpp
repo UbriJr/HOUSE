@@ -37,7 +37,9 @@ bool CasinoWar::validate_input(int users_input)
     {
         std::cin.clear();
         std::cin.ignore(10000, '\n');
-        std::cout << "\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+        std::cout << "\n\n\n\n\n\n\n\n\n\n";
+        std::cout << "                         PLEASE ENTER A VALID RESPONSE"; //centered
+        std::cout << "\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
         system("clear");
         return false;
@@ -50,7 +52,9 @@ bool CasinoWar::validate_input(int users_input)
     }
     else
     {
-        std::cout << "\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+        std::cout << "\n\n\n\n\n\n\n\n\n\n";
+        std::cout << "                         PLEASE ENTER A VALID RESPONSE"; // centered
+        std::cout << "\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
         system("clear");
         return false;
@@ -68,11 +72,13 @@ void CasinoWar::casino_war_menu()
     do
     {
         system("clear");
-        std::cout << "\n\n\n\n\n\n\n                                 CASINO WAR\n"
-                  << std::endl;
-        std::cout << "                          1: HOW TO PLAY CASINO WAR" << std::endl;
-        std::cout << "                          2: PLAY CASINO WAR" << std::endl;
-        std::cout << "\n                          PLEASE SELECT AN OPTION: ";
+        std::cout << "\n\n\n\n\n\n\n";
+        std::cout << "                                   CASINO WAR"; // centered
+        std::cout << "\n"<< std::endl;
+        std::cout << "                           1: HOW TO PLAY CASINO WAR" << std::endl; // centered
+        std::cout << "                               2: PLAY CASINO WAR" << std::endl; // c
+        std::cout << "\n";
+        std::cout << "                           PLEASE SELECT AN OPTION: ";
         std::cin >> users_input;
         valid_input = validate_input(users_input);
 
@@ -100,7 +106,9 @@ bool CasinoWar::check_wager(int wager)
         std::cin.clear();
         std::cin.ignore(10000, '\n');
         system("clear");
-        std::cout << "\n\n\n\n\n\n\n\n\n\n                    THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+        std::cout << "\n\n\n\n\n\n\n\n\n\n";
+        std::cout << "                         PLEASE ENTER A VALID RESPONSE"; // centered
+        std::cout << "\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
         system("clear");
         return false;

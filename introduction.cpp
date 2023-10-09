@@ -100,7 +100,7 @@ void Introduction::set_tokens(int tokens)
     data.close();
 }
 
-std::string Introduction::encrypt(int tokens){\ 
+std::string Introduction::encrypt(int tokens){ 
     int encryptedValue = tokens;
     for (size_t i = 0; i < encryptionKey.size(); ++i) {
         encryptedValue ^= encryptionKey[i]; // XOR with each byte of the key
@@ -134,19 +134,20 @@ void Introduction::welcome()
 
     // welcome banner
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "\n\n   ***       ***     *******     ***         ***   **********    ************" << std::endl;
+    std::cout << "\n\n";
+    std::cout << "    ***       ***     *******     ***         ***   **********    ************" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "   ***       ***  ***       ***  ***         *** ***        ***  ****" << std::endl;
+    std::cout << "    ***       ***  ***       ***  ***         *** ***        ***  ****" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "   ***       *** ***         *** ***         *** *****           ****" << std::endl;
+    std::cout << "    ***       *** ***         *** ***         *** *****           ****" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "   ************* ***         *** ***         ***      ****       **********" << std::endl;
+    std::cout << "    ************* ***         *** ***         ***      ****       **********" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "   ***       *** ***         *** ***         ***           ***** ****" << std::endl;
+    std::cout << "    ***       *** ***         *** ***         ***           ***** ****" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "   ***       ***  ***       ***  ****       **** ***        ***  ****" << std::endl;
+    std::cout << "    ***       ***  ***       ***  ****       **** ***        ***  ****" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    std::cout << "   ***       ***     *******       ***********     **********    ************" << std::endl;
+    std::cout << "    ***       ***     *******       ***********     **********    ************" << std::endl;
 }
 
 // validates the user's input in this panel
@@ -162,7 +163,9 @@ bool Introduction::validate_input(int users_input)
     {
         std::cin.clear();
         std::cin.ignore(10000, '\n');
-        std::cout << "\n\n\n\n\n\n\n\n\n\n                    PLEASE ENTER A VALID RESPONSE\n";
+        std::cout << "\n\n\n\n\n\n\n\n\n\n";
+        std::cout << "                         PLEASE ENTER A VALID RESPONSE";
+        std::cout << "\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
         return false;
     }
@@ -174,7 +177,9 @@ bool Introduction::validate_input(int users_input)
     }
     else
     {
-        std::cout << "\n\n\n\n\n\n\n\n\n\n                    PLEASE ENTER A VALID RESPONSE\n";
+        std::cout << "\n\n\n\n\n\n\n\n\n\n";
+        std::cout << "                         PLEASE ENTER A VALID RESPONSE";
+        std::cout << "\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
         return false;
     }
@@ -189,16 +194,19 @@ void Introduction::login()
     std::string password;
     std::string current_line;
     std::string next_line;
-    std::string wait_message = "                PLEASE WAIT WHILE WE BRING YOU TO THE GAME FLOOR\n";
+    std::cout << "\n";
 
     const int time = 5000;
 
     bool user_info_found = false;
 
-    std::cout << "\n\n\n\n                                 LOGIN MENU \n\n\n\n\n\n\n";
-    std::cout << "                           ENTER YOUR USERNAME: ";
+    std::cout << "\n\n\n\n\n\n\n\n";
+    std::cout << "                                   LOGIN MENU";
+    std::cout << "\n\n";
+    std::cout << "                              ENTER YOUR USERNAME: ";
     std::cin >> username;
-    std::cout << "                           ENTER YOUR PASSWORD: ";
+    std::cout << "\n";
+    std::cout << "                              ENTER YOUR PASSWORD: ";
     std::cin >> password;
 
     std::ifstream read_file("data.txt");
@@ -211,9 +219,11 @@ void Introduction::login()
         if ((username == current_line) && (password == next_line))
         {
             system("clear");
-            std::cout << "\n\n\n\n\n\n\n\n                               LOGIN SUCCESSFUL\n";
-            std::cout << "                              YOU HAVE " << (get_tokens()) << " TOKENS\n";
-            std::cout << wait_message;
+            std::cout << "\n\n\n\n\n\n\n\n\n";
+            std::cout << "                                LOGIN SUCCESSFUL" << std::endl;
+            std::cout << "                               YOU HAVE " << (get_tokens()) << " TOKENS" << std::endl;
+            std::cout << "                PLEASE WAIT WHILE WE BRING YOU TO THE GAME FLOOR" << std::endl;
+            std::cout << "";
             std::this_thread::sleep_for(std::chrono::milliseconds(time));
 
             user_info_found = true;
@@ -226,11 +236,11 @@ void Introduction::login()
     if (!user_info_found)
     {
         system("clear");
-        int needed_spaces = 5;
+        int needed_spaces = 11;
 
         spacing_buffer(needed_spaces);
-        std::cout << "         COULD NOT FIND AN ACCOUNT WITH THE GIVEN USERNAME AND PASSWORD" << std::endl;
-        std::cout << "                    PLEASE REGISTER OR TRY TO LOGIN AGAIN"
+        std::cout << "        COULD NOT FIND AN ACCOUNT WITH THE GIVEN USERNAME AND PASSWORD" << std::endl;
+        std::cout << "                     PLEASE REGISTER OR TRY TO LOGIN AGAIN"
                   << std::endl;
         register_or_login();
     }
@@ -253,24 +263,26 @@ void Introduction::reg()
     std::string ciphertext = encrypt(initial_tokens);
 
     int temp = decrypt(ciphertext);
-    /*
-    std::cout << std::to_string(initial_tokens) << std::endl;
-    std::cout << (ciphertext) << std::endl; 
-    std::cout << std::to_string(temp) << std::endl;
-    */
-
+    
     std::fstream data_file;
     data_file.open("data.txt", std::ios::out);
 
-    std::cout << "\n\n\n\n                              REGISTRATION MENU \n\n\n\n\n\n\n";
-    std::cout << "                             CREATE A USERNAME: ";
+    std::cout << "\n\n\n\n\n\n\n\n";
+    std::cout << "                               REGISTRATION MENU";
+    std::cout << "\n\n";
+    std::cout << "                              CREATE A USERNAME: ";
     std::cin >> username;
-    std::cout << "                             CREATE A PASSWORD: ";
+    std::cout << "\n";
+    std::cout << "                              CREATE A PASSWORD: ";
     std::cin >> password;
 
     system("clear");
 
-    std::cout << "\n\n\n\n\n\n\n\n\n\n                     REGISTRATION COMPLETE, LOGIN TO CONTINUE. \n\n";
+    std::cout << "\n\n\n\n\n\n\n\n\n\n";
+    std::cout << "                             REGISTRATION COMPLETE" << std::endl;
+    std::cout << "                               LOGIN TO CONTINUE";
+    std::cout << "\n\n";
+    
 
     data_file << username << std::endl;
     data_file << password << std::endl;
@@ -305,9 +317,12 @@ void Introduction::register_or_login()
 
     do
     {
-        std::cout << "\n\n\n\n\n                                 1: LOGIN \n";
-        std::cout << "                                 2: REGISTER \n\n";
-        std::cout << "                               SELECT AN OPTION: ";
+        std::cout << "\n\n\n\n\n";
+        std::cout << "                                    1: LOGIN";
+        std::cout << "\n";
+        std::cout << "                                   2: REGISTER";
+        std::cout << "\n\n";
+        std::cout << "                                 SELECT AN OPTION: ";
         std::cin >> users_input;
         is_valid = validate_input(users_input);
 
