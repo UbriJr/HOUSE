@@ -8,6 +8,15 @@
 
 <br />   
 
+<br />   
+
+## Demo:
+
+<p align="center">
+<img width="525" alt="Screen Shot 2022-07-23 at 7 29 18 PM" src="https://user-images.githubusercontent.com/45999845/180627305-08a9990b-be18-45d2-9e47-74101d589714.png">
+</p>
+<br /> 
+
 ## Features:
 
 * Casino War
@@ -69,16 +78,6 @@
 8 hits: Payout is 125x wager.  
 9 hits: Payout is 600x wager.  
 10 hits: Payout is 1500x wager.  
-
-
-<br />   
-
-## Demo:
-
-<p align="center">
-<img width="525" alt="Screen Shot 2022-07-23 at 7 29 18 PM" src="https://user-images.githubusercontent.com/45999845/180627305-08a9990b-be18-45d2-9e47-74101d589714.png">
-</p>
-<br />   
 
 
 ## Installing:

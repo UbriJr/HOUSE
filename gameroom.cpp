@@ -34,8 +34,8 @@ void Gameroom::return_to_games_menu()
 void Gameroom::welcome()
 {
     system("clear");
-    int text_display_delay = 1500;
-    int next_func_delay = 4000;  // was 3000
+    int text_display_delay = 1800;
+    int next_func_delay = 4000; 
 
     std::cout << "\n\n\n\n\n\n\n\n\n";
     std::this_thread::sleep_for(std::chrono::milliseconds(text_display_delay));
@@ -44,7 +44,6 @@ void Gameroom::welcome()
     std::cout << "                      THIS IS WHERE ALL THE GAMES ARE HELD" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(text_display_delay));
     std::cout << "            HAVE FUN AND RELAX, BUT REMEMBER, THE HOUSE ALWAYS WINS." << std::endl;
-    std::this_thread::sleep_for(std::chrono::milliseconds(text_display_delay));
     std::this_thread::sleep_for(std::chrono::milliseconds(next_func_delay));
     game_options();
 }

@@ -213,10 +213,8 @@ void Introduction::login()
 
     std::ifstream read_file("data.txt");
 
-    while (getline(read_file, current_line))
-    {
-
-        getline(read_file, next_line);
+    getline(read_file, current_line); //username is line 1
+    getline(read_file, next_line); // password is line 2
 
         if ((username == current_line) && (password == next_line))
         {
@@ -231,7 +229,6 @@ void Introduction::login()
             user_info_found = true;
         }
         std::cout << "\n";
-    }
 
     read_file.close();
 
