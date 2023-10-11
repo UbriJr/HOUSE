@@ -38,7 +38,7 @@ bool CasinoWar::validate_input(int users_input)
         std::cin.clear();
         std::cin.ignore(10000, '\n');
         std::cout << "\n\n\n\n\n\n\n\n\n\n";
-        std::cout << "                         PLEASE ENTER A VALID RESPONSE"; //centered
+        std::cout << "                         PLEASE ENTER A VALID RESPONSE"; //c 
         std::cout << "\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
         system("clear");
@@ -78,7 +78,7 @@ void CasinoWar::casino_war_menu()
         std::cout << "                           1: HOW TO PLAY CASINO WAR" << std::endl; // centered
         std::cout << "                               2: PLAY CASINO WAR" << std::endl; // c
         std::cout << "\n";
-        std::cout << "                           PLEASE SELECT AN OPTION: ";
+        std::cout << "                           PLEASE SELECT AN OPTION: "; //c
         std::cin >> users_input;
         valid_input = validate_input(users_input);
 
@@ -116,10 +116,10 @@ bool CasinoWar::check_wager(int wager)
     else if (wager > max_possible_bet)
     {
         system("clear");
-        std::cout << "\n\n\n\n\n\n\n\n\n                  YOU WAGERED " << wager << " TOKENS BUT ONLY HAVE"
-                  << " " << max_possible_bet << " TOKENS"
-                  << "\n";
-        std::cout << "\n                       PLEASE ENTER A VALID WAGER AMOUNT \n";
+        std::cout << "\n\n\n\n\n\n\n\n\n";
+        std::cout << "               YOU WAGERED " << wager << " TOKENS BUT ONLY HAVE" << " " << max_possible_bet << " TOKENS" << std::endl; //c 
+        std::cout << "\n";
+        std::cout << "                       PLEASE ENTER A VALID WAGER AMOUNT" << std::endl; //c 
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
         system("clear");
         return false;
@@ -135,8 +135,10 @@ void CasinoWar::play_casino_war()
 
     do
     {
-        std::cout << "\n\n\n\n\n\n\n\n\n                                  CASINO WAR";
-        std::cout << "\n\n                                 WAGER AMOUNT: ";
+        std::cout << "\n\n\n\n\n\n\n\n\n";
+        std::cout << "                                   CASINO WAR" << std::endl; //c
+        std::cout << "\n";
+        std::cout << "                                  WAGER AMOUNT: "; //c
 
         std::cin >> wager;
         valid_input = check_wager(wager);
@@ -146,9 +148,10 @@ void CasinoWar::play_casino_war()
     std::cin.clear();
     std::cin.ignore(10000, '\n');
 
-    std::cout << "\n                              YOU WAGERED " << wager << " TOKENS \n";
-
-    std::cout << "\n\n\n                           ENTER ANY KEY TO CONTINUE: ";
+    std::cout << "\n"; 
+    std::cout << "                               YOU WAGERED " << wager << " TOKENS" << std::endl; //c 
+    std::cout << "\n\n\n";
+    std::cout << "                           ENTER ANY KEY TO CONTINUE: "; //c 
     std::cin.ignore();
 
     reveal_cards();
@@ -164,15 +167,14 @@ void CasinoWar::casino_war_instructions()
     do
     {
         system("clear");
-        std::string instruction_message = "\n\n\n                                  CASINO WAR\n\n -THE PLAYER AND THE DEALER ARE EACH DEALT ONE CARD.\n\n -IF THE PLAYER'S CARD IS HIGHER THEN THE DEALER'S,\n  THE PLAYER WINS TWICE THE WAGERED AMOUNT.\n\n -OTHERWISE THE PLAYER LOSES THE WAGERED AMOUNT.\n\n -A TIE OCCURS WHEN THE PLAYER AND THE DEALER EACH HAVE CARDS OF THE SAME RANK,\n  THE PLAYER AND DEALER ARE DEALT ANOTHER CARD TO DETERMINE THE WINNER.\n";
-        std::string card_ranks = "\n             CARD RANKS (IN ORDER FROM THE HIGHEST TO LOWEST):\n             ACE, KING, QUEEN, JACK, 10, 9, 8, 7, 6, 5, 4, 3, 2 ";
+        std::cout << "\n\n" << "                                   CASINO WAR" << "\n\n" << "               -THE PLAYER AND THE DEALER ARE EACH DEALT ONE CARD" << "\n\n" << "               -IF THE PLAYER'S CARD IS HIGHER THEN THE DEALER'S" << "\n" <<  "                    THE PLAYER WINS TWICE THE WAGERED AMOUNT" << "\n\n" << "                 -OTHERWISE THE PLAYER LOSES THE WAGERED AMOUNT" << "\n\n" << " -A TIE OCCURS WHEN THE PLAYER AND THE DEALER EACH HAVE CARDS OF THE SAME RANK" << "\n" << "      THE PLAYER AND DEALER ARE DEALT ANOTHER CARD TO DETERMINE THE WINNER" << std::endl; //c 
+        std::cout << "\n" << "               CARD RANKS (IN ORDER FROM THE HIGHEST TO LOWEST):" << "\n" << "               ACE, KING, QUEEN, JACK, 10, 9, 8, 7, 6, 5, 4, 3, 2" << std::endl; //c
 
-        std::cout << instruction_message;
-        std::cout << card_ranks << std::endl;
-
-        std::cout << "\n\n                          1: PLAY CASINO WAR";
-        std::cout << "\n                          2: RETURN TO THE GAME FLOOR\n";
-        std::cout << "\n                          PLEASE SELECT AN OPTION: ";
+        std::cout << "\n\n";
+        std::cout << "                               1: PLAY CASINO WAR" << std::endl; //c
+        std::cout << "                          2: RETURN TO THE GAME FLOOR" << std::endl; //c
+        std::cout << "\n";
+        std::cout << "                             PLEASE SELECT AN OPTION: "; //c
         std::cin >> users_input;
         valid_input = validate_input(users_input);
 
@@ -208,11 +210,13 @@ void CasinoWar::play_again()
     do
     {
         system("clear");
-        std::cout << "\n\n\n\n\n\n\n\n                          WOULD YOU LIKE TO PLAY AGAIN?" << std::endl
-                  << "\n";
-        std::cout << "                               1: PLAY AGAIN" << std::endl;
-        std::cout << "                               2: RETURN TO GAMEROOM" << std::endl;
-        std::cout << "\n                             PLEASE SELECT AN OPTION: ";
+        std::cout << "\n\n\n\n\n\n\n\n";
+        std::cout << "                         WOULD YOU LIKE TO PLAY AGAIN?" << std::endl; //c
+        std::cout << "\n";
+        std::cout << "                                 1: PLAY AGAIN" << std::endl; //c
+        std::cout << "                             2: RETURN TO GAMEROOM" << std::endl; //c
+        std::cout << "\n"; 
+        std::cout << "                            PLEASE SELECT AN OPTION: "; //c
         std::cin >> user_input;
         valid_input = validate_input(user_input);
 
@@ -230,7 +234,7 @@ void CasinoWar::play_again()
 }
 
 // displays the players and dealers card in the terminal
-void CasinoWar::reveal_cards()
+void CasinoWar::reveal_cards() //cant be centered
 {
     system("clear");
     int players_card;
@@ -260,22 +264,22 @@ void CasinoWar::check_outcome(int players_card, int dealers_card)
 
     if (players_card > dealers_card)
     {
-        std::cout << "\n                                    YOU WON" << std::endl;
-        std::cout << "\n                               YOU WON " << wager << " TOKENS" << std::endl;
+        std::cout << "\n" << "                                    YOU WON" << std::endl; //c
+        std::cout << "\n" << "                                YOU WON " << wager << " TOKENS" << std::endl; //c 
         coin_access_obj.set_tokens(token_access_obj.get_tokens() + (wager));
         std::this_thread::sleep_for(std::chrono::milliseconds(win_lose_timer));
     }
     else if (players_card == dealers_card)
     {
-        std::cout << "\n                                THERE WAS A TIE" << std::endl;
-        std::cout << "          EACH PLAYER WILL BE DEALT ANOTHER CARD TO DETERMINE THE WINNER" << std::endl;
+        std::cout << "\n" << "                                THERE WAS A TIE" << std::endl; //c
+        std::cout << "        EACH PLAYER WILL BE DEALT ANOTHER CARD TO DETERMINE THE WINNER" << std::endl; //c
         std::this_thread::sleep_for(std::chrono::milliseconds(tie_timer));
         reveal_cards();
     }
     else if (dealers_card > players_card)
     {
-        std::cout << "\n                                THE DEALER WON" << std::endl;
-        std::cout << "\n                              YOU LOST " << wager << " TOKENS" << std::endl;
+        std::cout << "\n" << "                                 THE DEALER WON" << std::endl; //c
+        std::cout << "\n" << "                                YOU LOST " << wager << " TOKENS" << std::endl; //c
         coin_access_obj.set_tokens(token_access_obj.get_tokens() - wager);
         std::this_thread::sleep_for(std::chrono::milliseconds(win_lose_timer));
     }
