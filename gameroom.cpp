@@ -37,7 +37,7 @@ void Gameroom::welcome()
     int text_display_delay = 1800;
     int next_func_delay = 4000; 
 
-    std::cout << "\n\n\n\n\n\n\n\n\n";
+    std::cout << "\n\n\n\n\n\n\n\n\n\n";
     std::this_thread::sleep_for(std::chrono::milliseconds(text_display_delay));
     std::cout << "                           WELCOME TO THE GAME FLOOR" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(text_display_delay));
@@ -96,7 +96,7 @@ bool Gameroom::validate_input(int users_input)
     {
         std::cin.clear();
         std::cin.ignore(10000, '\n');
-        std::cout << "\n\n\n\n\n\n\n\n\n\n";
+        std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
         std::cout << "                         PLEASE ENTER A VALID RESPONSE";
         std::cout << "\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
@@ -110,7 +110,7 @@ bool Gameroom::validate_input(int users_input)
     }
     else
     {
-        std::cout << "\n\n\n\n\n\n\n\n\n\n";
+        std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
         std::cout << "                         PLEASE ENTER A VALID RESPONSE";
         std::cout << "\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(time));

@@ -12,6 +12,8 @@
 #include "visuals.h"
 #include "revive.h"
 
+// casinowar.cpp is centered in both x & y
+
 int wager;
 Introduction token_access_obj;
 
@@ -37,8 +39,8 @@ bool CasinoWar::validate_input(int users_input)
     {
         std::cin.clear();
         std::cin.ignore(10000, '\n');
-        std::cout << "\n\n\n\n\n\n\n\n\n\n";
-        std::cout << "                         PLEASE ENTER A VALID RESPONSE"; //c 
+        std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
+        std::cout << "                         PLEASE ENTER A VALID RESPONSE"; //c //c
         std::cout << "\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
         system("clear");
@@ -52,8 +54,8 @@ bool CasinoWar::validate_input(int users_input)
     }
     else
     {
-        std::cout << "\n\n\n\n\n\n\n\n\n\n";
-        std::cout << "                         PLEASE ENTER A VALID RESPONSE"; // centered
+        std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
+        std::cout << "                         PLEASE ENTER A VALID RESPONSE"; // centered //c
         std::cout << "\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
         system("clear");
@@ -72,13 +74,13 @@ void CasinoWar::casino_war_menu()
     do
     {
         system("clear");
-        std::cout << "\n\n\n\n\n\n\n";
-        std::cout << "                                   CASINO WAR"; // centered
+        std::cout << "\n\n\n\n\n\n\n\n\n";
+        std::cout << "                                   CASINO WAR"; // centered //c
         std::cout << "\n"<< std::endl;
-        std::cout << "                           1: HOW TO PLAY CASINO WAR" << std::endl; // centered
-        std::cout << "                               2: PLAY CASINO WAR" << std::endl; // c
+        std::cout << "                           1: HOW TO PLAY CASINO WAR" << std::endl; // centered //c
+        std::cout << "                               2: PLAY CASINO WAR" << std::endl; // c //c
         std::cout << "\n";
-        std::cout << "                           PLEASE SELECT AN OPTION: "; //c
+        std::cout << "                           PLEASE SELECT AN OPTION: "; //c //c
         std::cin >> users_input;
         valid_input = validate_input(users_input);
 
@@ -106,8 +108,8 @@ bool CasinoWar::check_wager(int wager)
         std::cin.clear();
         std::cin.ignore(10000, '\n');
         system("clear");
-        std::cout << "\n\n\n\n\n\n\n\n\n\n";
-        std::cout << "                         PLEASE ENTER A VALID RESPONSE"; // centered
+        std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
+        std::cout << "                         PLEASE ENTER A VALID RESPONSE"; // centered //c
         std::cout << "\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
         system("clear");
@@ -116,10 +118,10 @@ bool CasinoWar::check_wager(int wager)
     else if (wager > max_possible_bet)
     {
         system("clear");
-        std::cout << "\n\n\n\n\n\n\n\n\n";
-        std::cout << "               YOU WAGERED " << wager << " TOKENS BUT ONLY HAVE" << " " << max_possible_bet << " TOKENS" << std::endl; //c 
+        std::cout << "\n\n\n\n\n\n\n\n\n\n";
+        std::cout << "                  YOU WAGERED " << wager << " TOKENS BUT ONLY HAVE" << " " << max_possible_bet << " TOKENS" << std::endl; //c //c
         std::cout << "\n";
-        std::cout << "                       PLEASE ENTER A VALID WAGER AMOUNT" << std::endl; //c 
+        std::cout << "                       PLEASE ENTER A VALID WAGER AMOUNT" << std::endl; //c //c
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
         system("clear");
         return false;
@@ -135,10 +137,10 @@ void CasinoWar::play_casino_war()
 
     do
     {
-        std::cout << "\n\n\n\n\n\n\n\n\n";
-        std::cout << "                                   CASINO WAR" << std::endl; //c
+        std::cout << "\n\n\n\n\n\n\n";
+        std::cout << "                                   CASINO WAR" << std::endl; //c //c
         std::cout << "\n";
-        std::cout << "                                  WAGER AMOUNT: "; //c
+        std::cout << "                                  WAGER AMOUNT: "; //c //c
 
         std::cin >> wager;
         valid_input = check_wager(wager);
@@ -149,16 +151,16 @@ void CasinoWar::play_casino_war()
     std::cin.ignore(10000, '\n');
 
     std::cout << "\n"; 
-    std::cout << "                               YOU WAGERED " << wager << " TOKENS" << std::endl; //c 
+    std::cout << "                               YOU WAGERED " << wager << " TOKENS" << std::endl; //c //c 
     std::cout << "\n\n\n";
-    std::cout << "                           ENTER ANY KEY TO CONTINUE: "; //c 
+    std::cout << "                           ENTER ANY KEY TO CONTINUE: "; //c //c
     std::cin.ignore();
 
     reveal_cards();
 }
 
 // instructions for casino war
-void CasinoWar::casino_war_instructions()
+void CasinoWar::casino_war_instructions() //cc //c whole thing
 {
     system("clear");
     bool valid_input;
@@ -202,7 +204,7 @@ int CasinoWar::random_card_generator()
 }
 
 // prompts the user to play casino war again or return them to the gameroom
-void CasinoWar::play_again()
+void CasinoWar::play_again() //c //c
 {
     int user_input;
     bool valid_input;
@@ -210,7 +212,7 @@ void CasinoWar::play_again()
     do
     {
         system("clear");
-        std::cout << "\n\n\n\n\n\n\n\n";
+        std::cout << "\n\n\n\n\n\n\n\n\n";
         std::cout << "                         WOULD YOU LIKE TO PLAY AGAIN?" << std::endl; //c
         std::cout << "\n";
         std::cout << "                                 1: PLAY AGAIN" << std::endl; //c
