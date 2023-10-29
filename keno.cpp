@@ -35,15 +35,13 @@ void Keno::keno_instructions(){
     do
     {
         system("clear");
-        std::string instruction_message = "\n\n\n                                  KENO\n\n -THE PLAYER SELECTS BETWEEN 2-10 NUMBERS RANGING FROM 1 TO 80 AND PLACES A \n  WAGER ON THAT POOL OF NUMBERS.\n\n -THEN, 20 NUMBERS ARE DRAWN AT RANDOM.\n\n -THE PLAYER WINS BASED ON MATCHING SELECTED NUMBERS TO THE DRAWN ONES.\n\n -THE PAYOUTS VARY BASED ON THE TOTAL NUMBER OF SELECTED NUMBERS.\n  (SEE GITHUB README FOR DETAILS) \n\n -IF NONE OF THE SELECTED NUMBERS MATCH, THEY LOSE THE WAGERED AMOUNT.\n";
+
+        std::cout << "\n\n" << "                                      KENO" << "\n\n\n" << "   -THE PLAYER SELECTS BETWEEN 2-10 NUMBERS RANGING FROM 1 TO 80 AND PLACES A" << "\n" << "                         WAGER ON THAT POOL OF NUMBERS" << "\n\n" << "                     -THEN, 20 NUMBERS ARE DRAWN AT RANDOM" << "\n\n" << "     -THE PLAYER WINS BASED ON MATCHING SELECTED NUMBERS TO THE DRAWN ONES" << "\n\n" << "        -THE PAYOUTS VARY BASED ON THE TOTAL NUMBER OF SELECTED NUMBERS" << "\n" <<  "                        (SEE GITHUB README FOR DETAILS)" << "\n\n" << "      -IF NONE OF THE SELECTED NUMBERS MATCH, THEY LOSE THE WAGERED AMOUNT" << "\n"; //c
         
 
-        std::cout << instruction_message;
-        
-
-        std::cout << "\n\n                          1: PLAY KENO";
-        std::cout << "\n                          2: RETURN TO THE GAME FLOOR\n";
-        std::cout << "\n                          PLEASE SELECT AN OPTION: ";
+        std::cout << "\n\n" << "                                  1: PLAY KENO" << std::endl; //c
+        std::cout << "                          2: RETURN TO THE GAME FLOOR" << std::endl; //c
+        std::cout << "\n" << "                           PLEASE SELECT AN OPTION: "; //c
         std::cin >> users_input;
         valid_input = validate_input(users_input);
 
@@ -72,11 +70,10 @@ void Keno::keno_menu(){
     do
     {
         system("clear");
-        std::cout << "\n\n\n\n\n\n\n                                 KENO\n"
-                  << std::endl;
-        std::cout << "                          1: HOW TO PLAY KENO" << std::endl;
-        std::cout << "                          2: PLAY KENO" << std::endl;
-        std::cout << "\n                          PLEASE SELECT AN OPTION: ";
+        std::cout << "\n\n\n\n\n\n\n" << "                                      KENO" << "\n" << std::endl; //c 
+        std::cout << "                              1: HOW TO PLAY KENO" << std::endl; //c
+        std::cout << "                                  2: PLAY KENO" << std::endl; //c
+        std::cout << "\n" << "                            PLEASE SELECT AN OPTION: "; //c
         std::cin >> users_input;
         valid_input = validate_input(users_input);
 
@@ -102,9 +99,9 @@ void Keno::play_keno(){
 
     do{
         system("clear");
-        std::cout << "\n\n                                      KENO\n\n\n" << std::endl; 
+        std::cout << "\n\n" << "                                      KENO" << "\n\n\n" << std::endl; //c
         int counter = 0;  
-        std::string add_space = "                "; 
+        std::string add_space = "               "; //c
         std::string wagered_numbers; 
         
         for(int x = 1; x <= 80; x++){
@@ -129,18 +126,20 @@ void Keno::play_keno(){
             }
         }
 
-        std::cout << "\n\n                      SELECT BETWEEN 2-10 NUMBERS TO BET ON:" << std::endl; 
-        std::cout << "                             "; 
+        std::cout << "\n\n" << "                     SELECT BETWEEN 2-10 NUMBERS TO BET ON:" << std::endl; //c
+        std::cout << "                                "; 
         std::getline(std::cin >> std::ws, wagered_numbers); 
         are_valid_numbers = validate_wagered_numbers(wagered_numbers);
-        std::cout << "\n                                   WAGER AMOUNT: "; 
+        std::cout << "\n" << "                                 WAGER AMOUNT: "; //c
         std::cin >> wagered_amount; 
 
         if (std::cin.fail()){
             std::cin.clear();
             std::cin.ignore(10000, '\n');
             system("clear");
-            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                        PLEASE ENTER A VALID RESPONSE\n";
+            std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
+            std::cout << "                         PLEASE ENTER A VALID RESPONSE"; //c //c
+            std::cout << "\n";
             std::this_thread::sleep_for(std::chrono::milliseconds(time));
             continue; 
         }
@@ -149,7 +148,9 @@ void Keno::play_keno(){
 
         if(!are_valid_numbers || !is_valid_wager){
             system("clear");
-            std::cout << "\n\n\n\n\n\n\n\n\n\n\n                        PLEASE ENTER A VALID RESPONSE\n";
+            std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
+            std::cout << "                         PLEASE ENTER A VALID RESPONSE"; //c //c
+            std::cout << "\n";
             std::this_thread::sleep_for(std::chrono::milliseconds(time));
         }
 
@@ -172,7 +173,7 @@ void Keno::play_keno(){
 
             system("clear");
             std::this_thread::sleep_for(std::chrono::milliseconds(time / 3));
-            std::cout << "\n\n\n                            THE WINNING NUMBERS ARE: \n\n" << std::endl; 
+            std::cout << "\n\n\n" << "                            THE WINNING NUMBERS ARE:" << "\n\n" << std::endl; //c
             std::this_thread::sleep_for(std::chrono::milliseconds(time / 2));
 
             for(int x = 1; x <= 80; x++){
@@ -214,7 +215,7 @@ void Keno::play_keno(){
                 std::cout << winning_numbers_vector.at(i) << " ";
             }
 
-            std::cout << "\n\n                         YOUR NUMBERS: "; 
+            std::cout << "\n\n" << "                           YOUR NUMBERS: "; //c
 
             int hits = 0; 
 
@@ -253,10 +254,10 @@ void Keno::play_keno(){
                 }
             }
 
-            std::cout << "\n                         HITS: " << hits << "\n\n"; 
+            std::cout << "\n" << "                                      HITS: " << hits << "\n\n"; //c
 
             outcome_checker(hits, wagered_numbers_vector.size(), wagered_amount);
-            std::this_thread::sleep_for(std::chrono::milliseconds(time));
+            std::this_thread::sleep_for(std::chrono::milliseconds(time + time));
         }
 
     } while (!are_valid_numbers || !is_valid_wager); 
@@ -282,11 +283,13 @@ void Keno::play_again(){
     
     do{
         system("clear");
-        std::cout << "\n\n\n\n\n\n\n\n                          WOULD YOU LIKE TO PLAY AGAIN?" << std::endl
-                  << "\n";
-        std::cout << "                               1: PLAY AGAIN" << std::endl;
-        std::cout << "                               2: RETURN TO GAMEROOM" << std::endl;
-        std::cout << "\n                             PLEASE SELECT AN OPTION: ";
+        std::cout << "\n\n\n\n\n\n\n\n\n";
+        std::cout << "                         WOULD YOU LIKE TO PLAY AGAIN?" << std::endl; //c //cc 
+        std::cout << "\n";
+        std::cout << "                                 1: PLAY AGAIN" << std::endl;
+        std::cout << "                             2: RETURN TO GAMEROOM" << std::endl;
+        std::cout << "\n"; 
+        std::cout << "                            PLEASE SELECT AN OPTION: "; //c //c 
         std::cin >> input;
 
         bool outcome = validate_input(input);
@@ -408,7 +411,9 @@ bool Keno::validate_input(int users_input){
     {
         std::cin.clear();
         std::cin.ignore(10000, '\n');
-        std::cout << "\n\n\n\n\n\n\n\n\n\n                      THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+        std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
+        std::cout << "                         PLEASE ENTER A VALID RESPONSE"; //c //c
+        std::cout << "\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
         system("clear");
         return false;
@@ -421,7 +426,9 @@ bool Keno::validate_input(int users_input){
     }
     else
     {
-        std::cout << "\n\n\n\n\n\n\n\n\n\n                      THIS TIME, PLEASE ENTER A VALID RESPONSE\n";
+        std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
+        std::cout << "                         PLEASE ENTER A VALID RESPONSE"; //c //c
+        std::cout << "\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
         system("clear");
         return false;
@@ -604,11 +611,11 @@ void Keno::outcome_checker(int hits, int spots, int wager){
     Introduction token_access; 
 
     if(won_tokens == 0){
-        std::cout << "                                  YOU LOST " << std::to_string(wager) << " TOKENS\n\n";
+        std::cout << "                               YOU LOST " << std::to_string(wager) << " TOKENS" << "\n\n";
         token_access.set_tokens(token_access.get_tokens() - wager);
     }
     else{
-        std::cout << "                                YOU WON " << std::to_string(won_tokens) << " TOKENS\n\n";
+        std::cout << "                                YOU WON " << std::to_string(won_tokens) << " TOKENS" << "\n\n";
         token_access.set_tokens(token_access.get_tokens() + won_tokens);
     }
 
