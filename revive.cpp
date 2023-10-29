@@ -9,6 +9,7 @@
 #include <random>
 #include "introduction.h"
 #include "revive.h"
+#include "gameroom.h"
 
 Revive::Revive(){
 
@@ -39,8 +40,9 @@ void Revive::Explanation()
     std::cout << "\n";
     std::cout << "\n";
     std::cout << "\n";
+    std::cout << "\n";
     std::this_thread::sleep_for(std::chrono::milliseconds(timeDelay));
-    std::cout << "                  IT LOOKS LIKE YOU HAVE RUN OUT OF TOKENS" << std::endl;
+    std::cout << "                    IT LOOKS LIKE YOU HAVE RUN OUT OF TOKENS" << std::endl; //c //c
     std::cout << "\n";
 
     do
@@ -49,14 +51,14 @@ void Revive::Explanation()
         std::string equationString = generateEquation();
 
         std::this_thread::sleep_for(std::chrono::milliseconds(timeDelay));
-        std::cout << "                     SOLVE THIS PROBLEM TO GET 3 TOKENS" << std::endl;
+        std::cout << "                       SOLVE THIS PROBLEM TO GET 3 TOKENS" << std::endl; //c //c
         std::cout << "\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(timeDelay));
-        std::cout << "                              " << equationString << " = ?";
+        std::cout << "                               " << equationString << " = ?"; //c //c
         std::cout << "\n";
         std::cout << "\n";
         std::cout << "\n";
-        std::cout << "                               YOUR ANSWER: ";
+        std::cout << "                                 YOUR ANSWER: "; //c //c
         std::cin >> userAnswer;
 
         // answer to the equation
@@ -66,6 +68,12 @@ void Revive::Explanation()
         answeredCorrectly = answerChecker(userAnswer, correct_answer);
 
     } while (!answeredCorrectly);
+
+    // if answer correctly send them back to gameroom with extra tokens
+    system("clear");
+    Gameroom send_user_to_gameroom;
+    send_user_to_gameroom.return_to_games_menu(); 
+
 }
 
 // this function generates the equation using the other helper functions
@@ -169,7 +177,7 @@ bool Revive::answerChecker(int userAnswer, int correctAnswer)
         std::cout << "\n";
         std::cout << "\n";
         std::cout << "\n";
-        std::cout << "                   PLEASE ENTER A VALID RESPONSE\n\n";
+        std::cout << "                         PLEASE ENTER A VALID RESPONSE\n\n"; //c //c
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
         system("clear");
         std::cout << "\n";
@@ -192,7 +200,7 @@ bool Revive::answerChecker(int userAnswer, int correctAnswer)
             // extra tokens earned for solving the equation
             int extraTokens = 3;
 
-            std::cout << "\n\n\n\n\n\n\n            YOUR ANSWER WAS CORRECT, ADDING TOKENS TO YOUR ACCOUNT \n";
+            std::cout << "\n\n\n\n\n\n\n\n\n\n\n" << "             YOUR ANSWER WAS CORRECT, ADDING TOKENS TO YOUR ACCOUNT" << "\n"; //c //c
             std::this_thread::sleep_for(std::chrono::milliseconds(time - 1000));
             Introduction revivalTokensObj;
             revivalTokensObj.set_tokens(revivalTokensObj.get_tokens() + extraTokens);
@@ -200,8 +208,18 @@ bool Revive::answerChecker(int userAnswer, int correctAnswer)
         }
 
         // if the user answers incorrectly, return false to restart the loop
-        std::cout << "\n\n\n\n\n\n\n                    YOUR ANSWER WAS INCORRECT, PLEASE TRY AGAIN\n";
+        std::cout << "\n\n\n\n\n\n\n\n\n\n\n" << "                  YOUR ANSWER WAS INCORRECT, PLEASE TRY AGAIN" << "\n"; //c //c
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
+        system("clear");
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
         return false;
     }
 }
