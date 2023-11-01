@@ -321,12 +321,17 @@ void Introduction::register_or_login()
         std::cout << "\n\n";
         std::cout << "                                SELECT AN OPTION: ";
 
-        users_input = std::cin.get();
+        //users_input = std::cin.get();
+
+        users_input = std::cin.get(); 
+
+        //char nextChar = std::cin.get();
 
         if(users_input == '\n'){
 
             system("clear");
             std::cin.clear();
+            //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear the input buffer
             std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
             std::cout << "                         PLEASE ENTER A VALID RESPONSE";
             std::cout << "\n";
@@ -334,6 +339,25 @@ void Introduction::register_or_login()
             system("clear");
             std::cout << "\n\n\n\n\n";
             continue;
+        }
+
+        int nextChar;
+
+        while((nextChar = std::cin.get()) && nextChar != EOF){
+
+            if(nextChar != '\n'){
+                system("clear");
+                std::cin.clear();
+                //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear the input buffer
+                //std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
+                //std::cout << "                         PLEASE ENTER A VALID RESPONSE";
+                //std::cout << "\n";
+                //std::this_thread::sleep_for(std::chrono::milliseconds(time));
+                system("clear");
+                std::cout << "\n\n\n\n\n";
+                users_input = 'X';
+                break; 
+                }
         }
 
         is_valid = validate_input(users_input);
