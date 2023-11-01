@@ -10,8 +10,6 @@
 #include <map>
 #include <vector>
 
-// introduction.cpp is centered both x & y
-
 std::vector<int> encryptionKey = {862442, 421612, 916945, 148275}; // Longer key for added complexity
 
 // constructor
@@ -153,27 +151,29 @@ void Introduction::welcome()
 }
 
 // validates the user's input in this panel
-bool Introduction::validate_input(int users_input)
+bool Introduction::validate_input(char users_input)
 {
     // clear console
     system("clear");
 
     const int time = 3000;
 
+    /*
     // Check if user even entered a digit
     if (std::cin.fail())
     {
         std::cin.clear();
-        std::cin.ignore(10000, '\n');
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear the input buffer
         std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
         std::cout << "                         PLEASE ENTER A VALID RESPONSE";
         std::cout << "\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
         return false;
     }
+    */
 
     // Check if digit is one of the available options
-    if (users_input == (1) || users_input == (2))
+    if (users_input == ('1') || users_input == ('2'))
     {
         return true;
     }
@@ -293,16 +293,13 @@ void Introduction::reg()
 }
 
 // direct programs control to either register or login method
-void Introduction::direct_control_flow(int users_input)
+void Introduction::direct_control_flow(char users_input)
 {
-    int login_option = 1;
-    int register_option = 2;
-
-    if (users_input == (login_option))
+    if (users_input == ('1'))
     {
         login();
     }
-    else if (users_input == (register_option))
+    else if (users_input == ('2'))
     {
         reg();
     }
@@ -311,8 +308,9 @@ void Introduction::direct_control_flow(int users_input)
 // prompts user to register or login during menu screen
 void Introduction::register_or_login()
 {
-    bool is_valid;
-    int users_input;
+    bool is_valid = false;
+    char users_input;
+    int time = 3000; 
 
     do
     {
@@ -322,11 +320,29 @@ void Introduction::register_or_login()
         std::cout << "                                  2: REGISTER";
         std::cout << "\n\n";
         std::cout << "                                SELECT AN OPTION: ";
-        std::cin >> users_input;
+
+        users_input = std::cin.get();
+
+        if(users_input == '\n'){
+
+            system("clear");
+            std::cin.clear();
+            std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
+            std::cout << "                         PLEASE ENTER A VALID RESPONSE";
+            std::cout << "\n";
+            std::this_thread::sleep_for(std::chrono::milliseconds(time));
+            system("clear");
+            std::cout << "\n\n\n\n\n";
+            continue;
+        }
+
         is_valid = validate_input(users_input);
 
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear the input buffer
+
         system("clear");
-        std::cout << "\n\n\n\n";
+        std::cout << "\n\n\n\n\n";
 
     } while (!is_valid);
 
