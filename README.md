@@ -18,10 +18,10 @@
 ## Games & Payouts:
 
 * Casino War
-    - 1:1 payout
+    - Payout is 2x wager.
 
 * Horse Race
-    - 5:1 payout
+    - Payout is 5x wager. 
 
 * Keno  
     - 2 spots:  
