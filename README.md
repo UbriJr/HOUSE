@@ -2,9 +2,7 @@
 
 ## Summary
 
-**This project is still under development and will be completed soon. Star it & check back later!**
-
-**HOUSE** is a casino developed entirely in C++
+**HOUSE** is an engaging and interactive casino game designed to run in the terminal, programmed exclusively in C++. This exciting game offers players the opportunity to experience various casino games without ever leaving their computer. The games featured in **HOUSE** are Casino War, Horse Race and Keno.
 
 <br />   
 
@@ -17,7 +15,7 @@
 </p>
 <br /> 
 
-## Features:
+## Games & Payouts:
 
 * Casino War
     - 1:1 payout
