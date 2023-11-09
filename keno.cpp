@@ -62,6 +62,10 @@ void Keno::keno_instructions(){
 // prompt user with the keno menu to either play or display instructions
 void Keno::keno_menu(){
 
+    // Clear the input buffer
+    std::cin.clear();
+    //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
     int instructions = 1;
     int play = 2;
     int users_input;

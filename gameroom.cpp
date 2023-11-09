@@ -11,8 +11,6 @@
 #include "horserace.h"
 #include "keno.h"
 
-// gameroom.cpp is centered both x & y
-
 // constructor
 Gameroom::Gameroom(){
 
@@ -53,10 +51,13 @@ void Gameroom::game_options()
 {
     system("clear");
     bool is_valid_input;
-    int users_input;
+    std::string users_input;
 
     Introduction token_access_obj;
     int tokens = token_access_obj.get_tokens();
+
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear the input buffer
 
     do
     {
@@ -73,7 +74,9 @@ void Gameroom::game_options()
         std::cout << "                                 3: KENO"<< std::endl;
         std::cout << "\n";
         std::cout << "                                SELECT AN OPTION: ";
-        std::cin >> users_input;
+
+        std::getline(std::cin, users_input);
+
         is_valid_input = validate_input(users_input);
         system("clear");
 
@@ -83,7 +86,7 @@ void Gameroom::game_options()
 }
 
 // validates the users input
-bool Gameroom::validate_input(int users_input)
+bool Gameroom::validate_input(std::string users_input)
 {
 
     // clear console
@@ -91,20 +94,8 @@ bool Gameroom::validate_input(int users_input)
 
     int time = 3000;
 
-    // Check if user even entered a digit
-    if (std::cin.fail())
-    {
-        std::cin.clear();
-        std::cin.ignore(10000, '\n');
-        std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
-        std::cout << "                         PLEASE ENTER A VALID RESPONSE";
-        std::cout << "\n";
-        std::this_thread::sleep_for(std::chrono::milliseconds(time));
-        return false;
-    }
-
     // Check if digit is one of the available options
-    if (users_input == (1) || users_input == (2) || users_input == (3))
+    if (users_input == ("1") || users_input == ("2") || users_input == ("3"))
     {
         return true;
     }
@@ -119,23 +110,25 @@ bool Gameroom::validate_input(int users_input)
 }
 
 // directs user to the game of their choice
-void Gameroom::direct_game_flow(int users_input)
+void Gameroom::direct_game_flow(std::string users_input)
 {
     int game_one = 1;
     int game_two = 2;
     int game_three = 3;
 
-    if (users_input == (game_one))
+    int user_converted_input = std::stoi(users_input); 
+
+    if (user_converted_input == (game_one))
     {
         CasinoWar casino_war;
         casino_war.run_casino_war();
     }
-    else if (users_input == (game_two))
+    else if (user_converted_input == (game_two))
     {
         HorseRace horse_race;
         horse_race.run_horse_race();
     }
-    else if (users_input == game_three)
+    else if (user_converted_input == game_three)
     {
         Keno keno;
         keno.run_keno(); 

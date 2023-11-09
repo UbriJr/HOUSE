@@ -14,10 +14,10 @@ private:
     std::string encrypt(int tokens);
     int decrypt(std::string cipher);
     void welcome();
-    bool validate_input(char users_input);
+    bool validate_input(std::string users_input);
     void login();
     void reg();
-    void direct_control_flow(char users_input);
+    void direct_control_flow(std::string users_input);
     void register_or_login();
     void spacing_buffer(int spaces);
 };

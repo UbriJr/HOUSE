@@ -11,8 +11,8 @@ public:
 private:
     void welcome();
     void game_options();
-    bool validate_input(int users_input);
-    void direct_game_flow(int users_input);
+    bool validate_input(std::string users_input);
+    void direct_game_flow(std::string users_input);
 };
 
 #endif

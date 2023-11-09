@@ -35,6 +35,10 @@ void HorseRace::run_horse_race()
 // Prompts user to either read the instruction or start playing horse race.
 void HorseRace::horse_race_menu()
 {
+    // Clear the input buffer
+    std::cin.clear();
+    //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
     // available options
     int instruction = 1;
     int play = 2;

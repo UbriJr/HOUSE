@@ -151,29 +151,15 @@ void Introduction::welcome()
 }
 
 // validates the user's input in this panel
-bool Introduction::validate_input(char users_input)
+bool Introduction::validate_input(std::string users_input)
 {
     // clear console
     system("clear");
 
     const int time = 3000;
 
-    /*
-    // Check if user even entered a digit
-    if (std::cin.fail())
-    {
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear the input buffer
-        std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
-        std::cout << "                         PLEASE ENTER A VALID RESPONSE";
-        std::cout << "\n";
-        std::this_thread::sleep_for(std::chrono::milliseconds(time));
-        return false;
-    }
-    */
-
     // Check if digit is one of the available options
-    if (users_input == ('1') || users_input == ('2'))
+    if (users_input == ("1") || users_input == ("2"))
     {
         return true;
     }
@@ -293,13 +279,13 @@ void Introduction::reg()
 }
 
 // direct programs control to either register or login method
-void Introduction::direct_control_flow(char users_input)
+void Introduction::direct_control_flow(std::string users_input)
 {
-    if (users_input == ('1'))
+    if (users_input == ("1"))
     {
         login();
     }
-    else if (users_input == ('2'))
+    else if (users_input == ("2"))
     {
         reg();
     }
@@ -309,7 +295,7 @@ void Introduction::direct_control_flow(char users_input)
 void Introduction::register_or_login()
 {
     bool is_valid = false;
-    char users_input;
+    std::string users_input;
     int time = 3000; 
 
     do
@@ -321,49 +307,9 @@ void Introduction::register_or_login()
         std::cout << "\n\n";
         std::cout << "                                SELECT AN OPTION: ";
 
-        //users_input = std::cin.get();
-
-        users_input = std::cin.get(); 
-
-        //char nextChar = std::cin.get();
-
-        if(users_input == '\n'){
-
-            system("clear");
-            std::cin.clear();
-            //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear the input buffer
-            std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
-            std::cout << "                         PLEASE ENTER A VALID RESPONSE";
-            std::cout << "\n";
-            std::this_thread::sleep_for(std::chrono::milliseconds(time));
-            system("clear");
-            std::cout << "\n\n\n\n\n";
-            continue;
-        }
-
-        int nextChar;
-
-        while((nextChar = std::cin.get()) && nextChar != EOF){
-
-            if(nextChar != '\n'){
-                system("clear");
-                std::cin.clear();
-                //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear the input buffer
-                //std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
-                //std::cout << "                         PLEASE ENTER A VALID RESPONSE";
-                //std::cout << "\n";
-                //std::this_thread::sleep_for(std::chrono::milliseconds(time));
-                system("clear");
-                std::cout << "\n\n\n\n\n";
-                users_input = 'X';
-                break; 
-                }
-        }
+        std::getline(std::cin, users_input); 
 
         is_valid = validate_input(users_input);
-
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear the input buffer
 
         system("clear");
         std::cout << "\n\n\n\n\n";

@@ -8,7 +8,7 @@ public:
     void run_casino_war();
 
 private:
-    bool validate_input(int users_input);
+    bool validate_input(std::string users_input);
     void casino_war_menu();
     void play_casino_war();
     void casino_war_instructions();

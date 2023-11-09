@@ -12,8 +12,6 @@
 #include "visuals.h"
 #include "revive.h"
 
-// casinowar.cpp is centered in both x & y
-
 int wager;
 Introduction token_access_obj;
 
@@ -29,33 +27,20 @@ void CasinoWar::run_casino_war()
 }
 
 // validates user's input
-bool CasinoWar::validate_input(int users_input)
+bool CasinoWar::validate_input(std::string users_input)
 {
     system("clear");
     const int time = 3000;
 
-    // Check if user even entered a digit
-    if (std::cin.fail())
-    {
-        std::cin.clear();
-        std::cin.ignore(10000, '\n');
-        std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
-        std::cout << "                         PLEASE ENTER A VALID RESPONSE"; //c //c
-        std::cout << "\n";
-        std::this_thread::sleep_for(std::chrono::milliseconds(time));
-        system("clear");
-        return false;
-    }
-
     // Check if digit is one of the available options
-    if (users_input == (1) || users_input == (2))
+    if (users_input == ("1") || users_input == ("2"))
     {
         return true;
     }
     else
     {
         std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
-        std::cout << "                         PLEASE ENTER A VALID RESPONSE"; // centered //c
+        std::cout << "                         PLEASE ENTER A VALID RESPONSE";
         std::cout << "\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
         system("clear");
@@ -68,8 +53,13 @@ void CasinoWar::casino_war_menu()
 {
     int instructions = 1;
     int play = 2;
-    int users_input;
+    std::string users_input;
+    int user_converted_input; 
     bool valid_input;
+
+    // Clear the input buffer
+    std::cin.clear();
+    //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     do
     {
@@ -81,16 +71,20 @@ void CasinoWar::casino_war_menu()
         std::cout << "                               2: PLAY CASINO WAR" << std::endl; // c //c
         std::cout << "\n";
         std::cout << "                           PLEASE SELECT AN OPTION: "; //c //c
-        std::cin >> users_input;
+        
+        std::getline(std::cin, users_input);
+
         valid_input = validate_input(users_input);
 
     } while (!valid_input);
 
-    if (users_input == (instructions))
+    user_converted_input = std::stoi(users_input);
+
+    if (user_converted_input == (instructions))
     {
         casino_war_instructions();
     }
-    else if (users_input == (play))
+    else if (user_converted_input == (play))
     {
         play_casino_war();
     }
@@ -109,7 +103,7 @@ bool CasinoWar::check_wager(int wager)
         std::cin.ignore(10000, '\n');
         system("clear");
         std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
-        std::cout << "                         PLEASE ENTER A VALID RESPONSE"; // centered //c
+        std::cout << "                         PLEASE ENTER A VALID RESPONSE"; 
         std::cout << "\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
         system("clear");
@@ -134,6 +128,7 @@ void CasinoWar::play_casino_war()
 {
     system("clear");
     bool valid_input;
+    std::string preconverted_wager; 
 
     do
     {
@@ -142,7 +137,8 @@ void CasinoWar::play_casino_war()
         std::cout << "\n";
         std::cout << "                                  WAGER AMOUNT: "; //c //c
 
-        std::cin >> wager;
+        std::getline(std::cin, preconverted_wager); fix this, wager should be string, checked, then converted to int, this way we account for the enter key. 
+
         valid_input = check_wager(wager);
 
     } while (!valid_input);
@@ -164,7 +160,8 @@ void CasinoWar::casino_war_instructions() //cc //c whole thing
 {
     system("clear");
     bool valid_input;
-    int users_input;
+    std::string users_input;
+    int user_converted_input; 
 
     do
     {
@@ -177,16 +174,20 @@ void CasinoWar::casino_war_instructions() //cc //c whole thing
         std::cout << "                          2: RETURN TO THE GAME FLOOR" << std::endl; //c
         std::cout << "\n";
         std::cout << "                             PLEASE SELECT AN OPTION: "; //c
-        std::cin >> users_input;
+        
+        std::getline(std::cin, users_input); 
+
         valid_input = validate_input(users_input);
 
     } while (!valid_input);
 
-    if (users_input == (1))
+    user_converted_input = std::stoi(users_input);
+
+    if (user_converted_input == (1))
     {
         play_casino_war();
     }
-    else if (users_input == (2))
+    else if (user_converted_input == (2))
     {
         Gameroom game_room_obj;
         game_room_obj.return_to_games_menu();
@@ -206,8 +207,9 @@ int CasinoWar::random_card_generator()
 // prompts the user to play casino war again or return them to the gameroom
 void CasinoWar::play_again() //c //c
 {
-    int user_input;
+    std::string user_input;
     bool valid_input;
+    int user_converted_input; 
 
     do
     {
@@ -219,16 +221,20 @@ void CasinoWar::play_again() //c //c
         std::cout << "                             2: RETURN TO GAMEROOM" << std::endl; //c
         std::cout << "\n"; 
         std::cout << "                            PLEASE SELECT AN OPTION: "; //c
-        std::cin >> user_input;
+        
+        std::getline(std::cin, user_input);
+
         valid_input = validate_input(user_input);
 
     } while (!valid_input);
 
-    if (user_input == (1))
+    user_converted_input = std::stoi(user_input);
+
+    if (user_converted_input == (1))
     {
         play_casino_war();
     }
-    else if (user_input == (2))
+    else if (user_converted_input == (2))
     {
         Gameroom game_room_obj;
         game_room_obj.return_to_games_menu();
