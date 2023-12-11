@@ -16,7 +16,7 @@ private:
     void reveal_cards();
     void check_outcome(int players_card, int dealers_card);
     int random_card_generator();
-    bool check_wager(int wager);
+    bool check_wager(std::string str_wager);
     void draw_cards(int card, std::string spacing);
 };
 

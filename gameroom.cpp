@@ -57,7 +57,7 @@ void Gameroom::game_options()
     int tokens = token_access_obj.get_tokens();
 
     std::cin.clear();
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear the input buffer
+    //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear the input buffer
 
     do
     {

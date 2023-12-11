@@ -21,12 +21,9 @@
 
 int main(int argc, const char *argv[])
 {
-    // the terminal is 81 chars across
-    // 24 1-24 tall
-
     // This will kick off the first panel, thus starting the entire program.
-    Introduction introduction_obj;
-    introduction_obj.run_introduction();
+     Introduction introduction_obj;
+     introduction_obj.run_introduction();
 
     //Keno keno;
     //keno.run_keno(); 
