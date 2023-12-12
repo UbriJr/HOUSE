@@ -155,7 +155,6 @@ bool Introduction::validate_input(std::string users_input)
 {
     // clear console
     system("clear");
-
     const int time = 3000;
 
     // Check if digit is one of the available options
@@ -178,6 +177,7 @@ void Introduction::login()
 {
 
     system("clear");
+    
     std::string username;
     std::string password;
     std::string current_line;
@@ -214,6 +214,7 @@ void Introduction::login()
 
         user_info_found = true;
     }
+    
     std::cout << "\n";
 
     read_file.close();
@@ -227,6 +228,11 @@ void Introduction::login()
         std::cout << "        COULD NOT FIND AN ACCOUNT WITH THE GIVEN USERNAME AND PASSWORD" << std::endl;
         std::cout << "                     PLEASE REGISTER OR TRY TO LOGIN AGAIN"
                   << std::endl;
+
+        
+        std::cin.clear(); // maybe keep this, keep testing
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear the input buffer
+
         register_or_login();
     }
 
