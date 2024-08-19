@@ -9,6 +9,7 @@ public:
 
 private:
     bool validate_input(std::string users_input);
+    std::string token_or_tokens(std::string token_amount); 
     void casino_war_menu();
     void play_casino_war();
     void casino_war_instructions();

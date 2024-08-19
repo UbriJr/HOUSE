@@ -127,7 +127,7 @@ bool CasinoWar::check_wager(std::string str_wager)
     {
         system("clear");
         std::cout << "\n\n\n\n\n\n\n\n\n\n";
-        std::cout << "                  YOU WAGERED " << str_wager << " TOKENS BUT ONLY HAVE" << " " << max_possible_bet << " TOKENS" << std::endl; //c //c
+        std::cout << "                  YOU WAGERED " << str_wager << token_or_tokens(str_wager) << " BUT ONLY HAVE" << " " << max_possible_bet << token_or_tokens(str_wager) << std::endl; //c //c
         std::cout << "\n";
         std::cout << "                       PLEASE ENTER A VALID WAGER AMOUNT" << std::endl; //c //c
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
@@ -157,11 +157,11 @@ void CasinoWar::play_casino_war()
 
     } while (!valid_input);
 
-    std::cin.clear();
-    // std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear the input buffer
+    //std::cin.clear();
+    //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear the input buffer
 
     std::cout << "\n"; 
-    std::cout << "                               YOU WAGERED " << preconverted_wager << " TOKENS" << std::endl; //c //c 
+    std::cout << "                               YOU WAGERED " << preconverted_wager << token_or_tokens(preconverted_wager) << std::endl; //c //c 
     std::cout << "\n\n\n";
     std::cout << "                           ENTER ANY KEY TO CONTINUE: "; //c //c
     std::cin.ignore();
@@ -283,13 +283,13 @@ void CasinoWar::reveal_cards() //cant be centered
 void CasinoWar::check_outcome(int players_card, int dealers_card)
 {
     const int tie_timer = 7000;
-    const int win_lose_timer = 4000;
+    const int win_lose_timer = 4000; 
     Introduction coin_access_obj;
 
     if (players_card > dealers_card)
     {
         std::cout << "\n" << "                                    YOU WON" << std::endl; //c
-        std::cout << "\n" << "                                YOU WON " << preconverted_wager << " TOKENS" << std::endl; //c 
+        std::cout << "\n" << "                                YOU WON " << preconverted_wager << token_or_tokens(preconverted_wager) << std::endl; //c 
         coin_access_obj.set_tokens(token_access_obj.get_tokens() + (std::stoi(preconverted_wager)));
         std::this_thread::sleep_for(std::chrono::milliseconds(win_lose_timer));
     }
@@ -303,7 +303,7 @@ void CasinoWar::check_outcome(int players_card, int dealers_card)
     else if (dealers_card > players_card)
     {
         std::cout << "\n" << "                                 THE DEALER WON" << std::endl; //c
-        std::cout << "\n" << "                                YOU LOST " << preconverted_wager << " TOKENS" << std::endl; //c
+        std::cout << "\n" << "                                YOU LOST " << preconverted_wager << token_or_tokens(preconverted_wager) << std::endl; //c
         coin_access_obj.set_tokens(token_access_obj.get_tokens() - (std::stoi(preconverted_wager)));
         std::this_thread::sleep_for(std::chrono::milliseconds(win_lose_timer));
     }
@@ -318,8 +318,18 @@ void CasinoWar::check_outcome(int players_card, int dealers_card)
     else{
         play_again();
     }
-    
 }
+
+// this will take in the token amount and return the string "TOKEN" or "TOKENS" depending on how many
+std::string CasinoWar::token_or_tokens(std::string token_amount){
+    if((std::stoi(token_amount)) == 1){
+        return " TOKEN"; 
+    }
+    else{
+        return " TOKENS"; 
+    }
+}; 
+
 // thanks john wiech for the contribution
 void CasinoWar::draw_cards(int card, std::string spacing)
 {
