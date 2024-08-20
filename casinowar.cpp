@@ -32,6 +32,7 @@ void CasinoWar::run_casino_war()
 bool CasinoWar::validate_input(std::string users_input)
 {
     system("clear");
+    std::cin.clear();
     const int time = 3000;
 
     // Check if digit is one of the available options
@@ -58,10 +59,6 @@ void CasinoWar::casino_war_menu()
     std::string users_input;
     int user_converted_input; 
     bool valid_input;
-
-    // Clear the input buffer
-    std::cin.clear();
-    //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     do
     {
@@ -102,7 +99,6 @@ bool CasinoWar::check_wager(std::string str_wager)
     // Check if the input is empty or contains only whitespace
     if (str_wager.empty() || std::all_of(str_wager.begin(), str_wager.end(), ::isspace))
     {
-        std::cin.clear();
         system("clear");
         std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
         std::cout << "                         PLEASE ENTER A VALID RESPONSE";
@@ -114,7 +110,6 @@ bool CasinoWar::check_wager(std::string str_wager)
     // Check if user even entered a digit
     else if (!(std::all_of(str_wager.begin(), str_wager.end(), ::isdigit)))
     {
-        std::cin.clear();
         system("clear");
         std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
         std::cout << "                         PLEASE ENTER A VALID RESPONSE"; 
@@ -142,6 +137,7 @@ void CasinoWar::play_casino_war()
 {
     system("clear");
     bool valid_input;
+    std::string throw_away_input; 
     // std::string preconverted_wager; 
 
     do
@@ -157,14 +153,12 @@ void CasinoWar::play_casino_war()
 
     } while (!valid_input);
 
-    //std::cin.clear();
-    //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear the input buffer
-
     std::cout << "\n"; 
     std::cout << "                               YOU WAGERED " << preconverted_wager << token_or_tokens(preconverted_wager) << std::endl; //c //c 
     std::cout << "\n\n\n";
     std::cout << "                           ENTER ANY KEY TO CONTINUE: "; //c //c
-    std::cin.ignore();
+    std::getline(std::cin, throw_away_input);
+    std::cin.clear(); 
 
     reveal_cards();
 }
@@ -224,8 +218,6 @@ void CasinoWar::play_again() //c //c
     std::string user_input;
     bool valid_input;
     int user_converted_input; 
-
-    std::cin.clear();
 
     do
     {
@@ -328,7 +320,7 @@ std::string CasinoWar::token_or_tokens(std::string token_amount){
     else{
         return " TOKENS"; 
     }
-}; 
+}
 
 // thanks john wiech for the contribution
 void CasinoWar::draw_cards(int card, std::string spacing)

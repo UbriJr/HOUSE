@@ -182,6 +182,7 @@ void Introduction::login()
     std::string password;
     std::string current_line;
     std::string next_line;
+    std::string spacer = "";
     std::cout << "\n";
 
     const int time = 5000;
@@ -202,12 +203,16 @@ void Introduction::login()
     getline(read_file, current_line); //username is line 1
     getline(read_file, next_line); // password is line 2
 
+    if(get_tokens() == 1){
+        spacer = " "; 
+    }
+
     if ((username == current_line) && (password == next_line))
     {
         system("clear");
         std::cout << "\n\n\n\n\n\n\n\n\n";
         std::cout << "                                LOGIN SUCCESSFUL" << std::endl;
-        std::cout << "                               YOU HAVE " << (get_tokens()) << " TOKENS" << std::endl;
+        std::cout << spacer << "                               YOU HAVE " << (get_tokens()) << token_or_tokens(get_tokens()) << std::endl;
         std::cout << "                PLEASE WAIT WHILE WE BRING YOU TO THE GAME FLOOR" << std::endl;
         std::cout << "";
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
@@ -327,6 +332,16 @@ void Introduction::register_or_login()
     } while (!is_valid);
 
     direct_control_flow(users_input);
+}
+
+// this will take in the token amount and return the string "TOKEN" or "TOKENS" depending on how many
+std::string Introduction::token_or_tokens(int token_amount){
+    if((token_amount) == 1){
+        return " TOKEN"; 
+    }
+    else{
+        return " TOKENS"; 
+    }
 }
 
 // added white space to make program more visually appealing
