@@ -183,7 +183,7 @@ void Introduction::login()
     std::string current_line;
     std::string next_line;
     std::string spacer = "";
-    std::cout << "\n";
+    std::cout << "\n"; //31
 
     const int time = 5000;
 
@@ -203,16 +203,16 @@ void Introduction::login()
     getline(read_file, current_line); //username is line 1
     getline(read_file, next_line); // password is line 2
 
-    if(get_tokens() == 1){
-        spacer = " "; 
-    }
+    for(int i = 0; i <= 32 - std::to_string(get_tokens()).length(); i++){
+        spacer = spacer + " ";
+    } 
 
     if ((username == current_line) && (password == next_line))
     {
         system("clear");
         std::cout << "\n\n\n\n\n\n\n\n\n";
         std::cout << "                                LOGIN SUCCESSFUL" << std::endl;
-        std::cout << spacer << "                               YOU HAVE " << (get_tokens()) << token_or_tokens(get_tokens()) << std::endl;
+        std::cout << spacer << "YOU HAVE " << (get_tokens()) << token_or_tokens(get_tokens()) << std::endl;
         std::cout << "                PLEASE WAIT WHILE WE BRING YOU TO THE GAME FLOOR" << std::endl;
         std::cout << "";
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
