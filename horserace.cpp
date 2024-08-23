@@ -14,8 +14,6 @@
 #include "gameroom.h"
 #include "revive.h"
 
-// horserace.cpp centered in both x and y
-
 // need to know how much the user wagered across functions
 int users_wager;
 int users_horse;
@@ -35,9 +33,6 @@ void HorseRace::run_horse_race()
 // Prompts user to either read the instruction or start playing horse race.
 void HorseRace::horse_race_menu()
 {
-    // Clear the input buffer
-    std::cin.clear();
-    //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     // available options
     int instruction = 1;
@@ -51,6 +46,7 @@ void HorseRace::horse_race_menu()
     bool is_valid_input;
 
     // prompts user for a response, will loop until a valid response is given
+    /*
     do
     {
         // clear the console
@@ -69,7 +65,23 @@ void HorseRace::horse_race_menu()
         if (std::cin.fail())
         {
             std::cin.clear();
-            std::cin.ignore(10000, '\n');
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            system("clear");
+            std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
+            std::cout << "                         PLEASE ENTER A VALID RESPONSE";
+            std::cout << "\n";
+            std::this_thread::sleep_for(std::chrono::milliseconds(time));
+            is_valid_input = false;
+            
+        }
+        else if (((users_input == 1) || (users_input == 2)) && is_valid_input != false)
+        {
+            is_valid_input = true;
+        }
+        else
+        {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             system("clear");
             std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
             std::cout << "                         PLEASE ENTER A VALID RESPONSE";
@@ -77,12 +89,45 @@ void HorseRace::horse_race_menu()
             std::this_thread::sleep_for(std::chrono::milliseconds(time));
             is_valid_input = false;
         }
-        else if ((users_input == 1) || (users_input == 2))
-        {
-            is_valid_input = true;
-        }
-        else
-        {
+
+        std::cin.clear();
+
+    } while (!is_valid_input);
+    */
+
+   do {
+        // Clear the console
+        system("clear");
+
+        std::cout << "\n\n\n\n\n\n\n\n\n"; 
+        std::cout << "                                   HORSE RACE" << std::endl;
+        std::cout << "\n"; 
+        std::cout << "                           1: HOW TO PLAY HORSE RACE" << std::endl;
+        std::cout << "                               2: PLAY HORSE RACE" << std::endl;
+        std::cout << "\n"; 
+        std::cout << "                            PLEASE SELECT AN OPTION: ";
+
+        // Read the entire line of input
+        std::string line;
+        std::getline(std::cin, line);
+
+        // Create a string stream to parse the integer
+        std::istringstream iss(line);
+        if (iss >> users_input) {
+            // Check for extra characters in the line
+            if (iss.eof() && (users_input == 1 || users_input == 2)) {
+                is_valid_input = true;
+            } else {
+                // Extra characters present
+                system("clear");
+                std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
+                std::cout << "                         PLEASE ENTER A VALID RESPONSE";
+                std::cout << "\n";
+                std::this_thread::sleep_for(std::chrono::milliseconds(time));
+                is_valid_input = false;
+            }
+        } else {
+            // Input is not an integer
             system("clear");
             std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
             std::cout << "                         PLEASE ENTER A VALID RESPONSE";
@@ -125,34 +170,38 @@ void HorseRace::instructions()
         std::cout << "\n\n\n\n" << "                               1: PLAY HORSE RACE" << std::endl;
         std::cout << "                          2: RETURN TO THE GAME FLOOR" << std::endl;
         std::cout << "\n" << "                            PLEASE SELECT AN OPTION: ";
-        std::cin >> users_input;
+        //std::cin >> users_input;
 
-        if (std::cin.fail())
-        {
-            std::cin.clear();
-            std::cin.ignore(10000, '\n');
+        // Read the entire line of input
+        std::string line;
+        std::getline(std::cin, line);
+
+        // Create a string stream to parse the integer
+        std::istringstream iss(line);
+        if (iss >> users_input) {
+            // Check for extra characters in the line
+            if (iss.eof() && (users_input == 1 || users_input == 2)) {
+                is_valid_input = true;
+            } else {
+                // Extra characters present
+                system("clear");
+                std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
+                std::cout << "                         PLEASE ENTER A VALID RESPONSE";
+                std::cout << "\n";
+                std::this_thread::sleep_for(std::chrono::milliseconds(time));
+                is_valid_input = false;
+            }
+        } else {
+            // Input is not an integer
             system("clear");
             std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
             std::cout << "                         PLEASE ENTER A VALID RESPONSE";
             std::cout << "\n";
             std::this_thread::sleep_for(std::chrono::milliseconds(time));
-            is_valid_input = true;
-        }
-        else if ((users_input == 1) || (users_input == 2))
-        {
             is_valid_input = false;
         }
-        else
-        {
-            system("clear");
-            std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
-            std::cout << "                         PLEASE ENTER A VALID RESPONSE";
-            std::cout << "\n";
-            std::this_thread::sleep_for(std::chrono::milliseconds(time));
-            is_valid_input = true;
-        }
 
-    } while (is_valid_input);
+    } while (!is_valid_input);
 
     if ((users_input) == (1))
     {
@@ -191,7 +240,7 @@ void HorseRace::place_wager()
         if (std::cin.fail())
         {
             std::cin.clear();
-            std::cin.ignore(10000, '\n');
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             system("clear");
             std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
             std::cout << "                         PLEASE ENTER A VALID RESPONSE";
@@ -202,6 +251,8 @@ void HorseRace::place_wager()
         }
         else if (users_horse > 8 || users_horse < 1)
         {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             system("clear");
             std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
             std::cout << "                         PLEASE ENTER A VALID RESPONSE";
@@ -218,7 +269,7 @@ void HorseRace::place_wager()
         if (std::cin.fail())
         {
             std::cin.clear();
-            std::cin.ignore(10000, '\n');
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             system("clear");
             std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
             std::cout << "                         PLEASE ENTER A VALID RESPONSE";
@@ -229,6 +280,8 @@ void HorseRace::place_wager()
         }
         else if (users_wager > token_access_obj.get_tokens())
         {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             system("clear");
             std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
             std::cout << "                         PLEASE ENTER A VALID RESPONSE";
@@ -244,6 +297,9 @@ void HorseRace::place_wager()
 
         // if all conditions are met user entered valid information and breaks out of loop
         is_valid_response = true;
+        
+
+        //std::cin.clear();
 
     } while (!is_valid_response);
 
@@ -316,7 +372,7 @@ void HorseRace::replay()
 {
     int users_input;
     int time = 3000;
-    bool is_valid_input = false;
+    bool is_valid_input;
 
     do
     {
@@ -328,34 +384,38 @@ void HorseRace::replay()
         std::cout << "                             2: RETURN TO GAMEROOM" << std::endl;
         std::cout << "\n"; 
         std::cout << "                            PLEASE SELECT AN OPTION: ";
-        std::cin >> users_input;
 
-        if (std::cin.fail())
-        {
-            std::cin.clear();
-            std::cin.ignore(10000, '\n');
+        // Read the entire line of input
+        std::string line;
+        std::getline(std::cin, line);
+
+        // Create a string stream to parse the integer
+        std::istringstream iss(line);
+        if (iss >> users_input) {
+            // Check for extra characters in the line
+            if (iss.eof() && (users_input == 1 || users_input == 2)) {
+                is_valid_input = true;
+            } else {
+                // Extra characters present
+                system("clear");
+                std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
+                std::cout << "                         PLEASE ENTER A VALID RESPONSE";
+                std::cout << "\n";
+                std::this_thread::sleep_for(std::chrono::milliseconds(time));
+                is_valid_input = false;
+            }
+        }
+        else {
+            // Input is not an integer
             system("clear");
             std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
             std::cout << "                         PLEASE ENTER A VALID RESPONSE";
             std::cout << "\n";
             std::this_thread::sleep_for(std::chrono::milliseconds(time));
-            is_valid_input = true;
-        }
-        else if ((users_input == 1) || (users_input == 2))
-        {
             is_valid_input = false;
         }
-        else
-        {
-            system("clear");
-            std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
-            std::cout << "                         PLEASE ENTER A VALID RESPONSE";
-            std::cout << "\n";
-            std::this_thread::sleep_for(std::chrono::milliseconds(time));
-            is_valid_input = true;
-        }
 
-    } while (is_valid_input);
+    } while (!is_valid_input);
 
     if (users_input == (1))
     {
