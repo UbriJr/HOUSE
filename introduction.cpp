@@ -7,6 +7,7 @@
 #include <thread>
 #include "introduction.h"
 #include "gameroom.h"
+#include "revive.h"
 #include <map>
 #include <vector>
 
@@ -207,7 +208,7 @@ void Introduction::login()
         spacer = spacer + " ";
     } 
 
-    if ((username == current_line) && (password == next_line))
+    if ((username == current_line) && (password == next_line) && get_tokens() > 0)
     {
         system("clear");
         std::cout << "\n\n\n\n\n\n\n\n\n";
@@ -218,6 +219,20 @@ void Introduction::login()
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
 
         user_info_found = true;
+    }
+    // user stopped playing after reaching 0 tokens and logged back in
+    else if((username == current_line) && (password == next_line) && get_tokens() <= 0){
+        system("clear");
+        std::cout << "\n\n\n\n\n\n\n\n\n";
+        std::cout << "                                LOGIN SUCCESSFUL" << std::endl;
+        std::cout << "";
+        std::this_thread::sleep_for(std::chrono::milliseconds(time));
+
+        user_info_found = true;
+
+        // revive the player
+        Revive revive_obj; 
+        revive_obj.Explanation(); 
     }
     
     std::cout << "\n";

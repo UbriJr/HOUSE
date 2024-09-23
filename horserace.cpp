@@ -45,56 +45,6 @@ void HorseRace::horse_race_menu()
     int users_input;
     bool is_valid_input;
 
-    // prompts user for a response, will loop until a valid response is given
-    /*
-    do
-    {
-        // clear the console
-        system("clear");
-
-        std::cout << "\n\n\n\n\n\n\n\n\n"; 
-        std::cout << "                                   HORSE RACE"<< std::endl;
-        std::cout << "\n"; 
-        std::cout << "                           1: HOW TO PLAY HORSE RACE" << std::endl;
-        std::cout << "                               2: PLAY HORSE RACE" << std::endl;
-        std::cout << "\n"; 
-        std::cout << "                            PLEASE SELECT AN OPTION: ";
-        std::cin >> users_input;
-
-        // if user inputs anything other then int type, cin will fail
-        if (std::cin.fail())
-        {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            system("clear");
-            std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
-            std::cout << "                         PLEASE ENTER A VALID RESPONSE";
-            std::cout << "\n";
-            std::this_thread::sleep_for(std::chrono::milliseconds(time));
-            is_valid_input = false;
-            
-        }
-        else if (((users_input == 1) || (users_input == 2)) && is_valid_input != false)
-        {
-            is_valid_input = true;
-        }
-        else
-        {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            system("clear");
-            std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
-            std::cout << "                         PLEASE ENTER A VALID RESPONSE";
-            std::cout << "\n";
-            std::this_thread::sleep_for(std::chrono::milliseconds(time));
-            is_valid_input = false;
-        }
-
-        std::cin.clear();
-
-    } while (!is_valid_input);
-    */
-
    do {
         // Clear the console
         system("clear");
@@ -251,8 +201,8 @@ void HorseRace::place_wager()
         }
         else if (users_horse > 8 || users_horse < 1)
         {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            //std::cin.clear();
+            //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             system("clear");
             std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
             std::cout << "                         PLEASE ENTER A VALID RESPONSE";
@@ -280,8 +230,8 @@ void HorseRace::place_wager()
         }
         else if (users_wager > token_access_obj.get_tokens())
         {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            //std::cin.clear();
+            //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             system("clear");
             std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
             std::cout << "                         PLEASE ENTER A VALID RESPONSE";
@@ -291,7 +241,7 @@ void HorseRace::place_wager()
             continue;
         }
 
-        std::cout << "\n" << "                         YOU WAGERED " << users_wager << " TOKENS ON HORSE #" << users_horse << "\n";
+        std::cout << "\n" << "                         YOU WAGERED " << users_wager << token_or_tokens(users_wager) << " ON HORSE #" << users_horse << "\n";
         std::cout << "\n\n\n\n" << "                           ENTER ANY KEY TO CONTINUE: ";
         std::cin >> key;
 
@@ -356,14 +306,24 @@ void HorseRace::check_outcome(int winning_horse)
     // user picked the winning horse. they win
     if (users_horse == winning_horse)
     {
-        std::cout << "\n\n" << "                       YOUR HORSE WON. YOU WON " << (users_wager * 5) << " TOKENS" << std::endl;
+        std::cout << "\n\n" << "                       YOUR HORSE WON. YOU WON " << (users_wager * 5) << token_or_tokens(users_wager * 5) << std::endl;
         token_access.set_tokens(token_access.get_tokens() + (users_wager * 5));
     }
     // otherwise they picked the wrong horse and lost.
     else
     {
-        std::cout << "\n\n" << "                      YOUR HORSE LOST. YOU LOST " << (users_wager) << " TOKENS" << std::endl;
+        std::cout << "\n\n" << "                      YOUR HORSE LOST. YOU LOST " << (users_wager) << token_or_tokens(users_wager) << std::endl;
         token_access.set_tokens(token_access.get_tokens() - (users_wager));
+    }
+}
+
+// this will take in the token amount and return the string "TOKEN" or "TOKENS" depending on how many
+std::string HorseRace::token_or_tokens(int token_amount){
+    if((token_amount) == 1){
+        return " TOKEN"; 
+    }
+    else{
+        return " TOKENS"; 
     }
 }
 
@@ -373,6 +333,9 @@ void HorseRace::replay()
     int users_input;
     int time = 3000;
     bool is_valid_input;
+
+    // Clear any leftover newline from the buffer
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     do
     {
@@ -384,13 +347,14 @@ void HorseRace::replay()
         std::cout << "                             2: RETURN TO GAMEROOM" << std::endl;
         std::cout << "\n"; 
         std::cout << "                            PLEASE SELECT AN OPTION: ";
-
+       
         // Read the entire line of input
         std::string line;
         std::getline(std::cin, line);
 
         // Create a string stream to parse the integer
         std::istringstream iss(line);
+
         if (iss >> users_input) {
             // Check for extra characters in the line
             if (iss.eof() && (users_input == 1 || users_input == 2)) {
@@ -405,7 +369,7 @@ void HorseRace::replay()
                 is_valid_input = false;
             }
         }
-        else {
+        else{
             // Input is not an integer
             system("clear");
             std::cout << "\n\n\n\n\n\n\n\n\n\n\n";
