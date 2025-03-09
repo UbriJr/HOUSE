@@ -25,16 +25,16 @@ int main(int argc, const char *argv[])
     //Introduction introduction_obj;
     //introduction_obj.run_introduction();
 
-    //Keno keno;
-    //keno.run_keno(); 
+    Keno keno;
+    keno.run_keno(); // needs testing
 
     //Revive rObj;
-    //rObj.Explanation();
+    //rObj.Explanation(); // needs testing
 
     // For Testing one panel at a time
     // CasinoWar TestObj;
     // TestObj.run_casino_war();
 
-    HorseRace testrace;
-    testrace.run_horse_race();
+    // HorseRace testrace;
+    // testrace.run_horse_race();
 }
