@@ -30,6 +30,9 @@ private:
     std::vector<int> parse_wagered_numbers(const std::string &input);
     int count_hits(const std::vector<int> &wagered_numbers, const std::set<int> &winning_numbers);
 
+    // Clear screen function
+    void clear_screen();
+
     // Random number generator
     std::mt19937 rng;
 };

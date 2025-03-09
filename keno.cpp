@@ -23,7 +23,8 @@ const int MIN_NUMBER = 1;
 const int MAX_SELECTIONS = 10;
 const int MIN_SELECTIONS = 2;
 const int DRAW_COUNT = 20;
-const int SLEEP_TIME = 1000; // milliseconds
+const int CLEAR_SLEEP_TIME = 1;
+const int SLEEP_TIME = 3000; // milliseconds
 
 // Constructor
 Keno::Keno() : rng(std::random_device{}()) {}
@@ -33,14 +34,23 @@ void Keno::run_keno() {
     keno_menu();
 }
 
+void Keno::clear_screen() {
+#ifdef _WIN32
+    std::this_thread::sleep_for(std::chrono::milliseconds(CLEAR_SLEEP_TIME));
+    system("cls");
+#else
+    std::this_thread::sleep_for(std::chrono::milliseconds(CLEAR_SLEEP_TIME));
+    system("clear");
+#endif
+}
+
 // Keno instructions
-void Keno::keno_instructions() {
-    clear_screen();
+void Keno::keno_instructions() { 
     int users_input;
     bool valid_input;
 
     do {
-        clear_screen();
+        clear_screen();  
         std::cout << "\n\n                                      KENO\n\n\n"
                   << "   -THE PLAYER SELECTS BETWEEN 2-10 NUMBERS RANGING FROM 1 TO 80 AND PLACES A\n"
                   << "                         WAGER ON THAT POOL OF NUMBERS\n\n"
@@ -60,6 +70,11 @@ void Keno::keno_instructions() {
     if (users_input == 1) {
         play_keno();
     } else if (users_input == 2) {
+
+        // it is possible to go into other panels with failed cin
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
         Gameroom game_room_obj;
         game_room_obj.return_to_games_menu();
     }
@@ -71,7 +86,7 @@ void Keno::keno_menu() {
     bool valid_input;
 
     do {
-        clear_screen();
+        clear_screen(); 
         std::cout << "\n\n\n\n\n\n\n\n\n                                      KENO\n\n"
                   << "                              1: HOW TO PLAY KENO\n"
                   << "                                  2: PLAY KENO\n\n"
@@ -88,11 +103,12 @@ void Keno::keno_menu() {
     }
 }
 
-// Plays Keno
 void Keno::play_keno() {
     bool are_valid_numbers;
     bool is_valid_wager = false;
     int wagered_amount;
+
+    const int TERMINAL_WIDTH = 80; // Default terminal width for Linux
 
     do {
         clear_screen();
@@ -128,17 +144,29 @@ void Keno::play_keno() {
             clear_screen();
             std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP_TIME / 3));
             std::cout << "\n\n                            THE WINNING NUMBERS ARE:\n\n";
-            std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP_TIME / 2));
+            std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP_TIME));
             display_keno_board(winning_numbers);
 
             std::vector<int> wagered_numbers_vector = parse_wagered_numbers(wagered_numbers);
             int hits = count_hits(wagered_numbers_vector, winning_numbers);
 
-            std::cout << "\n\n                           YOUR NUMBERS: ";
+            // Build the output strings
+            std::string numbers_text = "YOUR NUMBERS: ";
             for (int num : wagered_numbers_vector) {
-                std::cout << num << " ";
+                numbers_text += std::to_string(num) + " ";
             }
-            std::cout << "\n                                      HITS: " << hits << "\n\n";
+
+            std::string hits_text = "HITS: " + std::to_string(hits);
+
+            // Calculate padding for centering
+            int padding_numbers = (TERMINAL_WIDTH - numbers_text.length()) / 2;
+            int padding_hits = (TERMINAL_WIDTH - hits_text.length()) / 2;
+
+            // Print centered text
+            std::cout <<  "\n\n";
+            std::cout << std::string(padding_numbers, ' ') << numbers_text << "\n";
+            std::cout <<  "\n";
+            std::cout << std::string(padding_hits, ' ') << hits_text << "\n\n\n";
 
             outcome_checker(hits, wagered_numbers_vector.size(), wagered_amount);
             std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP_TIME * 2));
@@ -164,7 +192,7 @@ void Keno::play_again() {
     bool outcome = false;
 
     do {
-        clear_screen();
+        clear_screen(); 
         std::cout << "\n\n\n\n\n\n\n\n\n                         WOULD YOU LIKE TO PLAY AGAIN?\n\n"
                   << "                                 1: PLAY AGAIN\n"
                   << "                             2: RETURN TO GAMEROOM\n\n"
@@ -173,8 +201,12 @@ void Keno::play_again() {
         outcome = validate_input(input);
 
         if (input == 1) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             play_keno();
         } else if (input == 2) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             Gameroom game_room;
             game_room.return_to_games_menu();
         }
@@ -218,22 +250,22 @@ bool Keno::is_digit(const std::string& str) {
 
 // Validates the user's input for the main menu
 bool Keno::validate_input(int users_input) {
-    clear_screen();
+    clear_screen();  
     if (std::cin.fail()) {
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         std::cout << "\n\n\n\n\n\n\n\n\n\n\n                         PLEASE ENTER A VALID RESPONSE\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP_TIME));
-        clear_screen();
+        clear_screen();  
         return false;
     }
 
     if (users_input == 1 || users_input == 2) {
         return true;
     } else {
-        std::cout << "\n\n\n\n\n\n\n\n\n\n\n                         PLEASE ENTER EITHER 1 OR 2\n";
+        std::cout << "\n\n\n\n\n\n\n\n\n\n\n                         PLEASE ENTER A VALID RESPONSE\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP_TIME));
-        clear_screen();
+        clear_screen();  
         return false;
     }
 }
@@ -321,13 +353,4 @@ void Keno::outcome_checker(int hits, int spots, int wager) {
         std::cout << "                                YOU WON " << won_tokens << " TOKENS\n\n";
         token_access.set_tokens(token_access.get_tokens() + won_tokens);
     }
-}
-
-// Clears the screen
-void clear_screen() {
-#ifdef _WIN32
-    system("cls");
-#else
-    system("clear");
-#endif
 }

@@ -86,7 +86,6 @@ std::string Revive::generateEquation()
     stringRandomNumber.append(generateSign());
     stringRandomNumber.append(" ");
     stringRandomNumber.append(RandomNumber());
-
     stringRandomNumber.append(" ");
     stringRandomNumber.append(generateSign());
     stringRandomNumber.append(" ");
