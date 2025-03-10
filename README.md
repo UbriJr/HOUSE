@@ -11,9 +11,13 @@
 ## Demo:
 
 <p align="center">
-<img width="525" alt="Screen Shot 2022-07-23 at 7 29 18 PM" src="https://user-images.githubusercontent.com/45999845/180627305-08a9990b-be18-45d2-9e47-74101d589714.png">
+  <video width="525" controls>
+    <source src="https://github.com/user-attachments/assets/7f906e9a-b491-4fb2-ac16-34e68566d556" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
 </p>
-<br /> 
+<br />
+
 
 ## Games & Payouts:
 
