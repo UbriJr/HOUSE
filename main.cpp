@@ -12,29 +12,9 @@
 #include "gameroom.h"
 #include "introduction.h"
 
-// remove after testing
-#include "keno.h"
-#include "casinowar.h"
-#include "horserace.h"
-#include "revive.h"
-#include <random>
-
 int main(int argc, const char *argv[])
 {
     // This will kick off the first panel, thus starting the entire program.
     Introduction introduction_obj;
     introduction_obj.run_introduction();
-
-    //Keno keno;
-    //keno.run_keno(); // needs testing
-
-    //Revive rObj;
-    //rObj.Explanation(); // needs testing
-
-    // For Testing one panel at a time
-    // CasinoWar TestObj;
-    // TestObj.run_casino_war();
-
-    // HorseRace testrace;
-    // testrace.run_horse_race();
 }

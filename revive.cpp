@@ -33,14 +33,7 @@ void Revive::Explanation()
     system("clear");
 
     // print dialog to the console
-    std::cout << "\n";
-    std::cout << "\n";
-    std::cout << "\n";
-    std::cout << "\n";
-    std::cout << "\n";
-    std::cout << "\n";
-    std::cout << "\n";
-    std::cout << "\n";
+    std::cout << "\n\n\n\n\n\n\n\n";
     std::this_thread::sleep_for(std::chrono::milliseconds(timeDelay));
     std::cout << "                    IT LOOKS LIKE YOU HAVE RUN OUT OF TOKENS" << std::endl; //c //c
     std::cout << "\n";
@@ -55,9 +48,7 @@ void Revive::Explanation()
         std::cout << "\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(timeDelay));
         std::cout << "                               " << equationString << " = ?"; //c //c
-        std::cout << "\n";
-        std::cout << "\n";
-        std::cout << "\n";
+        std::cout << "\n\n\n";
         std::cout << "                                 YOUR ANSWER: "; //c //c
         std::cin >> userAnswer;
 
@@ -71,6 +62,8 @@ void Revive::Explanation()
 
     // if answer correctly send them back to gameroom with extra tokens
     system("clear");
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     Gameroom send_user_to_gameroom;
     send_user_to_gameroom.return_to_games_menu(); 
 
@@ -166,28 +159,11 @@ bool Revive::answerChecker(int userAnswer, int correctAnswer)
     {
         std::cin.clear();
         std::cin.ignore(10000, '\n');
-        std::cout << "\n";
-        std::cout << "\n";
-        std::cout << "\n";
-        std::cout << "\n";
-        std::cout << "\n";
-        std::cout << "\n";
-        std::cout << "\n";
-        std::cout << "\n";
-        std::cout << "\n";
-        std::cout << "\n";
+        std::cout << "\n\n\n\n\n\n\n\n\n\n";
         std::cout << "                         PLEASE ENTER A VALID RESPONSE\n\n"; //c //c
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
         system("clear");
-        std::cout << "\n";
-        std::cout << "\n";
-        std::cout << "\n";
-        std::cout << "\n";
-        std::cout << "\n";
-        std::cout << "\n";
-        std::cout << "\n";
-        std::cout << "\n";
-        std::cout << "\n";
+        std::cout << "\n\n\n\n\n\n\n\n\n";
         return false;
     }
 
@@ -210,15 +186,7 @@ bool Revive::answerChecker(int userAnswer, int correctAnswer)
         std::cout << "\n\n\n\n\n\n\n\n\n\n\n" << "                  YOUR ANSWER WAS INCORRECT, PLEASE TRY AGAIN" << "\n"; //c //c
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
         system("clear");
-        std::cout << "\n";
-        std::cout << "\n";
-        std::cout << "\n";
-        std::cout << "\n";
-        std::cout << "\n";
-        std::cout << "\n";
-        std::cout << "\n";
-        std::cout << "\n";
-        std::cout << "\n";
+        std::cout << "\n\n\n\n\n\n\n\n\n";
         return false;
     }
 }

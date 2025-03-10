@@ -23,7 +23,7 @@ const int MIN_NUMBER = 1;
 const int MAX_SELECTIONS = 10;
 const int MIN_SELECTIONS = 2;
 const int DRAW_COUNT = 20;
-const int CLEAR_SLEEP_TIME = 1;
+const int CLEAR_SLEEP_TIME = 3;
 const int SLEEP_TIME = 3000; // milliseconds
 
 // Constructor
