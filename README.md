@@ -11,13 +11,11 @@
 ## Demo:
 
 <p align="center">
-  <video width="525" controls>
+  <video width="425" controls>
     <source src="https://github.com/user-attachments/assets/7f906e9a-b491-4fb2-ac16-34e68566d556" type="video/mp4">
   </video>
 </p>
 <br />
-
-https://github.com/user-attachments/assets/7f906e9a-b491-4fb2-ac16-34e68566d556
 
 ## Games & Payouts:
 
