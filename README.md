@@ -10,7 +10,7 @@
 
 ## Demo:
 
-https://github.com/user-attachments/assets/7cb51f5b-cd87-49f6-a258-9f3e2b1ab776
+https://github.com/user-attachments/assets/35064a32-0f12-4579-8a52-9c9ea63479f5
 
 ## Games & Payouts:
 
