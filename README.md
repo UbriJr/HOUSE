@@ -11,8 +11,8 @@
 ## Demo:
 
 <p align="center">
-  <video width="425" controls>
-    <source src="https://github.com/user-attachments/assets/7f906e9a-b491-4fb2-ac16-34e68566d556" type="video/mp4">
+  <video width="425">
+    <source src="https://github.com/user-attachments/assets/7f906e9a-b491-4fb2-ac16-34e68566d556">
   </video>
 </p>
 <br />
