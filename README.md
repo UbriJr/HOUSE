@@ -10,7 +10,9 @@
 
 ## Demo:
 
-<img src="https://github.com/user-attachments/assets/d69dc99e-ec3c-4161-8846-6cb272c9bb17" width="50%" />
+<div style="text-align: center;">
+  <img src="https://github.com/user-attachments/assets/d69dc99e-ec3c-4161-8846-6cb272c9bb17" width="50%" />
+</div>
 
 
 
