@@ -13,11 +13,11 @@
 <p align="center">
   <video width="525" controls>
     <source src="https://github.com/user-attachments/assets/7f906e9a-b491-4fb2-ac16-34e68566d556" type="video/mp4">
-    Your browser does not support the video tag.
   </video>
 </p>
 <br />
 
+https://github.com/user-attachments/assets/7f906e9a-b491-4fb2-ac16-34e68566d556
 
 ## Games & Payouts:
 
