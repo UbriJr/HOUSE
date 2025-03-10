@@ -10,7 +10,9 @@
 
 ## Demo:
 
-https://github.com/user-attachments/assets/35064a32-0f12-4579-8a52-9c9ea63479f5
+<img src="https://github.com/user-attachments/assets/d69dc99e-ec3c-4161-8846-6cb272c9bb17" width="50%" />
+
+
 
 ## Games & Payouts:
 
